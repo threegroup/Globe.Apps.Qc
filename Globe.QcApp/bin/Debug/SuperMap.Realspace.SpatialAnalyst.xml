@@ -1,0 +1,1133 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>SuperMap.Realspace.SpatialAnalyst</name>
+  </assembly>
+  <members>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.Skyline">
+      <summary>
+            天际线分析，设定观察者位置、观察方向、添加限高体区域对象，执行天际线分析，并在指定的场景中得到分析结果。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.#ctor(SuperMap.Realspace.Scene)">
+      <summary>
+            根据指定的Scene对象，构造一个新的Skyline对象。
+            </summary>
+      <param name="scene">指定的分析场景。</param>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.AddLimitBody(SuperMap.Data.GeoRegion3D)">
+      <summary>
+            添加指定的限高体区域对象，并返回指定对象的索引号。
+            </summary>
+      <param name="pLimitBodyRegion3D">指定的限高体区域对象</param>
+      <returns>指定限高体区域对象的索引号。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.Build">
+      <summary>
+            执行天际线分析。
+            </summary>
+      <returns>成功返回true，否则为false.</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.Clear">
+      <summary>
+            清除分析结果。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.Dispose">
+      <summary>
+            释放SkyLine对象所占的本地资源。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.GetLimitRegion(System.Int32)">
+      <summary>
+            根据指定的索引号，获取对应的限高体区域对象，是一块平面区域。
+            </summary>
+      <param name="index">指定的索引号。</param>
+      <returns>指定的限高体区域对象。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.GetLimitBodyCount">
+      <summary>
+            获取分析中限高体区域的个数。
+            </summary>
+      <returns>限高体区域的数量。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.GetLimitModel(System.Int32)">
+      <summary>
+            获取指定位限高体区域位置的限高体。
+            </summary>
+      <param name="index">指定的区域索引号。</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.LocateToViewerPosition">
+      <summary>
+            相机定位到观察者的位置。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.RemoveAllLimitBodies">
+      <summary>
+            移除所有的限高体。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.RemoveLimitBody(System.Int32)">
+      <summary>
+            移除指定位置的限高体。
+            </summary>
+      <param name="index">指定区域的索引号。</param>
+      <returns>成功为true，否则为false。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.SetViewerVisible(System.Boolean)">
+      <summary>
+            设置观测点是否可见。
+            </summary>
+      <param name="visible">false表示不可见，true表示可见。</param>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.SetLimitBody(System.Int32,SuperMap.Data.GeoRegion3D)">
+      <summary>
+            设置限高体对象。
+            </summary>
+      <param name="index">指定限高体对象的索引号。</param>
+      <param name="pLimitBodyRegion3D">指定的限高体对象。</param>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.GetSkyline">
+      <summary>
+            返回天际线对象。
+            </summary>
+      <returns>天际线对象。</returns>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.Skyline.Color">
+      <summary>
+            获取或设置天际线的颜色。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.Skyline.Direction">
+      <summary>
+            获取或设置相机与正北方向的夹角，单位：度。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.Skyline.Pitch">
+      <summary>
+            获取或设置相机的俯仰，注意：该俯仰指相机方向和水面方向的夹角，单位：度。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.Skyline.Quality">
+      <summary>
+            获取天际线分析的质量。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.Skyline.ViewerPosition">
+      <summary>
+            获取或设置观察者的位置。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.Skyline.DisplayStyle">
+      <summary>
+            显示模式 DisplayMode.LINE表示天际线的线模式，DisplayMode.FACE表示天际线的面模式。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.Skyline.DisplayMode">
+      <summary>
+            显示模式枚举。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.Skyline.DisplayMode.FACE">
+      <summary>
+            天际线面模式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.Skyline.DisplayMode.LINE">
+      <summary>
+            天际线线模式。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.BarrierPoint3D">
+      <summary>
+        <para>障碍点对象类。</para>
+        <para>障碍点指的是阻挡观察点到目标点视线的点。</para>
+      </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.BarrierPoint3D.BarrierID">
+      <summary>
+            获取障碍模型对象的ID。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.BarrierPoint3D.LayerName">
+      <summary>
+            获取障碍点所属图层名。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.BarrierPoint3D.IntersectionPoint">
+      <summary>
+            获取障碍点坐标。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.DissolveParameter3D">
+      <summary>
+            三维矢量数据融合参数类。该类提供三维矢量数据融合的参数设置，如融合字段、融合类型、容限等。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.DissolveParameter3D.#ctor">
+      <summary>
+            构造一个新的 DissolveParameter3D 对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.DissolveParameter3D.#ctor(SuperMap.Realspace.SpatialAnalyst.DissolveParameter3D)">
+      <summary>
+            根据给定的 DissolveParameter3D 对象构造一个与其完全相同的新对象。
+            </summary>
+      <param name="parameter">指定的 DissolveParameter3D 对象。</param>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.DissolveParameter3D.IsNullValue">
+      <summary>
+             获取或设置是否处理融合字段值为空的对象。true 表示处理融合字段值为空的对象，false 表示不处理。
+             </summary>
+      <value>默认值为 false，即不处理融合字段值为空的对象。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.DissolveParameter3D.DissolveType">
+      <summary>
+            获取或设置融合类型。
+            </summary>
+      <value>默认值为 DissolveType.Single。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.DissolveParameter3D.Tolerance">
+      <summary>
+            获取或设置融合容限。单位为米。
+            </summary>
+      <value>默认值为当前待处理的数据集的默认容限。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.DissolveParameter3D.FilterString">
+      <summary>
+            获取或设置数据集融合时对象的过滤表达式。只有满足此条件的对象才进行融合处理。
+            </summary>
+      <value>默认值为 null，即无过滤条件。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.DissolveParameter3D.FieldNames">
+      <summary>
+            获取或设置融合字段的名称集合。
+            </summary>
+      <value>默认值为 null，即无融合字段。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.DissolveParameter3D.StatisticsFieldNames">
+      <summary>
+            获取或设置统计字段的名称集合。
+            </summary>
+      <value>默认值为 null，表示无统计字段。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.DissolveParameter3D.StatisticsTypes">
+      <summary>
+            获取或设置统计字段的统计类型集合，它与 <see cref="P:SuperMap.Realspace.SpatialAnalyst.DissolveParameter3D.StatisticsFieldNames">StatisticsFieldNames</see> 属性设置的统计字段一一对应。
+            </summary>
+      <value>默认值为 null，表示无统计字段。</value>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.VisibleResult3D">
+      <summary>
+        <para>通视分析结果类。该类是通视分析的结果返回类型，包含了通视分析的点信息、通视结果以及通视线对象。</para>
+      </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.VisibleResult3D.PointView">
+      <summary>
+            获取观察点对象。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.VisibleResult3D.PointTarget">
+      <summary>
+            获取目标点对象。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.VisibleResult3D.Visible">
+      <summary>
+            获取观察点与目标点是否通视。
+            </summary>
+      <returns>True表示两点间通视，False表示两点间不通视。</returns>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.VisibleResult3D.LineVisible">
+      <summary>
+            获取通视线对象。
+            </summary>
+      <return>获取到的通视线对象，其类型为三维线对象（GeoLine3D）。</return>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.VisibleResult3D.LineInvisible">
+      <summary>
+            获取不通视线。
+            </summary>
+      <return>获取到的不通视线对象，其类型为三维线对象（GeoLine3D）。</return>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.VisibleResult3D.BarrierPoint3Ds">
+      <summary>
+            获取障碍点对象集合。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.Geometrist3D">
+      <summary>
+            三维几何基本运算类。目前提供三维线的光滑和重采样处理。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Geometrist3D.CreateBuffer(SuperMap.Data.Geometry3D,SuperMap.Realspace.SpatialAnalyst.BufferAnalyst3DParameter,SuperMap.Data.PrjCoordSys)">
+      <summary>
+             对三维点、线几何对象做缓冲区。可以指定源投影坐标系。
+             </summary>
+      <param name="geometry">指定的三维点线几何对象。</param>
+      <param name="bufferAnalyst3DParameter">指定的缓冲参数类。</param>
+      <param name="prjCoordsys">指定的源投影坐标系。支持平面和球面场景。</param>
+      <returns>三维模型几何对象。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Geometrist3D.Smooth(SuperMap.Data.Point3Ds,System.Int32,SuperMap.Data.PrjCoordSys)">
+      <summary>
+            对三维点串进行光滑处理。可以指定源投影坐标系。
+            </summary>
+      <param name="points">指定的三维点串。</param>
+      <param name="smoothness">指定的光滑系数。有效范围为大于等于 2，设置为小于 2 的值会抛出异常。光滑系数越大，点串越光滑。建议取值范围为[2,10]。</param>
+      <param name="prjCoordsys">指定的源投影坐标系。当源投影为地理坐标系时，需要进行投影转换之后进行光滑处理。</param>
+      <returns>进行光滑处理后的三维点串。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Geometrist3D.Resample(SuperMap.Data.Geometry3D,System.Double,SuperMap.Data.PrjCoordSys)">
+      <summary>
+            对三维几何对象进行重采样。可以指定源投影坐标系。目前支持三维线对象。
+            </summary>
+      <param name="geometry">指定的三维几何对象，目前支持三维线对象。</param>
+      <param name="tolerance">指定的重采样容限。单位为米。重采样距离可设置为大于 0 的浮点型数值，设置的重采样距离越大，采样结果数据越简化。</param>
+      <param name="prjCoordsys">指定的源投影坐标系。当源投影为地理坐标系时，需要进行投影转换之后进行重采样处理。</param>
+      <returns>进行重采样处理后的三维几何对象。</returns>
+    </member>
+    <!-- 对于成员“T:SuperMap.Realspace.SpatialAnalyst.BufferAnalyst3DParameter”忽略有格式错误的 XML 注释 -->
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.BufferAnalyst3DParameter.#ctor">
+      <summary>
+            构造一个三维缓冲区分析参数类的新对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.BufferAnalyst3DParameter.#ctor(SuperMap.Realspace.SpatialAnalyst.BufferAnalyst3DParameter)">
+      <summary>
+            根据给定的 BufferAnalyst3DParameter 对象构造一个与其完全相同的新对象。
+            </summary>
+      <param name="bufferAnalyst3DParameter">给定的 BufferAnalyst3DParameter 对象。</param>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.BufferAnalyst3DParameter.EndType">
+      <summary>
+            获取或设置三维缓冲区端点类型。用以区分三维线对象缓冲区分析时的端点是圆头缓冲还是平头缓冲。
+            </summary>
+      <value>默认值为 <see cref="F:SuperMap.Realspace.SpatialAnalyst.BufferEndType.Round">BufferEndType.Round</see>。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.BufferAnalyst3DParameter.BufferQuality">
+      <summary>
+            获取或设置半圆弧线段个数，即用多少个线段来模拟一个半圆，必须大于等于 4，小于200。
+            </summary>
+      <value>默认值为 12 。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.BufferAnalyst3DParameter.BufferDistance">
+      <summary>
+            获取或设置三维缓冲区的距离。单位为米。
+            </summary>
+      <value>默认值为 0 。</value>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.BufferEndType">
+      <summary>
+            该枚举定义了三维缓冲区端点类型常量。用以区分三维线对象缓冲区分析时的端点是圆头缓冲还是平头缓冲。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.BufferEndType.Round">
+      <summary>
+        <para>三维圆头缓冲。三维圆头缓冲区是在生成缓冲区时，在线的端点处以端点为球心做空间半圆弧，形成的半球区域。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.BufferEndType.Flat">
+      <summary>
+        <para>三维平头缓冲。三维平头缓冲区是在生成缓冲区时，在线的端点处以端点为圆心，形成的圆形区域。</para>
+      </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery">
+      <summary>
+            阴影分析类，指定分析范围、设置阴影类型、设定分析时间段得出阴影分析结果。
+            备注：三维空间分析时，除阴影分析外，其他分析不能开启阴影功能，开启会导出分析结果出错。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.#ctor(SuperMap.Realspace.Scene)">
+      <summary>
+            根据指定的Scene对象，构造一个新的ShadowVisibilityQuery对象。
+            </summary>
+      <param name="scene">
+      </param>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.Build">
+      <summary>
+            执行阴影分析。
+            </summary>
+      <returns>成功为true，否则为false。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.Clear">
+      <summary>
+            清除分析结果。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.Dispose">
+      <summary>
+            释放ShadowVisibilityQuery对象占用的本地资源。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.GetShadowRatio(System.Drawing.Point)">
+      <summary>
+            返回指定屏幕位置的阴影率。
+            </summary>
+      <param name="point">指定的屏幕位置。</param>
+      <returns>阴影率，-1表示获取失败。</returns>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.BaseUtcOffset">
+      <summary>
+            获取或设置时区偏移。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.ColorDictTable">
+      <summary>
+            获取或设置颜色表。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.EndTime">
+      <summary>
+            获取或设置分析的结束时间。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.StartTime">
+      <summary>
+            获取或设置分析的开始时间。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.MaxAltitude">
+      <summary>
+            获取或设置最大高度，阴影分析用一堆点来展示，这些点会在最大高度和最小高度之间插值产生。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.MinAltitude">
+      <summary>
+            获取或设置最小高度，阴影分析用一堆点来展示，这些点会在最大高度和最小高度之间插值产生。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.QueryRegion">
+      <summary>
+            获取或设置分析区域。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.Spacing">
+      <summary>
+            获取或设置点间距。分析展示点的间距。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.TimeInterval">
+      <summary>
+            获取或设置时间间隔。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.Generalization3D">
+      <summary>
+            三维矢量制图综合类。该类提供三维矢量数据的融合、重采样和光滑等功能。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Generalization3D.Dissolve(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,SuperMap.Realspace.SpatialAnalyst.DissolveParameter3D)">
+      <summary>
+            对三维矢量数据集进行融合处理，目前支持三维线数据集。
+            </summary>
+      <param name="sourceDataset">指定的待融合的三维矢量数据集。目前支持三维线数据集。</param>
+      <param name="targetDatasource">指定的用于存储结果数据集的数据源。</param>
+      <param name="targetDatasetName">指定的结果数据集名称。</param>
+      <param name="dissolveParameter">指定的融合参数设置。</param>
+      <returns>融合后的三维矢量数据集，是一个新的数据集。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Generalization3D.Resample(SuperMap.Data.DatasetVector,System.Double)">
+      <summary>
+            对三维矢量数据集进行重采样，目前支持三维线数据集和网络数据集。 
+            </summary>
+      <param name="datasetVector">指定的待重采样的三维矢量数据集。目前支持三维线数据集和网络数据集。</param>
+      <param name="tolerence">指定的重采样容限。单位为米。重采样距离可设置为大于 0 的浮点型数值，设置的重采样距离越大，采样结果数据越简化。</param>
+      <returns>一个布尔值，指示重采样是否成功。如果成功，返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Generalization3D.Smooth(SuperMap.Data.DatasetVector,System.Int32)">
+      <summary>
+            对三维矢量数据集进行光滑，目前支持三维线数据集和网络数据集。 
+            </summary>
+      <param name="datasetVector">指定的待光滑的三维矢量数据集。目前支持三维线数据集和网络数据集。</param>
+      <param name="smoothness">指定的光滑系数。有效范围为大于等于 2，设置为小于 2 的值会抛出异常。光滑系数越大，点串越光滑。建议取值范围为[2,10]。</param>
+      <returns>一个布尔值，指示重采样是否成功。如果成功，返回 true，否则返回 false。</returns>
+    </member>
+    <member name="E:SuperMap.Realspace.SpatialAnalyst.Generalization3D.Stepped">
+      <summary>
+            启动进度条时触发该事件。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.VisibilityAnalyst3D">
+      <summary>
+             三维可视分析类。三维可视分析包括通视分析和可视域分析，前者用于判断两点间是否通视，后者用于对观察点的可视范围进行分析。该类已经废弃，使用Sightline代替
+             </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.VisibilityAnalyst3D.IsVisible(SuperMap.Data.Point3D,SuperMap.Data.Point3D)">
+      <summary>
+             根据指定的观察点和目标点，来进行通视性分析。
+             </summary>
+      <param name="viewPoint">指定的观察点对象。</param>
+      <param name="targetPoint">指定的目标点对象。</param>
+      <returns>返回通视分析结果类对象。</returns>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.VisibilityAnalyst3D.Scene">
+      <summary>
+            获取或设置待分析的场景对象。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.StatisticsType3D">
+      <summary>
+            该枚举定义了三维矢量数据集融合的字段统计类型常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.StatisticsType3D.Max">
+      <summary>
+            统计字段的最大值。只对数值型和时间型字段有效。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.StatisticsType3D.Min">
+      <summary>
+            统计字段的最小值。只对数值型和时间型字段有效。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.StatisticsType3D.Sum">
+      <summary>
+            统计字段的和。只对数值型字段有效。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.StatisticsType3D.Mean">
+      <summary>
+            统计字段的平均值。只对数值型字段有效。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.StatisticsType3D.First">
+      <summary>
+            保留第一个对象的字段值。对数值、布尔、时间和文本型字段都有效。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.StatisticsType3D.Last">
+      <summary>
+            保留最后一个对象的字段值。对数值、布尔、时间和文本型字段都有效。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.AnalysisQuality">
+      <summary>
+            该枚举定义了空间分析结果的质量级别。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.AnalysisQuality.High">
+      <summary>
+            高质量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.AnalysisQuality.Low">
+      <summary>
+            低质量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.AnalysisQuality.Medium">
+      <summary>
+            中等质量。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.Sightline">
+      <summary>
+            视线分析，即通视分析，根据观察者点位和目标点建立视线分析，在指定场景中，分析出结果。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Sightline.#ctor(SuperMap.Realspace.Scene)">
+      <summary>
+            根据指定的Scene对象，构造一个新的Sightline对象。
+             </summary>
+      <param name="scene">指定的Scene对象。</param>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Sightline.AddTargetPoint(SuperMap.Data.Point3D)">
+      <summary>
+            添加目标点。通视分析目标点与观察点连接线夹角不能超过120度。
+            </summary>
+      <param name="value">指定的目标点对象</param>
+      <returns>指定目标点对象的索引号。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Sightline.Build">
+      <summary>
+            执行视线分析。
+            </summary>
+      <returns>分析成功，返回true，否则为false。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Sightline.Clear">
+      <summary>
+            清除分析结果。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Sightline.Dispose">
+      <summary>
+            释放Sightline对象所占的本地资源。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Sightline.GetTargetPoint(System.Int32)">
+      <summary>
+            根据指定索引号，返回指定的目标点对象。
+            </summary>
+      <param name="index">指定的索引号。</param>
+      <returns>指定的目标点对象。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Sightline.GetTargetPointCount">
+      <summary>
+            获取视线分析中目标点的个数。
+            </summary>
+      <returns>点的数量</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Sightline.RemoveAllTargetPoints">
+      <summary>
+            移除所有的目标点。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Sightline.RemoveTargetPoint(System.Int32)">
+      <summary>
+            移除指定索引位置的目标点对象。
+            </summary>
+      <param name="index">指定的索引号。</param>
+      <returns>移除成功，返回true，否则为false。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Sightline.SetTargetPoint(System.Int32,SuperMap.Data.Point3D)">
+      <summary>
+            在指定的索引位置，添加目标点。
+            </summary>
+      <param name="index">指定的索引点号。</param>
+      <param name="value">指定的目标点对象</param>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Sightline.GetSightlineResult(System.Int32)">
+      <summary>
+            根据目标点索引号，返回分析结果。
+            </summary>
+      <param name="index">指定的目标点索引号。</param>
+      <returns>分析结果。</returns>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.Sightline.ViewerPosition">
+      <summary>
+            观察者的位置。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.Sightline.VisibleColor">
+      <summary>
+            获取或设置通视分析的可见部分颜色
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.Sightline.HiddenColor">
+      <summary>
+            获取或设置通视分析的不可见部分颜色
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.Sightline.BarrierPoint">
+      <summary>
+            获取障碍点。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.Sightline.TargetPoint">
+      <summary>
+            获取目标点。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.Sightline.ViewPosition">
+      <summary>
+            获取观察点。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.Sightline.Visible">
+      <summary>
+            获取是否通视。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.Sightline.SightlineResult">
+      <summary>
+            视线分析结果类。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Sightline.SightlineResult.#ctor(SuperMap.Data.Point3D,SuperMap.Data.Point3D,System.Boolean,SuperMap.Data.Point3D)">
+      <summary>
+            根据指定的观察点、目标点、是否通视、障碍点构造一个新的SightlineResult对象。
+            </summary>
+      <param name="viewerPos">指定的视点</param>
+      <param name="targetPoint">指定的目标点</param>
+      <param name="bVisible">是否通视，如果为true，barrierPoint为目标点，否则为障碍点。</param>
+      <param name="barrierPoint">指定的障碍点。</param>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.ProximityAnalyst3D">
+      <summary>
+             三维邻近分析类。该类用于对三维管线数据的距离检测和三维模型数据的距离查询。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.ProximityAnalyst3D.#ctor">
+      <summary>
+            构造路网数据编译类的对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.ProximityAnalyst3D.PipeLineDistanceCheck(SuperMap.Data.DatasetVector,SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,System.String,System.Double)">
+      <summary>
+            三维管线距离检测。
+            </summary>
+      <param name="sourceDataset">指定的待检测的数据集。</param>
+      <param name="validatingDataset">指定的参考数据集，参考数据集中的线数据和待检测数据集中的线数据做相互检查，也可以不指定该项，则待检测数据集中的线数据间做检查。</param>
+      <param name="targetDatasource">指定的用于存储检测结果的数据源。</param>
+      <param name="targetDatasetName">指定的用于存储结果的数据集的名称。</param>
+      <param name="radiusFieldName">指定的管线半径字段，并且要求值单位为米，指定后计算的管线间距是管线表面的距离。可以不指定该字段，则计算管线间距不考虑半径。</param>
+      <param name="distance">检测距离，单位要求为米。</param>
+      <returns>检查结果数据集。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.ProximityAnalyst3D.ModelDistanceQuery(SuperMap.Data.DatasetVector,SuperMap.Data.Geometry,System.Double,System.String,SuperMap.Data.CursorType)">
+      <summary>
+             三维模型距离查询。
+             </summary>
+      <param name="modelDataset">指定待查询的模型数据集。</param>
+      <param name="geometry">查询几何对象，可以是三维点和线。</param>
+      <param name="bufferDistance">指定查询距离，单位要求是米。</param>
+      <param name="filter">指定的被查询模型数据集属性过滤字段。</param>
+      <param name="cursorType">结果记录集游标类型。</param>
+      <returns>查询结果记录。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.ProximityAnalyst3D.ModelDistanceQuery(SuperMap.Data.Recordset,SuperMap.Data.Geometry,System.Double,SuperMap.Data.CursorType)">
+      <summary>
+             三维模型距离查询。
+             </summary>
+      <param name="recordset">指定待查询的模型记录集。</param>
+      <param name="geometry">查询几何对象，可以是三维点和线。</param>
+      <param name="bufferDistance">指定查询距离，单位要求是米。</param>
+      <param name="cursorType">结果记录集游标类型。</param>
+      <returns>查询结果记录。</returns>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.Viewshed3D">
+      <summary>
+            可视域分析，设置观察点、目标的位置，水平、垂直视角范围，建立可视区域分析并在指定的场景中显示分析结果。该分析针对三维场景模型分析。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.#ctor(SuperMap.Realspace.Scene)">
+      <summary>
+            根据指定的Scene对象，构造一个新的Viewshed3D对象。
+            </summary>
+      <param name="scene">指定分析的场景。</param>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.Build">
+      <summary>
+            执行分析，得出分析结果。
+            </summary>
+      <returns>分析成功，为true，否则为false。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.Clear">
+      <summary>
+            清除分析结果。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.Dispose">
+      <summary>
+            释放Viewshed3D所占有的本地资源。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.SetDistDirByPoint(SuperMap.Data.Point3D)">
+      <summary>
+            根据目标点位置，计算观察者点位和目标点的距离和方向。
+            </summary>
+      <param name="value">指定的目标点位置</param>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.Direction">
+      <summary>
+            获取或设置当前相机的方向与正北方向的夹角，单位：度。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.Distance">
+      <summary>
+            获取或设置可视距离，单位：米。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.HiddenAreaColor">
+      <summary>
+            获取或设置不可视区域的颜色。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.HorizontalFov">
+      <summary>
+            获取或设置可视域分析的水平视角范围。单位：度。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.Pitch">
+      <summary>
+            获取或设置当前分析的相机俯仰角。注意：该俯仰角指当相机方向与地面平行的时候是0度，与相机本身参数俯仰不一样。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.Quality">
+      <summary>
+            获取或设置分析的质量级别。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.VerticalFov">
+      <summary>
+            获取或设置可视域分析垂直视角范围。单位：度。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.ViewerPosition">
+      <summary>
+            获取或设置观察点的位置。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.VisibleAreaColor">
+      <summary>
+            获取或设置可视区域的颜色。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.HintLineColor">
+      <summary>
+            获取或设置可视域分析的提示线颜色。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.ContourMap">
+      <summary>
+            等高线图类，设置分析区域、颜色表及对应的最大最下高程、等高线间距、等高线显示风格，提取等值线。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.ContourMap.#ctor(SuperMap.Realspace.Scene)">
+      <summary>
+            根据指定的Scene对象，构造一个新的ContourMap对象。
+            </summary>
+      <param name="scene">
+      </param>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.ContourMap.Build">
+      <summary>
+            执行提取等高线。
+            </summary>
+      <returns>成功为true，否则为false。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.ContourMap.Clear">
+      <summary>
+            清除分析结果。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.ContourMap.Dispose">
+      <summary>
+            释放ContourMap对象占用的本地资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ContourMap.ColorDictTable">
+      <summary>
+            获取或设置颜色表。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ContourMap.CoverageArea">
+      <summary>
+            获取或设置绘制等高线的区域。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ContourMap.CoverageRegion">
+      <summary>
+            获取或设置绘制等高线的区域。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ContourMap.DisplayStyle">
+      <summary>
+            获取或设置显示风格。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ContourMap.Interval">
+      <summary>
+            获取或设置等高线间距。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ContourMap.LineColor">
+      <summary>
+            获取或设置等高线的颜色。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ContourMap.MaxVisibleAltitude">
+      <summary>
+            获取或设置最大可视高度。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ContourMap.MinVisibleAltitude">
+      <summary>
+            获取或设置最小可视高度。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ContourMap.Opacity">
+      <summary>
+            获取或设置不透明度，范围（0-100）。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ContourMap.BorderVisible">
+      <summary>
+            获取或设置分析区域边框是否可见。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ContourMap.BorderColor">
+      <summary>
+            获取或设置分析区域边框颜色。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.ContourMap.DisplayMode">
+      <summary>
+            该枚举定义了等高线显示模式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.ContourMap.DisplayMode.Face">
+      <summary>
+            以填充面的方式显示。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.ContourMap.DisplayMode.Face_And_Line">
+      <summary>
+            以填充面和线的方式显示。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.ContourMap.DisplayMode.Line">
+      <summary>
+            以线的方式显示。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.Profile">
+      <summary>
+            剖面线分析，在指定场景中选取起始点，结束点进行分析，得出剖面线分析效果图，在该图中可以计算每个像素点对应的三维空间位置。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Profile.#ctor(SuperMap.Realspace.Scene)">
+      <summary>
+            根据指定的Scene对象，构造一个新的Profile对象。
+            </summary>
+      <param name="scene">
+      </param>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Profile.Build">
+      <summary>
+            执行剖面线分析。
+            </summary>
+      <returns>成功为true，否则为false。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Profile.Clear">
+      <summary>
+            清除分析结果。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Profile.Dispose">
+      <summary>
+            释放Profile对象占用的本地资源。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Profile.GetLeftTopPosition">
+      <summary>
+            返回剖面线纹理中左上角点对应的三维空间位置。
+            </summary>
+      <returns>三维空间点位</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Profile.GetRightBottomPosition">
+      <summary>
+            返回剖面线纹理中右下角点对应的三维空间位置
+            </summary>
+      <returns>三维空间点位</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Profile.MeasurePoint3D(System.Drawing.Point)">
+      <summary>
+            根据剖面线纹理中的像素位置，计算对应的三维空间位置。
+            </summary>
+      <param name="point2">指定纹理中的像素点。</param>
+      <returns>三维空间位置。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Profile.OutputProfileToBitMap">
+      <summary>
+            返回剖面线纹理的bitmap图。
+            </summary>
+      <returns>Bitmap对象。</returns>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.Profile.EndPoint">
+      <summary>
+            获取或设置剖面线分析的的结束点。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.Profile.ExtendHeight">
+      <summary>
+            获取或设置剖面分析在三维空间中的跨越高度，单位是米。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.Profile.StartPoint">
+      <summary>
+            获取或设置剖面线分析的的起始点。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.GridMatchAnalyst">
+      <summary>
+            地形模型匹配类。用于使 DEM 地形数据与三维模型贴合。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.GridMatchAnalyst.GridMatch(SuperMap.Data.DatasetGrid,SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,System.String,System.Double,System.Double)">
+      <summary>
+            地形模型匹配，根据模型的高程对 DEM 地形进行修改（填挖）使之与模型贴合。
+            </summary>
+      <param name="sourceDatasetGrid">指定的与三维模型进行匹配的地形数据，即 DEM 栅格数据。</param>
+      <param name="sourceDatasetVector">指定的模型数据。可以是 CAD 数据集或面数据集。</param>
+      <param name="targetDatasource">指定的用于存储结果数据集的数据源。</param>
+      <param name="targetDatasetName">指定的结果数据集的名称。</param>
+      <param name="altiFieldName">指定的模型数据的高程字段。详细说明见备注部分。</param>
+      <param name="radius">指定的过渡区域的半径，单位为米。半径的起点为模型对应地形的边缘，对该过渡地带的地形进行平滑过渡处理。有效值范围为大于等于0，设置为0表示不进行平滑过渡处理。</param>
+      <param name="exp">指定的幂次。取值范围为大于等于0。设置为负数会抛出异常。为0使表示不对模型周围的缓冲地带进行平滑过渡。建议范围为(0,3]。</param>
+      <returns>根据模型进行匹配后的 DEM 数据集。</returns>
+    </member>
+    <member name="E:SuperMap.Realspace.SpatialAnalyst.GridMatchAnalyst.Stepped">
+      <summary>
+            启动进度条时触发该事件。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.DissolveType3D">
+      <summary>
+            该枚举定义了三维矢量数据融合的融合类型常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.DissolveType3D.OnlyMultiPart">
+      <summary>
+            组合。将融合字段值相同的对象合并成一个复杂对象。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.DissolveType3D.Single">
+      <summary>
+            融合。将融合字段值相同且拓扑邻近的对象合并成一个简单对象。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.DissolveType3D.MultiPart">
+      <summary>
+            融合后组合。将融合字段值相同且拓扑邻近的对象合并成一个简单对象，然后将融合字段值相同的非邻近对象组合成一个复杂对象。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.SlopeMap">
+      <summary>
+            坡度坡向图类，给定分析区域，在指定的场景中分析出坡度和坡向。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.SlopeMap.#ctor(SuperMap.Realspace.Scene)">
+      <summary>
+            根据指定的Scene对象，构造一个新的SlopMap对象。
+            </summary>
+      <param name="scene">
+      </param>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.SlopeMap.Build">
+      <summary>
+            执行等坡度坡向分析。
+            </summary>
+      <returns>成功为true，否则为false。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.SlopeMap.Clear">
+      <summary>
+            清除分析结果。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.SlopeMap.Dispose">
+      <summary>
+            释放SlopeMap对象占用的本地资源。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.SlopeMap.GetSlopeDirectionValue(SuperMap.Data.Point3D)">
+      <summary>
+            获得指定经纬度位置点的坡向值,大小在0~360之间，单位：度。
+            </summary>
+      <param name="point3d">指定的经纬度位置。</param>
+      <returns>坡向值。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.SlopeMap.GetSlopeValue(SuperMap.Data.Point3D)">
+      <summary>
+            获得指定经纬度位置点的坡度值,大小在0~90之间，单位：度。
+            </summary>
+      <param name="point3d">指定的经纬度位置。</param>
+      <returns>坡度值。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.SlopeMap.IsShowText(System.Boolean)">
+      <summary>
+            是否显示坡度，坡向信息。
+            </summary>
+      <param name="isShow">isShow值为true，表示显示信息，否则不显示。</param>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.SlopeMap.ColorDictTable">
+      <summary>
+            获取或设置颜色表。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.SlopeMap.CoverageArea">
+      <summary>
+            获取或设置要分析的区域。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.SlopeMap.DisplayStyle">
+      <summary>
+            获取或设置坡度分析的显示方式。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.SlopeMap.MaxVisibleSlope">
+      <summary>
+            获取或设置最大可见坡度，单位：度。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.SlopeMap.MinVisibleSlope">
+      <summary>
+            获取或设置最小可见坡度，单位：度。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.SlopeMap.Opacity">
+      <summary>
+            获取或设置不透明度，范围（0-100）。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.SlopeMap.SlopeInfoPoint">
+      <summary>
+            获取或设置需要显示文字的经纬度位置和文字的颜色。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.SlopeMap.BorderVisible">
+      <summary>
+            获取或设置分析区域边框是否可见。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.SlopeMap.BorderColor">
+      <summary>
+            获取或设置分析区域边框颜色。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.SlopeMap.DisplayMode">
+      <summary>
+            该枚举定义了坡度的显示方式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.SlopeMap.DisplayMode.Arrow">
+      <summary>
+            以箭头线的方式显示。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.SlopeMap.DisplayMode.Face">
+      <summary>
+            以填充面的方式显示。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.SlopeMap.DisplayMode.Face_And_Arrow">
+      <summary>
+            以填充面和箭头线的方式显示。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.ProfileAnalyst">
+      <summary>
+            剖面分析类。该类提供基于地形和模型数据的剖面分析功能，目前提供铅垂剖面分析。该类已经废弃，使用Profile代替。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.ProfileAnalyst.CalculatePlumbProfile(SuperMap.Data.Point2D,SuperMap.Data.Point2D,SuperMap.Data.DatasetVector[],SuperMap.Data.DatasetGrid,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            根据指定的切割线对地形或模型进行铅垂剖面分析，返回结果剖面线数据集。
+            </summary>
+      <param name="startPoint">指定的切割线的起点。</param>
+      <param name="endPoint">指定的切割线的终点。</param>
+      <param name="modelDatasets">指定的模型数据集集合。可选，但要求至少指定一个表面栅格数据集或一个模型数据集。</param>
+      <param name="surfaceGrid">指定的表面栅格数据集。可选，但要求至少指定一个表面栅格数据集或一个模型数据集。</param>
+      <param name="targetDatasource">指定的用于存储结果剖面线数据集的数据源。</param>
+      <param name="targetDatasetName">指定的结果剖面线数据集的名称。</param>
+      <returns>结果剖面线数据集。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.ProfileAnalyst.CalculatePlumbProfile(SuperMap.Data.Point2D,SuperMap.Data.Point2D,SuperMap.Data.DatasetVector[],SuperMap.Data.DatasetGrid,SuperMap.Data.Datasource,System.String,SuperMap.Data.AltitudeMode)">
+      <summary>
+            根据指定的切割线对地形或模型进行铅垂剖面分析，返回结果剖面线数据集。
+            </summary>
+      <param name="startPoint">指定的切割线的起点。</param>
+      <param name="endPoint">指定的切割线的终点。</param>
+      <param name="modelDatasets">指定的模型数据集集合。可选，但要求至少指定一个表面栅格数据集或一个模型数据集。</param>
+      <param name="surfaceGrid">指定的表面栅格数据集。可选，但要求至少指定一个表面栅格数据集或一个模型数据集。</param>
+      <param name="targetDatasource">指定的用于存储结果剖面线数据集的数据源。</param>
+      <param name="targetDatasetName">指定的结果剖面线数据集的名称。</param>
+      <param name="altitudeMode">高程模式。模型底面高程根据不同高程模式与模型Position所在位置的表面栅格高度产生关联。</param>
+      <returns>结果剖面线数据集。</returns>
+    </member>
+  </members>
+</doc>

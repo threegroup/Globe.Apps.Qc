@@ -1,0 +1,39 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        xmlns:Chromes="clr-namespace:Telerik.Windows.Controls.Chromes;assembly=Telerik.Windows.Controls" 
+        x:Class="Globe.QcApp.MaskShell"
+        Title="MaskWindow"
+        ShowInTaskbar="False"
+        ResizeMode="NoResize"
+        Topmost="False" 
+        SizeToContent="Manual"
+        AllowsTransparency="True"
+        Background="{x:Null}"
+        WindowStyle="None"
+        WindowStartupLocation="CenterOwner">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal" >
+            <Image Source="Images/logo.ico" Stretch="UniformToFill"/>
+            <TextBlock Text="蕲春三维地理信息展示系统" FontSize="36" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontFamily="Microsoft YaHei UI Light"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Button.Click="StackPanel_Click">
+            <Button Name="ZoomIn" Content="场景放大"/>
+            <Button Name="ZoomOut" Content="场景缩小"/>
+            <Button Name="Pan" Content="场景平移"/>
+            <Button Name="FullExent" Content="场景全幅"/>
+            <Button Name="SearchLocation" Content="查询定位"/>
+            <Button Name="FullScreen" Content="全屏显示"/>
+            <Button Name="ExitSystem" Content="退出系统"/>
+        </StackPanel>
+    </Grid>
+</Window>
