@@ -29,8 +29,8 @@
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Button.Click="StackPanel_Click">
             <Button Name="ZoomIn" Content="场景放大"/>
             <Button Name="ZoomOut" Content="场景缩小"/>
-            <Button Name="Pan" Content="场景平移"/>
             <Button Name="FullExent" Content="场景全幅"/>
+            <Button Name="Stop" Content="场景停止"/>
             <Button Name="SearchLocation" Content="查询定位"/>
             <Button Name="FullScreen" Content="全屏显示"/>
             <Button Name="ExitSystem" Content="退出系统"/>

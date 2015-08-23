@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/zoomin.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/information.png")]
 
 

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Project\SVN_WPF\Globe.QcApp\Globe.QcApp\obj\Debug\
+D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\
 Globe.QcApp
 none
 false
 DEBUG;TRACE
-D:\Project\SVN_WPF\Globe.QcApp\Globe.QcApp\App.xaml
-3-1446612825
+D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\App.xaml
+5-1251859492
 
-15-1222501128
-24-2057507739
-MainWindow.xaml;MaskShell.xaml;ResourceDictionary\SystemDictionary.xaml;
+17-2080829474
+2543846578
+MainWindow.xaml;MaskShell.xaml;ResourceDictionary\SystemDictionary.xaml;SubWindows\ConfirmWindow.xaml;SubWindows\InformationWindow.xaml;
 images\init.png
 False
 

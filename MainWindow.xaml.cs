@@ -105,8 +105,8 @@ namespace Globe.QcApp
         /// </summary>
         private void InitGlobe()
         {
-            SuperMapObjectLocator.getInstance().GlobeObject.Scene.LatLonGrid.IsVisible = false;
-            this.hostSceneControl.Child = SuperMapObjectLocator.getInstance().GlobeObject;
+            SmObjectLocator.getInstance().GlobeObject.Scene.LatLonGrid.IsVisible = false;
+            this.hostSceneControl.Child = SmObjectLocator.getInstance().GlobeObject;
         }
 
         /// <summary>
