@@ -61,10 +61,12 @@ D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\MainWindow.baml
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\MaskShell.baml
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\ResourceDictionary\SystemDictionary.baml
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\SubWindows\ConfirmWindow.baml
+D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\SubWindows\InformationWindow.baml
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\App.baml
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\MainWindow.g.cs
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\MaskShell.g.cs
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\SubWindows\ConfirmWindow.g.cs
+D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\SubWindows\InformationWindow.g.cs
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\App.g.cs
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp_MarkupCompile.cache
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.g.resources
@@ -72,6 +74,3 @@ D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.Properties.Re
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.csproj.GenerateResource.Cache
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.exe
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.pdb
-D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\SubWindows\InformationWindow.baml
-D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\SubWindows\InformationWindow.g.cs
-D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.csprojResolveAssemblyReference.cache

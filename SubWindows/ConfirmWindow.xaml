@@ -9,7 +9,7 @@
         ShowInTaskbar="False" 
         ResizeMode="NoResize" 
         AllowsTransparency="True">
-    <Border Background="#7FFFFFFF" BorderBrush="Black" CornerRadius="3" HorizontalAlignment="Right" Width="200">
+    <Border Background="#4C000000" BorderBrush="White" CornerRadius="3" HorizontalAlignment="Right" Width="200" BorderThickness="1">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -20,7 +20,7 @@
                 <Image Source="/Globe.QcApp;component/Images/warn.png" Stretch="UniformToFill" Width="36" Height="36" Margin="10,0,0,0"/>
                 <TextBlock Grid.Row="0" Text="是否退出系统？" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Foreground="White" Margin="10,0,0,0"/>
             </StackPanel>
-            <Border Grid.Row="1" Height="1" Background="#000000"/>
+            <Border Grid.Row="1" Height="1" Background="Red"/>
             <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Button.Click="StackPanel_Click">
                 <Button Name="Ok" Content="确定" Margin="0,0,20,0" Height="30" Width="60"/>
                 <Button Name="Cancel" Content="取消" Margin="20,0,0,0" Height="30" Width="60"/>
