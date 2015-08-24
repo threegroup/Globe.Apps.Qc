@@ -31,6 +31,7 @@
             <Button Name="ZoomOut" Content="场景缩小"/>
             <Button Name="FullExent" Content="场景全幅"/>
             <Button Name="Stop" Content="场景停止"/>
+            <Button Name="FlyRoute" Content="漫游飞行"/>
             <Button Name="SearchLocation" Content="查询定位"/>
             <Button Name="FullScreen" Content="全屏显示"/>
             <Button Name="ExitSystem" Content="退出系统"/>

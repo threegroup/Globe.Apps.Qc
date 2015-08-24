@@ -58,6 +58,10 @@ namespace Globe.QcApp
                             SmObjectLocator.getInstance().GlobeObject.Scene.ViewEntire();
                             break;
                         }
+                    case "FlyRoute"://漫游飞行
+                        {
+                            break;
+                        }
                     case "SearchLocation"://查询定位
                         {
                             //显示要素详情信息
