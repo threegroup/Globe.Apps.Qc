@@ -46,8 +46,8 @@ namespace Globe.QcApp.Common.Helpers.Themes
         private static readonly string[] defaultReferencesNamesForApplication = new string[]
         {
             "Telerik.Windows.Controls",
-            //"Telerik.Windows.Controls.Input",
-            //"Telerik.Windows.Controls.Navigation",
+            "Telerik.Windows.Controls.Input",
+            "Telerik.Windows.Controls.Navigation",
             //"Telerik.Windows.Documents",
             "System.Windows"
         };

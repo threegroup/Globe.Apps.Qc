@@ -9,7 +9,14 @@
         ShowInTaskbar="False" 
         ResizeMode="NoResize" 
         AllowsTransparency="True">
-    <Border Background="#4C000000" BorderBrush="White" CornerRadius="3" HorizontalAlignment="Right" Width="200" BorderThickness="1">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Globe.QcApp;component/ResourceDictionary/ConfirmDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Border Style="{StaticResource ConfirmBOrderStyle}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -17,13 +24,13 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <Image Source="/Globe.QcApp;component/Images/warn.png" Stretch="UniformToFill" Width="36" Height="36" Margin="10,0,0,0"/>
-                <TextBlock Grid.Row="0" Text="是否退出系统？" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Foreground="White" Margin="10,0,0,0"/>
+                <Image Source="/Globe.QcApp;component/Images/warn.png"  Style="{StaticResource CloseImageStyle}"/>
+                <TextBlock Grid.Row="0" Text="是否退出系统？" Style="{StaticResource CloseTextStyle}"/>
             </StackPanel>
-            <Border Grid.Row="1" Height="1" Background="Red"/>
+            <Border Grid.Row="1" Height="1" Background="White"/>
             <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Button.Click="StackPanel_Click">
-                <Button Name="Ok" Content="确定" Margin="0,0,20,0" Height="30" Width="60"/>
-                <Button Name="Cancel" Content="取消" Margin="20,0,0,0" Height="30" Width="60"/>
+                <Button Name="Ok" Content="确定" Style="{StaticResource OkCancelStyle}"/>
+                <Button Name="Cancel" Content="取消" Style="{StaticResource OkCancelStyle}"/>
             </StackPanel>
         </Grid>
     </Border>

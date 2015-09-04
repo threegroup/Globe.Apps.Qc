@@ -52,11 +52,29 @@
             Initializes a new instance of the <see cref="T:Telerik.Windows.Data.RadObservableCollection`1"/> class.
             </summary>
         </member>
+        <member name="M:Telerik.Windows.Data.RadObservableCollection`1.#ctor(System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Data.RadObservableCollection`1"/> class.
+            </summary>
+            <param name="shouldResetOnResumeNotifications">Indicates whether RadObservableCollection will raise CollectionChanged 
+            event with Reset action, when notifications are resumed.</param>
+        </member>
         <member name="M:Telerik.Windows.Data.RadObservableCollection`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
             <summary>
             Initializes a new instance of the <see cref="T:Telerik.Windows.Data.RadObservableCollection`1"/> class.
             </summary>
             <param name="collection">The collection from which the elements are copied.</param>
+            <exception cref="T:System.ArgumentNullException">
+            The <paramref name="collection"/> parameter cannot be null.
+            </exception>
+        </member>
+        <member name="M:Telerik.Windows.Data.RadObservableCollection`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Data.RadObservableCollection`1"/> class.
+            </summary>
+            <param name="shouldResetOnResumeNotifications">Indicates whether RadObservableCollection will raise CollectionChanged 
+            event with Reset action, when notifications are resumed.</param>
+             /// <param name="collection">The collection from which the elements are copied.</param>
             <exception cref="T:System.ArgumentNullException">
             The <paramref name="collection"/> parameter cannot be null.
             </exception>
@@ -128,6 +146,11 @@
             Resumes the notifications.
             </summary>
         </member>
+        <member name="M:Telerik.Windows.Data.RadObservableCollection`1.RaiseCollectionChangedOnResume">
+            <summary>
+            Raises the CollectionChanged in accordance to the value of ShouldResetOnResumeNotifications and the presence of modified items.
+            </summary>
+        </member>
         <member name="E:Telerik.Windows.Data.RadObservableCollection`1.CollectionChanging">
             <summary>
             Occurs when collection is changing.
@@ -146,6 +169,12 @@
             <value><c>true</c> if this instance is has been changed while notifications are
             suspended; otherwise, <c>false</c>.</value>
         </member>
+        <member name="P:Telerik.Windows.Data.RadObservableCollection`1.ShouldResetOnResumeNotifications">
+            <summary>
+            Get a value that indicates whether RadObservableCollection 
+            would raise CollectionChanged event with Reset action, when a bulk add/remove operation takes place.
+            </summary>
+        </member>
         <member name="P:Telerik.Windows.Data.RadObservableCollection`1.NotificationsSuspended">
             <summary>
             Gets a value indicating whether change notifications are suspended.
@@ -153,6 +182,18 @@
             <value>
             	<c>True</c> if notifications are suspended, otherwise, <c>false</c>.
             </value>
+        </member>
+        <member name="P:Telerik.Windows.Data.RadObservableCollection`1.AddedItems">
+            <summary>
+            Gets the added items between suspend and resume.
+            </summary>
+            <value>The added items.</value>
+        </member>
+        <member name="P:Telerik.Windows.Data.RadObservableCollection`1.RemovedItems">
+            <summary>
+            Gets the removed items between suspend and resume.
+            </summary>
+            <value>The removed items.</value>
         </member>
         <member name="T:Telerik.Windows.Data.INotifyItemChanged">
             <summary>

@@ -1,9 +1,0 @@
-﻿<Window x:Class="Globe.QcApp.SubWindows.InformationWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="属性面板" Height="300" Width="300"
-        Icon="/Globe.QcApp;component/Images/information.png">
-    <Grid>
-        
-    </Grid>
-</Window>

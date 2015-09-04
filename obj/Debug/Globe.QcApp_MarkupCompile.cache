@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\App.xaml
-5-1251859492
+6-1508549962
 
-13-910260044
-2543846578
-MainWindow.xaml;MaskShell.xaml;ResourceDictionary\SystemDictionary.xaml;SubWindows\ConfirmWindow.xaml;SubWindows\InformationWindow.xaml;
+12804654911
+28-1656250929
+MainWindow.xaml;MaskShell.xaml;ResourceDictionary\ConfirmDictionary.xaml;ResourceDictionary\SystemDictionary.xaml;ResourceDictionary\ToolBarDictionary.xaml;SubWindows\ConfirmWindow.xaml;
 images\init.png
 False
 

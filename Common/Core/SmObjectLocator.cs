@@ -1,4 +1,5 @@
-﻿using SuperMap.UI;
+﻿using SuperMap.Realspace;
+using SuperMap.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,21 @@ namespace Globe.QcApp.Common.Core
     {
         private static SmObjectLocator smObjectLocator;
         private static SceneControl globeObject = null;
+        private static FlyManager flyManagerObject = null;
+
+        /// <summary>
+        /// 三维飞行管理对象
+        /// </summary>
+        public static FlyManager FlyManagerObject
+        {
+            get { return flyManagerObject; }
+        }
+
+
+        /// <summary>
+        /// 三维球体控件对象
+        /// </summary>
+        public SceneControl GlobeObject { get { return globeObject; } }
 
         /// <summary>
         /// 单例模式添加单例实体
@@ -18,10 +34,12 @@ namespace Globe.QcApp.Common.Core
         /// <returns></returns>
         public static SmObjectLocator getInstance()
         {
+            //初始化三维基本对象
             if (smObjectLocator == null)
             {
                 smObjectLocator = new SmObjectLocator();
                 globeObject = new SceneControl();
+                flyManagerObject = globeObject.Scene.FlyManager;
             }
             return smObjectLocator;
         }
@@ -35,9 +53,5 @@ namespace Globe.QcApp.Common.Core
             }
         }
 
-        /// <summary>
-        /// 三维球体控件对象
-        /// </summary>
-        public SceneControl GlobeObject { get { return globeObject; } }
     }
 }

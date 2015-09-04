@@ -66,17 +66,25 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls">
-      <HintPath>E:\Program Files (x86)\Telerik\UI for WPF Q1 2014\Binaries.NoXaml\WPF45\Telerik.Windows.Controls.dll</HintPath>
+    <Reference Include="Telerik.Windows.Controls, Version=2015.2.728.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Program Files (x86)\Telerik\UI for WPF Q2 2015\Binaries.NoXaml\WPF45\Telerik.Windows.Controls.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.Navigation">
-      <HintPath>E:\Program Files (x86)\Telerik\UI for WPF Q1 2014\Binaries.NoXaml\WPF45\Telerik.Windows.Controls.Navigation.dll</HintPath>
+    <Reference Include="Telerik.Windows.Controls.Input, Version=2015.2.728.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Program Files (x86)\Telerik\UI for WPF Q2 2015\Binaries.NoXaml\WPF45\Telerik.Windows.Controls.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2015.2.728.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Data, Version=2015.2.728.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.PersistenceFramework, Version=2015.2.728.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Program Files (x86)\Telerik\UI for WPF Q2 2015\Binaries.NoXaml\WPF45\Telerik.Windows.PersistenceFramework.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Windows.Themes.Windows8">
-      <HintPath>E:\Program Files (x86)\Telerik\UI for WPF Q1 2014\Binaries.NoXaml\WPF45\Telerik.Windows.Themes.Windows8.dll</HintPath>
+      <HintPath>E:\Program Files (x86)\Telerik\UI for WPF Q2 2015\Binaries.NoXaml\WPF45\Telerik.Windows.Themes.Windows8.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Windows.Themes.Windows8Touch">
-      <HintPath>E:\Program Files (x86)\Telerik\UI for WPF Q1 2014\Binaries.NoXaml\WPF45\Telerik.Windows.Themes.Windows8Touch.dll</HintPath>
+      <HintPath>E:\Program Files (x86)\Telerik\UI for WPF Q2 2015\Binaries.NoXaml\WPF45\Telerik.Windows.Themes.Windows8Touch.dll</HintPath>
     </Reference>
     <Reference Include="UIAutomationProvider" />
     <Reference Include="UIAutomationTypes" />
@@ -92,9 +100,6 @@
     </ApplicationDefinition>
     <Compile Include="SubWindows\ConfirmWindow.xaml.cs">
       <DependentUpon>ConfirmWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SubWindows\InformationWindow.xaml.cs">
-      <DependentUpon>InformationWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -117,15 +122,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ResourceDictionary\ConfirmDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="ResourceDictionary\SystemDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SubWindows\ConfirmWindow.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="ResourceDictionary\ToolBarDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
-    <Page Include="SubWindows\InformationWindow.xaml">
+    <Page Include="SubWindows\ConfirmWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -147,6 +156,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Properties\Licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -156,6 +166,12 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Routes\测试飞行路径1.fpf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Routes\测试飞行路径2.fpf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -171,14 +187,21 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\exit.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\warn.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\information.png" />
+    <Resource Include="Images\tools\close.png" />
+    <Resource Include="Images\tools\fly.png" />
+    <Resource Include="Images\tools\full.png" />
+    <Resource Include="Images\tools\query.png" />
+    <Resource Include="Images\tools\stop.png" />
+    <Resource Include="Images\tools\zoomin.png" />
+    <Resource Include="Images\tools\zoomout.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\tools\fullextent.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
