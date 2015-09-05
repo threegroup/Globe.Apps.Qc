@@ -240,7 +240,7 @@ namespace Globe.QcApp
         }
 
         /// <summary>
-        /// 显示或隐藏图例
+        /// 显示或隐藏飞行路径面板
         /// </summary>
         private void ControlPanelButton_Click(object sender, RoutedEventArgs e)
         {
