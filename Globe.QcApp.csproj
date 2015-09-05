@@ -222,6 +222,16 @@
     <Resource Include="Images\routes\play.png" />
     <Resource Include="Images\routes\stoproute.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="libs\telerik\Telerik.Windows.Controls.Data.dll" />
+    <Content Include="libs\telerik\Telerik.Windows.Controls.dll" />
+    <Content Include="libs\telerik\Telerik.Windows.Controls.Input.dll" />
+    <Content Include="libs\telerik\Telerik.Windows.Controls.Navigation.dll" />
+    <Content Include="libs\telerik\Telerik.Windows.Data.dll" />
+    <Content Include="libs\telerik\Telerik.Windows.PersistenceFramework.dll" />
+    <Content Include="libs\telerik\Telerik.Windows.Themes.Windows8.dll" />
+    <Content Include="libs\telerik\Telerik.Windows.Themes.Windows8Touch.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
