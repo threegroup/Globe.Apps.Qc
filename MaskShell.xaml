@@ -48,8 +48,8 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Border Grid.Row="0" BorderBrush="#99000000" BorderThickness="0,0,0,1" Background="#9977A12A"/>
-                    <!--<Button Name="ControlPanelButton" Grid.Row="0" Grid.Column="0" Content="+" VerticalAlignment="Center" HorizontalAlignment="Left" Width="24" Height="24" Margin="3,3,3,3" BorderThickness="0"
-                        Click="ControlPanelButton_Click"/>-->
+                    <Button Name="ControlPanelButton" Grid.Row="0" Grid.Column="0" Content="-" VerticalAlignment="Center" HorizontalAlignment="Left" Width="24" Height="24" Margin="3,3,3,3" BorderThickness="0"
+                        Click="ControlPanelButton_Click"/>
 
                     <TextBlock Name="ShowPanelTitle" Grid.Row="0" Text="漫游飞行" HorizontalAlignment="Center" Foreground="White" FontSize="16" FontFamily="Microsoft YaHei UI Light" VerticalAlignment="Center" Margin="4"/>
                     <Border Name="PanelContentRegion" Grid.Row="1" Grid.ColumnSpan="2" BorderThickness="1">

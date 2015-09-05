@@ -38,10 +38,29 @@ namespace Globe.QcApp
         //Mask窗口的Loaded事件
         private void MaskShell_Loaded(object sender, RoutedEventArgs e)
         {
+            //场景初始化默认位置
+            this.ResetCamera();
+
+            //加载飞行路径
             this.LoadRoutes(Environment.CurrentDirectory);
         }
 
         #region Mask窗口相关的函数
+        /// <summary>
+        /// 快速重置窗口位置为默认位置
+        /// </summary>
+        private void ResetCamera()
+        {
+            Camera camera = new Camera();
+            camera.Altitude = 285.05341279041;
+            camera.Longitude = 116.391305696988;
+            camera.Latitude = 39.9933447121584;
+            camera.Heading = 2.76012171129487;
+            camera.Tilt = 75.2282529563474;
+
+            SmObjectLocator.getInstance().GlobeObject.Scene.Fly(camera, 0);
+        }
+
         /// <summary>
         /// 获取系统运行根路径并加载路径文件
         /// </summary>
@@ -131,12 +150,6 @@ namespace Globe.QcApp
                             if (this.PanelRegion.Visibility == Visibility.Collapsed)
                             {
                                 this.PanelRegion.Visibility = Visibility.Visible;
-                                //string controlVal = this.ControlPanelButton.Content.ToString();
-                                //if (controlVal == "+")
-                                //{
-                                //    this.ControlPanelButton.Content = "-";
-                                //    this.ShowLegendPanel();
-                                //}
                             }
                             else
                             {
@@ -179,7 +192,7 @@ namespace Globe.QcApp
         }
 
         /// <summary>
-        /// 显示图例面板
+        /// 显示路径面板
         /// </summary>
         private void ShowLegendPanel()
         {
@@ -199,7 +212,7 @@ namespace Globe.QcApp
         }
 
         /// <summary>
-        /// 隐藏图例面板
+        /// 隐藏路径面板
         /// </summary>
         private void HideLegendPanel()
         {
@@ -223,24 +236,16 @@ namespace Globe.QcApp
         /// </summary>
         private void ControlPanelButton_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is Button)
+            this.PanelRegion.Visibility = Visibility.Collapsed;
+
+            //重置飞行路径相关信息
+            if (SmObjectLocator.getInstance().FlyManagerObject.Routes.CurrentRoute != null)
             {
-                Button controlBtn = sender as Button;
-                if (controlBtn != null)
-                {
-                    string controlVal = controlBtn.Content.ToString();
-                    if (controlVal == "+")
-                    {
-                        controlBtn.Content = "-";
-                        this.ShowLegendPanel();
-                    }
-                    else
-                    {
-                        controlBtn.Content = "+";
-                        this.HideLegendPanel();
-                    }
-                }
+                SmObjectLocator.getInstance().FlyManagerObject.Stop();
+                SmObjectLocator.getInstance().FlyManagerObject.Routes.Clear();
             }
+            this.RouteListBox.SelectedIndex = -1;
+            this.ResetCamera();
         }
 
         /// <summary>
@@ -268,6 +273,7 @@ namespace Globe.QcApp
                     SmObjectLocator.getInstance().FlyManagerObject.Routes.CurrentRoute.IsTiltFixed = true;
                     SmObjectLocator.getInstance().FlyManagerObject.Play();
                 }
+                this.ResetCamera();
             }
         }
         #endregion
