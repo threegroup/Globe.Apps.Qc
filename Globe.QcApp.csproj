@@ -223,6 +223,7 @@
     <Resource Include="Images\routes\stoproute.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\close.png" />
     <Content Include="libs\telerik\Telerik.Windows.Controls.Data.dll" />
     <Content Include="libs\telerik\Telerik.Windows.Controls.dll" />
     <Content Include="libs\telerik\Telerik.Windows.Controls.Input.dll" />

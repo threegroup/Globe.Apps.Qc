@@ -163,6 +163,14 @@ namespace Globe.QcApp
                         }
                     case "SearchLocation"://查询定位
                         {
+                            if (this.QueryLocalRegion.Visibility == Visibility.Collapsed)
+                            {
+                                this.QueryLocalRegion.Visibility = Visibility.Visible;
+                            }
+                            else
+                            {
+                                this.QueryLocalRegion.Visibility = Visibility.Collapsed;
+                            }
                             break;
                         }
                     case "FullScreen"://全屏
@@ -277,5 +285,49 @@ namespace Globe.QcApp
             }
         }
         #endregion
+
+        /// <summary>
+        /// 关闭面板事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ColosePanelButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button)
+            {
+                string btName = (e.Source as Button).Name;
+                switch (btName)
+                {
+                    case "QueryPanelCloseButton":
+                        {
+                            this.QueryLocalRegion.Visibility = Visibility.Collapsed;
+                            break;
+                        }
+                    default:
+                        break;
+                }
+                
+            }
+        }
+
+        /// <summary>
+        /// 属性查询按钮点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void QueryBt_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// 坐标定位按钮点击
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LocaltionBt_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
