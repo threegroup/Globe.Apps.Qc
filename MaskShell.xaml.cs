@@ -281,7 +281,7 @@ namespace Globe.QcApp
                     SmObjectLocator.getInstance().FlyManagerObject.Routes.CurrentRoute.IsTiltFixed = true;
                     SmObjectLocator.getInstance().FlyManagerObject.Play();
                 }
-                this.ResetCamera();
+                //this.ResetCamera();
             }
         }
         #endregion
