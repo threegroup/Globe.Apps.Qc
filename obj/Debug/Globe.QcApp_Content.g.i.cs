@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/tools/fullextent.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/routes/pause.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/routes/play.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/routes/stop.png")]
 
 

@@ -7,6 +7,7 @@
     <SolidColorBrush x:Key="ToolBarBgColor" Color="Transparent"></SolidColorBrush>
     <sys:Double x:Key="WidthAndHeight">48</sys:Double>
     <FontFamily x:Key="FontFamilyValue">Microsoft YaHei UI Light</FontFamily>
+    <sys:Double x:Key="RouteWidthAndHeight">42</sys:Double>
     
     <!--tooltip样式-->
     <Style x:Key="ToolTipStyle" TargetType="ToolTip">
@@ -234,6 +235,94 @@
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
                         <Image Name="icon"  Source="/Globe.QcApp;component/Images/tools/fullextent.png" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="{StaticResource Margin5}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <!--鼠标移入移出-->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource ResourceKey=ToolBarFocusColor}"/>
+                        </Trigger>
+                        <!--按钮按下弹起-->
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{StaticResource ResourceKey=ToolBarFocusColor}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--飞行路径控制按钮-->
+    <!--定义开始飞行按钮样式-->
+    <Style TargetType="Button" x:Key="StartRouteButtonStyle">
+        <Setter Property="Background" Value="{x:Null}"/>
+        <Setter Property="Width" Value="{StaticResource ResourceKey=RouteWidthAndHeight}"/>
+        <Setter Property="Height" Value="{StaticResource ResourceKey=RouteWidthAndHeight}"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                        <Image Name="icon" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="{StaticResource Margin5}" Source="/Globe.QcApp;component/Images/routes/play.png"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <!--鼠标移入移出-->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource ResourceKey=ToolBarFocusColor}"/>
+                        </Trigger>
+                        <!--按钮按下弹起-->
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{StaticResource ResourceKey=ToolBarFocusColor}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--定义暂停飞行按钮样式-->
+    <Style TargetType="Button" x:Key="PauseRouteButtonStyle">
+        <Setter Property="Background" Value="{x:Null}"/>
+        <Setter Property="Width" Value="{StaticResource ResourceKey=RouteWidthAndHeight}"/>
+        <Setter Property="Height" Value="{StaticResource ResourceKey=RouteWidthAndHeight}"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                        <Image Name="icon" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="{StaticResource Margin5}" Source="/Globe.QcApp;component/Images/routes/pause.png"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <!--鼠标移入移出-->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource ResourceKey=ToolBarFocusColor}"/>
+                        </Trigger>
+                        <!--按钮按下弹起-->
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{StaticResource ResourceKey=ToolBarFocusColor}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--定义停止飞行按钮样式-->
+    <Style TargetType="Button" x:Key="StopRouteButtonStyle">
+        <Setter Property="Background" Value="{x:Null}"/>
+        <Setter Property="Width" Value="{StaticResource ResourceKey=RouteWidthAndHeight}"/>
+        <Setter Property="Height" Value="{StaticResource ResourceKey=RouteWidthAndHeight}"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                        <Image Name="icon" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="{StaticResource Margin5}" Source="/Globe.QcApp;component/Images/routes/stoproute.png"/>
                     </Border>
                     <ControlTemplate.Triggers>
                         <!--鼠标移入移出-->

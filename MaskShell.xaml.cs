@@ -1,10 +1,12 @@
 ﻿using Globe.QcApp.Common.Core;
 using Globe.QcApp.Common.Helpers.Themes;
 using Globe.QcApp.Common.Helpers.Windows;
+using Globe.QcApp.Common.Routes;
 using Globe.QcApp.SubWindows;
 using SuperMap.Realspace;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -41,18 +43,29 @@ namespace Globe.QcApp
 
         #region Mask窗口相关的函数
         /// <summary>
-        /// 获取系统运行根路径
+        /// 获取系统运行根路径并加载路径文件
         /// </summary>
         /// <param name="sysDirectory"></param>
         private void LoadRoutes(string sysDirectory)
         {
+            string temp = sysDirectory + "\\Routes";
             //判断目录是否存在
-            if (Directory.Exists(sysDirectory))
+            if (Directory.Exists(temp))
             {
-                string[] routes = Directory.GetFiles(sysDirectory);
+                string[] routes = Directory.GetFiles(temp);
                 if (routes != null && routes.Length > 0)
                 {
-                    
+                    ObservableCollection<RouteVO> RouteList = new ObservableCollection<RouteVO>();
+                    for (int i = 0; i < routes.Length; i++)
+                    {
+                        RouteVO route = new RouteVO();
+                        route.RouteCode = i;
+                        route.RoutePath = routes[i];
+                        route.RouteName = System.IO.Path.GetFileNameWithoutExtension(routes[i]);
+                        RouteList.Add(route);
+                    }
+
+                    this.RouteListBox.ItemsSource = RouteList;
                 }
             }
         }
@@ -64,6 +77,31 @@ namespace Globe.QcApp
                 string name = (e.Source as Button).Name.ToString();
                 switch (name)
                 {
+                    case "StartRoute"://开始飞行路径
+                        {
+
+                            if (SmObjectLocator.getInstance().FlyManagerObject.Routes.CurrentRoute != null)
+                            {
+                                SmObjectLocator.getInstance().FlyManagerObject.Play();
+                            }
+                            break;
+                        }
+                    case "PauseRoute"://暂停飞行路径
+                        {
+                            if (SmObjectLocator.getInstance().FlyManagerObject.Routes.CurrentRoute != null)
+                            {
+                                SmObjectLocator.getInstance().FlyManagerObject.Pause();
+                            }
+                            break;
+                        }
+                    case "StopRoute"://停止飞行路径
+                        {
+                            if (SmObjectLocator.getInstance().FlyManagerObject.Routes.CurrentRoute != null)
+                            {
+                                SmObjectLocator.getInstance().FlyManagerObject.Stop();
+                            }
+                            break;
+                        }
                     case "ZoomIn"://放大
                         {
                             Camera currentCamera = SmObjectLocator.getInstance().GlobeObject.Scene.Camera;
@@ -93,16 +131,20 @@ namespace Globe.QcApp
                             if (this.PanelRegion.Visibility == Visibility.Collapsed)
                             {
                                 this.PanelRegion.Visibility = Visibility.Visible;
-                                string controlVal = this.ControlPanelButton.Content.ToString();
-                                if (controlVal == "+")
-                                {
-                                    this.ControlPanelButton.Content = "-";
-                                    this.ShowLegendPanel();
-                                }
+                                //string controlVal = this.ControlPanelButton.Content.ToString();
+                                //if (controlVal == "+")
+                                //{
+                                //    this.ControlPanelButton.Content = "-";
+                                //    this.ShowLegendPanel();
+                                //}
                             }
                             else
                             {
                                 this.PanelRegion.Visibility = Visibility.Collapsed;
+
+                                //重置飞行路径相关信息
+                                this.RouteListBox.SelectedIndex = -1;
+                                SmObjectLocator.getInstance().FlyManagerObject.Routes.Clear();
                             }
                             break;
                         }
@@ -197,6 +239,34 @@ namespace Globe.QcApp
                         controlBtn.Content = "+";
                         this.HideLegendPanel();
                     }
+                }
+            }
+        }
+
+        /// <summary>
+        /// ListBox选中事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RouteListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            RouteVO routeVo = this.RouteListBox.SelectedItem as RouteVO;
+            if (routeVo != null)
+            {
+                //清空已有路径
+                SmObjectLocator.getInstance().FlyManagerObject.Routes.Clear();
+                //加载飞行路径
+                SmObjectLocator.getInstance().FlyManagerObject.Routes.FromFile(routeVo.RoutePath);
+
+                if (SmObjectLocator.getInstance().FlyManagerObject.Routes.CurrentRoute != null)
+                {
+                    SmObjectLocator.getInstance().FlyManagerObject.Routes.CurrentRoute.IsStopsVisible = false;
+                    SmObjectLocator.getInstance().FlyManagerObject.Routes.CurrentRoute.IsLinesVisible = false;
+                    SmObjectLocator.getInstance().FlyManagerObject.Routes.CurrentRoute.IsFlyAlongTheRoute = true;
+                    SmObjectLocator.getInstance().FlyManagerObject.Routes.CurrentRoute.IsHeadingFixed = true;
+                    SmObjectLocator.getInstance().FlyManagerObject.Routes.CurrentRoute.IsAltitudeFixed = true;
+                    SmObjectLocator.getInstance().FlyManagerObject.Routes.CurrentRoute.IsTiltFixed = true;
+                    SmObjectLocator.getInstance().FlyManagerObject.Play();
                 }
             }
         }

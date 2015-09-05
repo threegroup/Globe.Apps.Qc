@@ -17,7 +17,7 @@ namespace Globe.QcApp.Common.Core
         /// <summary>
         /// 三维飞行管理对象
         /// </summary>
-        public static FlyManager FlyManagerObject
+        public FlyManager FlyManagerObject
         {
             get { return flyManagerObject; }
         }

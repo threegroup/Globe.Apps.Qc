@@ -21,4 +21,47 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <Thickness x:Key="MarginValue">0</Thickness>
+    <Style x:Key="StackPanelStyle" TargetType="StackPanel">
+        <Style.Setters>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="{StaticResource ResourceKey=MarginValue}"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+        </Style.Setters>
+    </Style>
+    <Style x:Key="ListBoxItemTextStyle" TargetType="TextBlock">
+        <Style.Setters>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="{StaticResource ResourceKey=MarginValue}"/>
+            <Setter Property="FontFamily" Value="Microsoft YaHei UI Light"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Margin" Value="10,0,0,0"/><!--左,上,右,下-->
+        </Style.Setters>
+    </Style>
+    <Style x:Key="ListBoxItemTitleStyle" TargetType="TextBlock">
+        <Style.Setters>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="{StaticResource ResourceKey=MarginValue}"/>
+            <Setter Property="FontFamily" Value="Microsoft YaHei UI Light"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style.Setters>
+    </Style>
+
+    <!--ListBox相关样式和模板-->
+    <DataTemplate x:Key="ListBoxItemTemplate">
+        <Border Name="itemBg" HorizontalAlignment="Stretch" BorderThickness="0,0,0,1">
+            <Border.BorderBrush>
+                <SolidColorBrush Color="#FF99B4D1"/>
+            </Border.BorderBrush>
+            <StackPanel Grid.Row="0" Style="{StaticResource ResourceKey=StackPanelStyle}">
+                <Image Source="/Globe.QcApp;component/Images/route.png" Width="32" Height="32" Stretch="UniformToFill" />
+                <TextBlock Text="{Binding RouteName}" Style="{StaticResource ResourceKey=ListBoxItemTextStyle}"/>
+            </StackPanel>
+        </Border>
+    </DataTemplate>
 </ResourceDictionary>
