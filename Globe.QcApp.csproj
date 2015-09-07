@@ -224,6 +224,8 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\close.png" />
+    <Resource Include="Images\tools\left.png" />
+    <Resource Include="Images\tools\right.png" />
     <Content Include="libs\telerik\Telerik.Windows.Controls.Data.dll" />
     <Content Include="libs\telerik\Telerik.Windows.Controls.dll" />
     <Content Include="libs\telerik\Telerik.Windows.Controls.Input.dll" />

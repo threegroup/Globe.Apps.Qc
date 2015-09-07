@@ -161,18 +161,6 @@ namespace Globe.QcApp
                             }
                             break;
                         }
-                    case "SearchLocation"://查询定位
-                        {
-                            if (this.QueryLocalRegion.Visibility == Visibility.Collapsed)
-                            {
-                                this.QueryLocalRegion.Visibility = Visibility.Visible;
-                            }
-                            else
-                            {
-                                this.QueryLocalRegion.Visibility = Visibility.Collapsed;
-                            }
-                            break;
-                        }
                     case "FullScreen"://全屏
                         {
                             WindowsHelper winHelper = new WindowsHelper();
@@ -202,49 +190,52 @@ namespace Globe.QcApp
         /// <summary>
         /// 显示路径面板
         /// </summary>
-        private void ShowLegendPanel()
+        private void ShowFloatPanel()
         {
             //执行动画
             DoubleAnimation animation0 = new DoubleAnimation();
-            animation0.From = 30;
-            animation0.To = 300;
+            animation0.From = 32;
+            animation0.To = 480;
             animation0.Duration = TimeSpan.FromSeconds(0.5);
 
-            DoubleAnimation animation1 = new DoubleAnimation();
-            animation1.From = 30;
-            animation1.To = 400;
-            animation1.Duration = TimeSpan.FromSeconds(0.5);
-
             this.PanelRegion.BeginAnimation(Border.WidthProperty, animation0);
-            this.PanelRegion.BeginAnimation(Border.HeightProperty, animation1);
         }
 
         /// <summary>
         /// 隐藏路径面板
         /// </summary>
-        private void HideLegendPanel()
+        private void HideFloatPanel()
         {
             //执行动画
             DoubleAnimation animation0 = new DoubleAnimation();
-            animation0.From = 300;
-            animation0.To = 30;
+            animation0.From = 480;
+            animation0.To = 32;
             animation0.Duration = TimeSpan.FromSeconds(0.5);
 
-            DoubleAnimation animation1 = new DoubleAnimation();
-            animation1.From = 400;
-            animation1.To = 30;
-            animation1.Duration = TimeSpan.FromSeconds(0.5);
-
             this.PanelRegion.BeginAnimation(Border.WidthProperty, animation0);
-            this.PanelRegion.BeginAnimation(Border.HeightProperty, animation1);
         }
 
         /// <summary>
-        /// 显示或隐藏飞行路径面板
+        /// 显示或隐藏浮动面板
         /// </summary>
         private void ControlPanelButton_Click(object sender, RoutedEventArgs e)
         {
-            this.PanelRegion.Visibility = Visibility.Collapsed;
+            if (sender is Button)
+            {
+                Button controlBtn = sender as Button;
+                if (controlBtn.Content.ToString() == "HIDE")
+                {
+                    controlBtn.SetResourceReference(Button.StyleProperty, "LeftButtonStyle");
+                    controlBtn.Content = "SHOW";
+                    this.HideFloatPanel();
+                }
+                else
+                {
+                    controlBtn.SetResourceReference(Button.StyleProperty, "RightButtonStyle");
+                    controlBtn.Content = "HIDE";
+                    this.ShowFloatPanel();
+                }
+            }
 
             //重置飞行路径相关信息
             if (SmObjectLocator.getInstance().FlyManagerObject.Routes.CurrentRoute != null)
@@ -281,53 +272,8 @@ namespace Globe.QcApp
                     SmObjectLocator.getInstance().FlyManagerObject.Routes.CurrentRoute.IsTiltFixed = true;
                     SmObjectLocator.getInstance().FlyManagerObject.Play();
                 }
-                //this.ResetCamera();
             }
         }
         #endregion
-
-        /// <summary>
-        /// 关闭面板事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ColosePanelButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (sender is Button)
-            {
-                string btName = (e.Source as Button).Name;
-                switch (btName)
-                {
-                    case "QueryPanelCloseButton":
-                        {
-                            this.QueryLocalRegion.Visibility = Visibility.Collapsed;
-                            break;
-                        }
-                    default:
-                        break;
-                }
-                
-            }
-        }
-
-        /// <summary>
-        /// 属性查询按钮点击事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void QueryBt_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        /// <summary>
-        /// 坐标定位按钮点击
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void LocaltionBt_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
