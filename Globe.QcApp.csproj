@@ -45,6 +45,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\SuperMap.Data.dll</HintPath>
     </Reference>
+    <Reference Include="SuperMap.Mapping">
+      <HintPath>..\..\..\SVN_CKY\sxhx-20150818\sxhx\SxhxDemo\bin\Debug\SuperMap.Mapping.dll</HintPath>
+    </Reference>
     <Reference Include="SuperMap.Realspace, Version=7.0.0.0, Culture=neutral, PublicKeyToken=0635c574ea890381, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\SuperMap.Realspace.dll</HintPath>
@@ -110,7 +113,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Common\Routes\RouteVO.cs" />
+    <Compile Include="Common\Core\SysModelLocator.cs" />
+    <Compile Include="Common\VO\LayerVO.cs" />
+    <Compile Include="Common\VO\RouteVO.cs" />
     <Compile Include="SubWindows\ConfirmWindow.xaml.cs">
       <DependentUpon>ConfirmWindow.xaml</DependentUpon>
     </Compile>
@@ -226,6 +231,7 @@
     <Resource Include="Images\close.png" />
     <Resource Include="Images\tools\left.png" />
     <Resource Include="Images\tools\right.png" />
+    <Resource Include="Images\layer.png" />
     <Content Include="libs\telerik\Telerik.Windows.Controls.Data.dll" />
     <Content Include="libs\telerik\Telerik.Windows.Controls.dll" />
     <Content Include="libs\telerik\Telerik.Windows.Controls.Input.dll" />

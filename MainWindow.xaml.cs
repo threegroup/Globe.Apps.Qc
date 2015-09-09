@@ -2,6 +2,9 @@
 using Globe.QcApp.Common.Helpers;
 using Globe.QcApp.Common.Helpers.Themes;
 using Globe.QcApp.Common.Helpers.Windows;
+using Globe.QcApp.Common.VO;
+using SuperMap.Data;
+using SuperMap.Realspace;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +32,8 @@ namespace Globe.QcApp
         /// </summary>
         private MaskShell maskShell = null;
 
+        private Workspace m_workspace;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -44,11 +49,14 @@ namespace Globe.QcApp
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            //默认加载的系统主题
+            ApplicationThemeManager.GetInstance().EnsureResourcesForTheme(ApplicationThemeManager.DefaultThemeNameTouch);
+
             //初始化三维球体
             InitGlobe();
 
-            //默认加载的系统主题
-            ApplicationThemeManager.GetInstance().EnsureResourcesForTheme(ApplicationThemeManager.DefaultThemeNameTouch);
+            //加载三维场景
+            OpenScene(@"F:\项目\蕲春\Data\03工作空间\image.smwu", "全球_Level_7@ORCL");
 
             InitMaskShell();
 
@@ -107,6 +115,48 @@ namespace Globe.QcApp
         {
             SmObjectLocator.getInstance().GlobeObject.Scene.LatLonGrid.IsVisible = false;
             this.hostSceneControl.Child = SmObjectLocator.getInstance().GlobeObject;
+            m_workspace = new Workspace();
+        }
+
+        /// <summary>
+        /// 打开三维场景
+        /// </summary>
+        /// <param name="path">工作空间路径</param>
+        /// <param name="sceneName">三维场景名称</param>
+        private void OpenScene(string path, string sceneName)
+        {
+            try
+            {
+                WorkspaceConnectionInfo conInfo = new WorkspaceConnectionInfo(path);
+                conInfo.Type = WorkspaceType.SMWU;
+                m_workspace.Open(conInfo);
+
+                SmObjectLocator.getInstance().GlobeObject.Scene.Workspace = m_workspace;
+
+                SmObjectLocator.getInstance().GlobeObject.Scene.Open(sceneName);
+
+                for (int i = 0; i < SmObjectLocator.getInstance().GlobeObject.Scene.Layers.Count; i++)
+                {
+                    Layer3D layer = SmObjectLocator.getInstance().GlobeObject.Scene.Layers[i];
+                    layer.IsSelectable = false;
+                    LayerVO layerVo = new LayerVO();
+                    layerVo.LayerBounds = layer.Bounds;
+                    layerVo.LayerCenter = layer.Bounds.Center;
+                    layerVo.LayerName = layer.Name;
+                    layerVo.LayerType = layer.Type.ToString();
+                    layerVo.LayerId = i.ToString();
+                    layerVo.LayerVisible = layer.IsVisible;
+                    SysModelLocator.getInstance().LayerList.Add(layerVo);
+                }
+
+                //范围全幅显示
+                //Layer3D olympicGreenLayer = SmObjectLocator.getInstance().GlobeObject.Scene.Layers[0];
+                //SmObjectLocator.getInstance().GlobeObject.Scene.EnsureVisible(olympicGreenLayer.Bounds, 10);
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
 
         /// <summary>

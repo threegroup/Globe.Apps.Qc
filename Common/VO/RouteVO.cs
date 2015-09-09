@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Globe.QcApp.Common.Routes
+namespace Globe.QcApp.Common.VO
 {
     public class RouteVO
     {

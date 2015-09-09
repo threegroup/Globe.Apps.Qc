@@ -1,7 +1,7 @@
 ﻿using Globe.QcApp.Common.Core;
 using Globe.QcApp.Common.Helpers.Themes;
 using Globe.QcApp.Common.Helpers.Windows;
-using Globe.QcApp.Common.Routes;
+using Globe.QcApp.Common.VO;
 using Globe.QcApp.SubWindows;
 using SuperMap.Realspace;
 using System;
@@ -31,6 +31,7 @@ namespace Globe.QcApp
         {
             InitializeComponent();
 
+
             //Mask窗口Loaded事件
             this.Loaded += MaskShell_Loaded;
         }
@@ -43,6 +44,9 @@ namespace Globe.QcApp
 
             //加载飞行路径
             this.LoadRoutes(Environment.CurrentDirectory);
+
+            //加载图层
+            this.LayerListBox.ItemsSource = SysModelLocator.getInstance().LayerList;
         }
 
         #region Mask窗口相关的函数
@@ -273,6 +277,43 @@ namespace Globe.QcApp
                     SmObjectLocator.getInstance().FlyManagerObject.Play();
                 }
             }
+        }
+
+        /// <summary>
+        /// 图层显示控制
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LayerCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (sender is CheckBox)
+            {
+                CheckBox cBox = sender as CheckBox;
+
+            }
+        }
+        /// <summary>
+        /// 图层显示控制
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LayerCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (sender is CheckBox)
+            {
+                CheckBox cBox = sender as CheckBox;
+
+            }
+        }
+
+        /// <summary>
+        /// 选中并定位图层
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LayerListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
         #endregion
     }

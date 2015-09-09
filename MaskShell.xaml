@@ -17,6 +17,33 @@
                 <ResourceDictionary Source="ResourceDictionary/SystemDictionary.xaml" />
                 <ResourceDictionary Source="ResourceDictionary/ToolBarDictionary.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="LayerListBoxItemStyle" TargetType="CheckBox">
+                <Style.Setters>
+                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="Margin" Value="{StaticResource ResourceKey=MarginValue}"/>
+                    <Setter Property="FontFamily" Value="Microsoft YaHei UI Light"/>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="Margin" Value="10,0,0,0"/>
+                    <EventSetter Event="CheckBox.Checked" Handler="LayerCheckBox_Checked"/>
+                    <EventSetter Event="CheckBox.Unchecked" Handler="LayerCheckBox_Unchecked"/>
+                </Style.Setters>
+            </Style>
+
+            <!--ListBox相关样式和模板,图层管理-->
+            <DataTemplate x:Key="LayerListBoxItemTemplate">
+                <Border Name="itemBg" HorizontalAlignment="Stretch" BorderThickness="0,0,0,1">
+                    <Border.BorderBrush>
+                        <SolidColorBrush Color="#FFEC6D51"/>
+                    </Border.BorderBrush>
+                    <StackPanel Grid.Row="0" Style="{StaticResource ResourceKey=StackPanelStyle}">
+                        <Image Source="/Globe.QcApp;component/Images/layer.png" Width="32" Height="32" Stretch="UniformToFill" />
+                        <CheckBox Content="{Binding LayerName}" IsChecked="{Binding LayerVisible}" Style="{StaticResource ResourceKey=LayerListBoxItemStyle}"/>
+                    </StackPanel>
+                </Border>
+            </DataTemplate>
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
@@ -31,7 +58,7 @@
         </StackPanel>
 
         <!--浮动窗口-->
-        <Grid Name="PanelRegion" Grid.Row="1" Width="480" Height="500" Margin="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Visibility="Visible">
+        <Grid Name="PanelRegion" Grid.Row="1" Width="480" Height="500" Margin="0" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
@@ -51,13 +78,13 @@
                         </ToolTip>
                     </Button.ToolTip>
                 </Button>
-                <Button Name="Stop" Style="{StaticResource StopButtonStyle}">
+                <!--<Button Name="Stop" Style="{StaticResource StopButtonStyle}">
                     <Button.ToolTip>
                         <ToolTip Style="{StaticResource ToolTipStyle}">
                             <TextBlock>场景停止</TextBlock>
                         </ToolTip>
                     </Button.ToolTip>
-                </Button>
+                </Button>-->
                 <Button Name="FullScreen" Style="{StaticResource FullButtonStyle}">
                     <Button.ToolTip>
                         <ToolTip Style="{StaticResource ToolTipStyle}">
@@ -73,45 +100,11 @@
                     </Button.ToolTip>
                 </Button>
             </StackPanel>
-            <telerik:RadTabControl Grid.Row="1"  Grid.Column="1" DisplayMemberPath="Content" ScrollMode="Viewport" BorderThickness="0">
+            <telerik:RadTabControl Grid.Row="1"  Grid.Column="1" DisplayMemberPath="Content" ScrollMode="Viewport" BorderThickness="0" Opacity="0.8" TabOrientation="Vertical" TabStripPlacement="Left" Cursor="Hand">
                 <telerik:RadTabItem Header="图层管理" Cursor="Hand">
                     <Grid>
-                    </Grid>
-                </telerik:RadTabItem>
-                <telerik:RadTabItem Header="属性查询" Cursor="Hand">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Border  Grid.Row="0" BorderThickness="0,0,0,1" BorderBrush="#FFEC6D51">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBox Name="QueryNameTxt" Height="30" Width="230"  Margin="0,5" HorizontalAlignment="Left" ></TextBox>
-                                <Button Content="查询" Name="QueryBt" Height="30"/>
-                            </StackPanel>
-                        </Border>
-                        <StackPanel Grid.Row="1" Name="QueryList" HorizontalAlignment="Center" Height="300"  VerticalAlignment="Top" Width="350" >
-                            <Border Name="QueryContentRegion" Grid.Row="1" Grid.ColumnSpan="2" BorderThickness="1">
-                                <telerik:RadListBox Name="QueryListBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderThickness="0" Background="{x:Null}" ItemTemplate="{StaticResource ListBoxItemTemplate}" SelectionChanged="RouteListBox_SelectionChanged" />
-                            </Border>
-                        </StackPanel>
-                    </Grid>
-                </telerik:RadTabItem>
-                <telerik:RadTabItem Header="飞行漫游" Cursor="Hand">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Border Name="PanelContentRegion" BorderThickness="1" Grid.Row="0" BorderBrush="#FFEC6D51" >
-                            <telerik:RadListBox Name="RouteListBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderThickness="0" Background="{x:Null}" ItemTemplate="{StaticResource ListBoxItemTemplate}" SelectionChanged="RouteListBox_SelectionChanged" />
-                        </Border>
-                        <StackPanel Grid.Row="1" Orientation="Horizontal" 
-                        HorizontalAlignment="Center" VerticalAlignment="Center" Button.Click="StackPanel_Click">
-                            <Button Name="StartRoute" Style="{StaticResource StartRouteButtonStyle}"/>
-                            <Button Name="PauseRoute" Style="{StaticResource PauseRouteButtonStyle}"/>
-                            <Button Name="StopRoute" Style="{StaticResource StopRouteButtonStyle}"/>
-                        </StackPanel>
+                        <telerik:RadListBox Name="LayerListBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderThickness="0" Background="{x:Null}" ItemTemplate="{StaticResource LayerListBoxItemTemplate}"
+                          SelectionChanged="LayerListBox_SelectionChanged"/>
                     </Grid>
                 </telerik:RadTabItem>
                 <telerik:RadTabItem Header="坐标定位" Cursor="Hand">
@@ -126,27 +119,63 @@
                         <Border Grid.Row="0" BorderBrush="#FFEC6D51" BorderThickness="0,0,0,1">
                             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Center">
                                 <Label Content="经纬度坐标：" FontFamily="Microsoft YaHei UI Light"></Label>
-                                <Label Name="LocalInputWarnLab" Content="经纬度输入不正确，请检查！"  Foreground="Red" Visibility="Collapsed"></Label>
                             </StackPanel>
                         </Border>
 
                         <Border Grid.Row="1" BorderBrush="#FFEC6D51" BorderThickness="0,0,0,1">
                             <StackPanel HorizontalAlignment="Left"  Orientation="Horizontal" VerticalAlignment="Center">
                                 <Label Content="经度：" FontFamily="Microsoft YaHei UI Light" VerticalAlignment="Center"></Label>
-                                <TextBox  Name="longitudeTxt"  Width="250" Margin="3"></TextBox>
+                                <TextBox  Name="longitudeTxt"  Width="200" Margin="3"></TextBox>
                             </StackPanel>
                         </Border>
 
                         <Border Grid.Row="2" BorderBrush="#FFEC6D51" BorderThickness="0,0,0,1">
                             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Center">
                                 <Label Content="纬度：" FontFamily="Microsoft YaHei UI Light" VerticalAlignment="Center"></Label>
-                                <TextBox  Name="latitudeTxt" Width="250" Margin="3"></TextBox>
+                                <TextBox  Name="latitudeTxt" Width="200" Margin="3"></TextBox>
                             </StackPanel>
                         </Border>
 
                         <Button Grid.Row="3"  Content="定位" Name="LocaltionBt" Height="30"/>
                     </Grid>
                 </telerik:RadTabItem>
+                <telerik:RadTabItem Header="属性查询" Cursor="Hand">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Border  Grid.Row="0" BorderThickness="0,0,0,1" BorderBrush="#FFEC6D51">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox Name="QueryNameTxt" Width="200"  Margin="3" HorizontalAlignment="Left"></TextBox>
+                                <Button Content="查询" Name="QueryBt" Height="30"/>
+                            </StackPanel>
+                        </Border>
+                        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                            <Border Name="QueryContentRegion" BorderThickness="1">
+                                <telerik:RadListBox Name="QueryListBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderThickness="0" Background="{x:Null}" ItemTemplate="{StaticResource ListBoxItemTemplate}" SelectionChanged="RouteListBox_SelectionChanged" />
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                </telerik:RadTabItem>
+                <telerik:RadTabItem Header="飞行漫游" Cursor="Hand">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Border Name="PanelContentRegion" BorderThickness="0,0,0,1" Grid.Row="0" BorderBrush="#FFEC6D51" >
+                            <telerik:RadListBox Name="RouteListBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderThickness="0" Background="{x:Null}" ItemTemplate="{StaticResource ListBoxItemTemplate}" SelectionChanged="RouteListBox_SelectionChanged" />
+                        </Border>
+                        <StackPanel Grid.Row="1" Orientation="Horizontal" 
+                        HorizontalAlignment="Center" VerticalAlignment="Center" Button.Click="StackPanel_Click">
+                            <Button Name="StartRoute" Style="{StaticResource StartRouteButtonStyle}"/>
+                            <Button Name="PauseRoute" Style="{StaticResource PauseRouteButtonStyle}"/>
+                            <Button Name="StopRoute" Style="{StaticResource StopRouteButtonStyle}"/>
+                        </StackPanel>
+                    </Grid>
+                </telerik:RadTabItem>
+
             </telerik:RadTabControl>
         </Grid>
     </Grid>
