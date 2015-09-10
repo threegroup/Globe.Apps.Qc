@@ -43,19 +43,19 @@
   <ItemGroup>
     <Reference Include="SuperMap.Data, Version=7.0.0.0, Culture=neutral, PublicKeyToken=0635c574ea890381, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>libs\supermap\SuperMap.Data.dll</HintPath>
+      <HintPath>bin\Debug\SuperMap.Data.dll</HintPath>
     </Reference>
     <Reference Include="SuperMap.Mapping, Version=7.0.0.0, Culture=neutral, PublicKeyToken=0635c574ea890381, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>libs\supermap\SuperMap.Mapping.dll</HintPath>
+      <HintPath>bin\Debug\SuperMap.Mapping.dll</HintPath>
     </Reference>
     <Reference Include="SuperMap.Realspace, Version=7.0.0.0, Culture=neutral, PublicKeyToken=0635c574ea890381, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>libs\supermap\SuperMap.Realspace.dll</HintPath>
+      <HintPath>bin\Debug\SuperMap.Realspace.dll</HintPath>
     </Reference>
     <Reference Include="SuperMap.UI.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=0635c574ea890381, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>libs\supermap\SuperMap.UI.Controls.dll</HintPath>
+      <HintPath>bin\Debug\SuperMap.UI.Controls.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -233,10 +233,6 @@
     <Resource Include="Images\tools\left.png" />
     <Resource Include="Images\tools\right.png" />
     <Resource Include="Images\layer.png" />
-    <Content Include="libs\supermap\SuperMap.Data.dll" />
-    <Content Include="libs\supermap\SuperMap.Mapping.dll" />
-    <Content Include="libs\supermap\SuperMap.Realspace.dll" />
-    <Content Include="libs\supermap\SuperMap.UI.Controls.dll" />
     <Content Include="libs\telerik\Telerik.Windows.Controls.Data.dll" />
     <Content Include="libs\telerik\Telerik.Windows.Controls.dll" />
     <Content Include="libs\telerik\Telerik.Windows.Controls.Input.dll" />

@@ -248,7 +248,7 @@ namespace Globe.QcApp
                 SmObjectLocator.getInstance().FlyManagerObject.Routes.Clear();
             }
             this.RouteListBox.SelectedIndex = -1;
-            this.ResetCamera();
+            //this.ResetCamera();
         }
 
         /// <summary>

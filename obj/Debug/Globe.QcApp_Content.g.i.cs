@@ -8,10 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("libs/supermap/supermap.data.dll")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("libs/supermap/supermap.mapping.dll")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("libs/supermap/supermap.realspace.dll")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("libs/supermap/supermap.ui.controls.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("libs/telerik/telerik.windows.controls.data.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("libs/telerik/telerik.windows.controls.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("libs/telerik/telerik.windows.controls.input.dll")]
