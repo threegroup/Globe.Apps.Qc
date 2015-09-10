@@ -289,11 +289,19 @@ namespace Globe.QcApp
             if (sender is CheckBox)
             {
                 CheckBox cBox = sender as CheckBox;
-
+                int count = SmObjectLocator.getInstance().GlobeObject.Scene.Layers.Count;
+                if (count > 0)
+                {
+                   Layer3D layer = SmObjectLocator.getInstance().GlobeObject.Scene.Layers[cBox.Content.ToString()];
+                   if (layer != null)
+                   {
+                       layer.IsVisible = (bool)cBox.IsChecked;
+                   }
+                }
             }
         }
         /// <summary>
-        /// 图层显示控制
+        /// 图层隐藏控制
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -302,7 +310,15 @@ namespace Globe.QcApp
             if (sender is CheckBox)
             {
                 CheckBox cBox = sender as CheckBox;
-
+                int count = SmObjectLocator.getInstance().GlobeObject.Scene.Layers.Count;
+                if (count > 0)
+                {
+                    Layer3D layer = SmObjectLocator.getInstance().GlobeObject.Scene.Layers[cBox.Content.ToString()];
+                    if (layer != null)
+                    {
+                        layer.IsVisible = (bool)cBox.IsChecked;
+                    }
+                }
             }
         }
 
@@ -313,7 +329,19 @@ namespace Globe.QcApp
         /// <param name="e"></param>
         private void LayerListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            LayerVO layerItem = this.LayerListBox.SelectedItem as LayerVO;
+            if (layerItem != null)
+            {
+                int count = SmObjectLocator.getInstance().GlobeObject.Scene.Layers.Count;
+                if (count > 0)
+                {
+                    Layer3D layer = SmObjectLocator.getInstance().GlobeObject.Scene.Layers[layerItem.LayerName];
+                    if (layer != null)
+                    {
+                        SmObjectLocator.getInstance().GlobeObject.Scene.EnsureVisible(layer.Bounds, 10);
+                    }
+                }
+            }
         }
         #endregion
     }

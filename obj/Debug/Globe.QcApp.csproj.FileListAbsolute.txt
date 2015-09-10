@@ -94,6 +94,7 @@ D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Telerik.Windows.Data.dll
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Telerik.Windows.PersistenceFramework.dll
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Telerik.Windows.Themes.Windows8.dll
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Telerik.Windows.Themes.Windows8Touch.dll
+D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.csprojResolveAssemblyReference.cache
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\MainWindow.baml
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\MaskShell.baml
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\ResourceDictionary\ConfirmDictionary.baml
@@ -113,3 +114,9 @@ D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.csproj.Genera
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.exe.licenses
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.exe
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.pdb
+D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\SuperMap.Layout.dll
+D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\SuperMap.Data.Conversion.dll
+D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\SuperMap.Chart.dll
+D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\SuperMap.Layout.xml
+D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\SuperMap.Data.Conversion.xml
+D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\SuperMap.Chart.xml
