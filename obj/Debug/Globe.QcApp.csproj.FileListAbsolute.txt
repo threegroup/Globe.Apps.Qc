@@ -73,12 +73,19 @@ F:\部门项目\蕲春水利局大屏采购及三维系统\code\Globe.Apps.Qc\bi
 F:\部门项目\蕲春水利局大屏采购及三维系统\code\Globe.Apps.Qc\bin\Debug\Telerik.Windows.Data.dll
 F:\部门项目\蕲春水利局大屏采购及三维系统\code\Globe.Apps.Qc\bin\Debug\Telerik.Windows.Themes.Windows8.dll
 F:\部门项目\蕲春水利局大屏采购及三维系统\code\Globe.Apps.Qc\bin\Debug\Telerik.Windows.Themes.Windows8Touch.dll
+F:\部门项目\蕲春水利局大屏采购及三维系统\code\Globe.Apps.Qc\bin\Debug\SuperMap.Data.dll
+F:\部门项目\蕲春水利局大屏采购及三维系统\code\Globe.Apps.Qc\bin\Debug\SuperMap.Mapping.dll
+F:\部门项目\蕲春水利局大屏采购及三维系统\code\Globe.Apps.Qc\bin\Debug\SuperMap.Realspace.dll
+F:\部门项目\蕲春水利局大屏采购及三维系统\code\Globe.Apps.Qc\bin\Debug\SuperMap.UI.Controls.dll
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Routes\测试飞行路径1.fpf
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Routes\测试飞行路径2.fpf
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Globe.QcApp.exe.config
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Globe.QcApp.exe
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Globe.QcApp.pdb
+D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\SuperMap.Data.dll
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\SuperMap.Mapping.dll
+D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\SuperMap.Realspace.dll
+D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\SuperMap.UI.Controls.dll
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Telerik.Windows.Controls.Data.dll
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Telerik.Windows.Controls.dll
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Telerik.Windows.Controls.Input.dll
@@ -87,7 +94,6 @@ D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Telerik.Windows.Data.dll
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Telerik.Windows.PersistenceFramework.dll
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Telerik.Windows.Themes.Windows8.dll
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Telerik.Windows.Themes.Windows8Touch.dll
-D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\SuperMap.Mapping.xml
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\MainWindow.baml
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\MaskShell.baml
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\ResourceDictionary\ConfirmDictionary.baml
@@ -107,7 +113,3 @@ D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.csproj.Genera
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.exe.licenses
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.exe
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.pdb
-F:\部门项目\蕲春水利局大屏采购及三维系统\code\Globe.Apps.Qc\bin\Debug\SuperMap.Data.dll
-F:\部门项目\蕲春水利局大屏采购及三维系统\code\Globe.Apps.Qc\bin\Debug\SuperMap.Mapping.dll
-F:\部门项目\蕲春水利局大屏采购及三维系统\code\Globe.Apps.Qc\bin\Debug\SuperMap.Realspace.dll
-F:\部门项目\蕲春水利局大屏采购及三维系统\code\Globe.Apps.Qc\bin\Debug\SuperMap.UI.Controls.dll
