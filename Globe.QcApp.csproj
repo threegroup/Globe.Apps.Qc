@@ -232,6 +232,10 @@
     <Resource Include="Images\tools\left.png" />
     <Resource Include="Images\tools\right.png" />
     <Resource Include="Images\layer.png" />
+    <Content Include="libs\supermap\SuperMap.Data.dll" />
+    <Content Include="libs\supermap\SuperMap.Mapping.dll" />
+    <Content Include="libs\supermap\SuperMap.Realspace.dll" />
+    <Content Include="libs\supermap\SuperMap.UI.Controls.dll" />
     <Content Include="libs\telerik\Telerik.Windows.Controls.Data.dll" />
     <Content Include="libs\telerik\Telerik.Windows.Controls.dll" />
     <Content Include="libs\telerik\Telerik.Windows.Controls.Input.dll" />
@@ -241,6 +245,7 @@
     <Content Include="libs\telerik\Telerik.Windows.Themes.Windows8.dll" />
     <Content Include="libs\telerik\Telerik.Windows.Themes.Windows8Touch.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

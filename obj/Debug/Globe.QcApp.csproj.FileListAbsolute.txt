@@ -107,3 +107,7 @@ D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.csproj.Genera
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.exe.licenses
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.exe
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.pdb
+F:\部门项目\蕲春水利局大屏采购及三维系统\code\Globe.Apps.Qc\bin\Debug\SuperMap.Data.dll
+F:\部门项目\蕲春水利局大屏采购及三维系统\code\Globe.Apps.Qc\bin\Debug\SuperMap.Mapping.dll
+F:\部门项目\蕲春水利局大屏采购及三维系统\code\Globe.Apps.Qc\bin\Debug\SuperMap.Realspace.dll
+F:\部门项目\蕲春水利局大屏采购及三维系统\code\Globe.Apps.Qc\bin\Debug\SuperMap.UI.Controls.dll
