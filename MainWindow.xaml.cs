@@ -7,6 +7,7 @@ using SuperMap.Data;
 using SuperMap.Realspace;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,6 +35,12 @@ namespace Globe.QcApp
 
         private Workspace m_workspace;
 
+        //data path
+        private string globeDataPathKey = "GlobeDataPath";
+
+        //scene name
+        private string sceneNameKey = "SceneName";
+
         public MainWindow()
         {
             InitializeComponent();
@@ -55,8 +62,11 @@ namespace Globe.QcApp
             //初始化三维球体
             InitGlobe();
 
+      
             //加载三维场景
-            OpenScene(@"F:\项目\蕲春\Data\03工作空间\image.smwu", "全球_Level_7@ORCL");
+            string dataPath = ConfigurationManager.AppSettings.GetValues(globeDataPathKey)[0];
+            string sceneName = ConfigurationManager.AppSettings.GetValues(sceneNameKey)[0];
+            OpenScene(dataPath, sceneName);
 
             InitMaskShell();
 
