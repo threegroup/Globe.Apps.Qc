@@ -33,7 +33,8 @@ namespace Globe.QcApp
         /// </summary>
         private MaskShell maskShell = null;
 
-        private Workspace m_workspace;
+        //工作空间
+        public static Workspace m_workspace;
 
         //data path
         private string globeDataPathKey = "GlobeDataPath";
@@ -156,6 +157,7 @@ namespace Globe.QcApp
                     layerVo.LayerType = layer.Type.ToString();
                     layerVo.LayerId = i.ToString();
                     layerVo.LayerVisible = layer.IsVisible;
+                    layerVo.IsQueryLayer = true;
                     SysModelLocator.getInstance().LayerList.Add(layerVo);
                 }
 
@@ -183,5 +185,16 @@ namespace Globe.QcApp
 
             maskShell.Show();
         }
+
+        //public Workspace GetCurrentWorkspace() 
+        //{
+        //    Workspace myWorkS = null;
+        //    if (m_workspace !=null)
+        //    {
+        //        myWorkS = m_workspace;
+        //    }
+        //    return myWorkS;
+
+        //}
     }
 }

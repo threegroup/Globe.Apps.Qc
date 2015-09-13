@@ -71,5 +71,17 @@ namespace Globe.QcApp.Common.VO
             get { return layerCenter; }
             set { layerCenter = value; }
         }
+
+        private bool isQueryLayer;
+        /// <summary>
+        /// 是否是查询图层
+        /// </summary>
+        public bool IsQueryLayer
+        {
+            get { return isQueryLayer; }
+            set { isQueryLayer = value; }
+        }
+
+              
     }
 }

@@ -3,6 +3,7 @@ using Globe.QcApp.Common.Helpers.Themes;
 using Globe.QcApp.Common.Helpers.Windows;
 using Globe.QcApp.Common.VO;
 using Globe.QcApp.SubWindows;
+using SuperMap.Data;
 using SuperMap.Realspace;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,7 @@ namespace Globe.QcApp
     /// </summary>
     public partial class MaskShell : Window
     {
+
         public MaskShell()
         {
             InitializeComponent();
@@ -41,10 +43,13 @@ namespace Globe.QcApp
         private void MaskShell_Loaded(object sender, RoutedEventArgs e)
         {
             //加载飞行路径
-            this.LoadRoutes(Environment.CurrentDirectory);
+            this.LoadRoutes(System.Environment.CurrentDirectory);
 
             //加载图层
             this.LayerListBox.ItemsSource = SysModelLocator.getInstance().LayerList;
+
+            //加载查询图层
+            this.QueryLayerList.ItemsSource = SysModelLocator.getInstance().LayerList.Where(p => p.IsQueryLayer == true);
 
             //控制经纬只能输入数字
             this.ControlTextBoxContent();
@@ -390,6 +395,23 @@ namespace Globe.QcApp
             }
         }
         #endregion
+
+        /// <summary>
+        /// 查询事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void QueryBt_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.QueryNameTxt.Text.Trim() != "")
+            {
+                Workspace ws = MainWindow.m_workspace;
+                if (ws != null)
+                { 
+
+                }
+            }
+        }
 
 
     }

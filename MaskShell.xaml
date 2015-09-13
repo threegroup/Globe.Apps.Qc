@@ -151,15 +151,22 @@
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Border  Grid.Row="0" BorderThickness="0,0,0,1" BorderBrush="#FFEC6D51">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBox Name="QueryNameTxt" Width="200"  Margin="3" HorizontalAlignment="Left"></TextBox>
-                                <Button Content="查询" Name="QueryBt" Height="30"/>
+                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                <Label Content="选择要素：" FontFamily="Microsoft YaHei UI Light" VerticalAlignment="Center"></Label>
+                                <ComboBox Name="QueryLayerList" Width="210"  Margin="3" ></ComboBox>
                             </StackPanel>
                         </Border>
-                        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                        <Border  Grid.Row="1" BorderThickness="0,0,0,1" BorderBrush="#FFEC6D51">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox Name="QueryNameTxt" Width="230"  Margin="3" HorizontalAlignment="Left"></TextBox>
+                                <Button Content="查询" Name="QueryBt" Height="30" Click="QueryBt_Click"/>
+                            </StackPanel>
+                        </Border>
+                        <StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Stretch">
                             <Border Name="QueryContentRegion" BorderThickness="1">
                                 <telerik:RadListBox Name="QueryListBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderThickness="0" Background="{x:Null}" ItemTemplate="{StaticResource ListBoxItemTemplate}" SelectionChanged="RouteListBox_SelectionChanged" />
                             </Border>
