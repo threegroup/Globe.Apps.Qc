@@ -40,6 +40,11 @@ namespace Globe.QcApp.Common.Core
         /// 图层列表
         /// </summary>
         public ObservableCollection<LayerVO> LayerList = new ObservableCollection<LayerVO>();
+
+        /// <summary>
+        /// 查询结果列表
+        /// </summary>
+        public ObservableCollection<QueryRecordVO> recordList = new ObservableCollection<QueryRecordVO>();
         #endregion
     }
 }

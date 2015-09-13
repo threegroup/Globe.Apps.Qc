@@ -157,7 +157,7 @@
                         <Border  Grid.Row="0" BorderThickness="0,0,0,1" BorderBrush="#FFEC6D51">
                             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                                 <Label Content="选择要素：" FontFamily="Microsoft YaHei UI Light" VerticalAlignment="Center"></Label>
-                                <ComboBox Name="QueryLayerList" Width="210"  Margin="3" DisplayMemberPath="{Binding LayerName}" SelectedValuePath="{Binding layerId}"></ComboBox>
+                                <ComboBox Name="QueryLayerList" Width="210"  Margin="3" DisplayMemberPath="{Binding LayerName}" SelectedValuePath="{Binding LayerId}"></ComboBox>
                             </StackPanel>
                         </Border>
                         <Border  Grid.Row="1" BorderThickness="0,0,0,1" BorderBrush="#FFEC6D51">
@@ -168,7 +168,8 @@
                         </Border>
                         <StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Stretch">
                             <Border Name="QueryContentRegion" BorderThickness="1">
-                                <telerik:RadListBox Name="QueryListBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderThickness="0" Background="{x:Null}" ItemTemplate="{StaticResource ListBoxItemTemplate}" SelectionChanged="RouteListBox_SelectionChanged" />
+                                <telerik:RadListBox Name="QueryListBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderThickness="0" Background="{x:Null}"
+                                                    ItemTemplate="{StaticResource QueryListItemTemplate}" SelectionChanged="QueryListBox_SelectionChanged" />
                             </Border>
                         </StackPanel>
                     </Grid>

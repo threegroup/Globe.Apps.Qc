@@ -185,16 +185,6 @@ namespace Globe.QcApp
 
             maskShell.Show();
         }
-
-        //public Workspace GetCurrentWorkspace() 
-        //{
-        //    Workspace myWorkS = null;
-        //    if (m_workspace !=null)
-        //    {
-        //        myWorkS = m_workspace;
-        //    }
-        //    return myWorkS;
-
-        //}
+    
     }
 }

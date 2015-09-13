@@ -411,8 +411,29 @@ namespace Globe.QcApp
         /// <param name="e"></param>
         private void QueryBt_Click(object sender, RoutedEventArgs e)
         {
-            string layerId = this.QueryListBox.SelectedValue.ToString();
-            if (this.QueryNameTxt.Text.Trim() != "")
+            InitQueryListBox();
+            InitQueryListOnMap();
+        }
+
+        /// <summary>
+        /// 在地图上初始化查询结果列表
+        /// </summary>
+        private void InitQueryListOnMap()
+        {
+           //TODO:在地图上进行显示pop 
+        }
+
+       /// <summary>
+       /// 在查询结果面板上初始化查询结果列表
+       /// </summary>
+        private void InitQueryListBox()
+        {
+            string layerId = "";
+            if (this.QueryListBox.Items.Count > 0)
+            {
+                layerId = this.QueryListBox.SelectedValue.ToString();
+            }
+            if (layerId != "" && this.QueryNameTxt.Text.Trim() != "")
             {
                 string queryTxt = this.QueryNameTxt.Text.Trim();
                 Workspace ws = MainWindow.m_workspace;
@@ -427,13 +448,26 @@ namespace Globe.QcApp
                             string fieldName = ConfigurationManager.AppSettings.Get(queryNameField);
                             QueryParameter queryParameter = new QueryParameter();
                             queryParameter.CursorType = SuperMap.Data.CursorType.Static;
-                            queryParameter.HasGeometry = false;
+                            queryParameter.HasGeometry = true;
                             queryParameter.AttributeFilter = fieldName + " like '%" + queryTxt + "%'";
 
                             Recordset recordset = dSetV.Query(queryParameter);
                             if (recordset != null && recordset.RecordCount > 0)
                             {
-
+                                ObservableCollection<QueryRecordVO> recordList = SysModelLocator.getInstance().recordList;
+                                recordList.Clear();
+                                int i = 0;
+                                for (recordset.MoveFirst(); recordset.IsEOF == false; recordset.MoveNext(), i++)
+                                {
+                                    QueryRecordVO qVO = new QueryRecordVO();
+                                    qVO.RecordLayerId = layerId;
+                                    qVO.RecordName = recordset.GetFieldValue(fieldName).ToString();
+                                    qVO.RecordIndex = i.ToString();
+                                    qVO.RecordCenterX = recordset.GetGeometry().InnerPoint.X.ToString();
+                                    qVO.RecordCenterY = recordset.GetGeometry().InnerPoint.Y.ToString();
+                                    recordList.Add(qVO);
+                                }
+                                this.QueryListBox.ItemsSource = recordList;
                             }
                         }
                     }
@@ -453,7 +487,17 @@ namespace Globe.QcApp
             }
         }
 
-
+        private void QueryListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender is RadListBox)
+            {
+                QueryRecordVO qVO = this.QueryListBox.SelectedItem as QueryRecordVO;
+                double lat = Double.Parse(qVO.RecordCenterX);
+                double lon = Double.Parse(qVO.RecordCenterY); 
+                double aititude = 3000;
+                JumpCamera(lat, lon, aititude);
+            }
+        }
 
     }
 }

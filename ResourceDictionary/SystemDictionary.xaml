@@ -65,4 +65,17 @@
         </Border>
     </DataTemplate>
 
+    <!--ListBox相关样式和模板,飞行路径-->
+    <DataTemplate x:Key="QueryListItemTemplate">
+        <Border Name="itemBg" HorizontalAlignment="Stretch" BorderThickness="0,0,0,1">
+            <Border.BorderBrush>
+                <SolidColorBrush Color="#FFEC6D51"/>
+            </Border.BorderBrush>
+            <StackPanel Grid.Row="0" Style="{StaticResource ResourceKey=StackPanelStyle}">
+                <Image Source="/Globe.QcApp;component/Images/pop.png" Width="32" Height="32" Stretch="UniformToFill" />
+                <TextBlock Text="{Binding RecordName}"  Style="{StaticResource ResourceKey=ListBoxItemTextStyle}"/>
+            </StackPanel>
+        </Border>
+    </DataTemplate>
+
 </ResourceDictionary>
