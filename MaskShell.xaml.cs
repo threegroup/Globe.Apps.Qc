@@ -8,6 +8,7 @@ using SuperMap.Realspace;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -29,6 +30,9 @@ namespace Globe.QcApp
     /// </summary>
     public partial class MaskShell : Window
     {
+        private string RoutesPath = "RoutesPathKey";
+
+        private string queryNameField = "queryNameFieldKey";
 
         public MaskShell()
         {
@@ -48,12 +52,15 @@ namespace Globe.QcApp
             //加载图层
             this.LayerListBox.ItemsSource = SysModelLocator.getInstance().LayerList;
 
-            //加载查询图层
-            this.QueryLayerList.ItemsSource = SysModelLocator.getInstance().LayerList.Where(p => p.IsQueryLayer == true);
+            //初始化查询图层
+            InitQueryLayerList();
+            
 
             //控制经纬只能输入数字
             this.ControlTextBoxContent();
         }
+
+       
 
         #region Mask窗口相关的函数
         /// <summary>
@@ -122,7 +129,8 @@ namespace Globe.QcApp
         /// <param name="sysDirectory"></param>
         private void LoadRoutes(string sysDirectory)
         {
-            string temp = sysDirectory + "\\Routes";
+            string routesPath = ConfigurationManager.AppSettings.GetValues(RoutesPath)[0];
+            string temp = System.IO.Path.Combine(sysDirectory, routesPath);
             //判断目录是否存在
             if (Directory.Exists(temp))
             {
@@ -403,15 +411,48 @@ namespace Globe.QcApp
         /// <param name="e"></param>
         private void QueryBt_Click(object sender, RoutedEventArgs e)
         {
+            string layerId = this.QueryListBox.SelectedValue.ToString();
             if (this.QueryNameTxt.Text.Trim() != "")
             {
+                string queryTxt = this.QueryNameTxt.Text.Trim();
                 Workspace ws = MainWindow.m_workspace;
                 if (ws != null)
-                { 
+                {
+                    Datasource dSource = ws.Datasources[0];
+                    if (dSource != null)
+                    {
+                        DatasetVector dSetV = (DatasetVector)dSource.Datasets[layerId];
+                        if (dSetV != null)
+                        {
+                            string fieldName = ConfigurationManager.AppSettings.Get(queryNameField);
+                            QueryParameter queryParameter = new QueryParameter();
+                            queryParameter.CursorType = SuperMap.Data.CursorType.Static;
+                            queryParameter.HasGeometry = false;
+                            queryParameter.AttributeFilter = fieldName + " like '%" + queryTxt + "%'";
 
+                            Recordset recordset = dSetV.Query(queryParameter);
+                            if (recordset != null && recordset.RecordCount > 0)
+                            {
+
+                            }
+                        }
+                    }
                 }
             }
         }
+
+        /// <summary>
+        /// 初始化查询图层的列表
+        /// </summary>
+        private void InitQueryLayerList()
+        {
+            this.QueryLayerList.ItemsSource = SysModelLocator.getInstance().LayerList.Where(p => p.IsQueryLayer == true);
+            if (this.QueryLayerList.Items.Count > 0)
+            {
+                this.QueryLayerList.SelectedIndex = 0;
+            }
+        }
+
 
 
     }
