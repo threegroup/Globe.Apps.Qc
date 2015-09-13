@@ -114,6 +114,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Border Grid.Row="0" BorderBrush="#FFEC6D51" BorderThickness="0,0,0,1">
@@ -124,19 +125,26 @@
 
                         <Border Grid.Row="1" BorderBrush="#FFEC6D51" BorderThickness="0,0,0,1">
                             <StackPanel HorizontalAlignment="Left"  Orientation="Horizontal" VerticalAlignment="Center">
-                                <Label Content="经度：" FontFamily="Microsoft YaHei UI Light" VerticalAlignment="Center"></Label>
-                                <TextBox  Name="longitudeTxt"  Width="200" Margin="3"></TextBox>
+                                <Label Content="经度[米]：" FontFamily="Microsoft YaHei UI Light" VerticalAlignment="Center"></Label>
+                                <TextBox  Name="longitudeTxt"  Width="200" Margin="3" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="longitudeTxt_PreviewTextInput"></TextBox>
                             </StackPanel>
                         </Border>
 
                         <Border Grid.Row="2" BorderBrush="#FFEC6D51" BorderThickness="0,0,0,1">
                             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Center">
-                                <Label Content="纬度：" FontFamily="Microsoft YaHei UI Light" VerticalAlignment="Center"></Label>
-                                <TextBox  Name="latitudeTxt" Width="200" Margin="3"></TextBox>
+                                <Label Content="纬度[米]：" FontFamily="Microsoft YaHei UI Light" VerticalAlignment="Center"></Label>
+                                <TextBox  Name="latitudeTxt" Width="200" Margin="3" InputMethod.IsInputMethodEnabled="False"></TextBox>
                             </StackPanel>
                         </Border>
 
-                        <Button Grid.Row="3"  Content="定位" Name="LocaltionBt" Height="30"/>
+                        <Border Grid.Row="3" BorderBrush="#FFEC6D51" BorderThickness="0,0,0,1">
+                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Center">
+                                <Label Content="高度[米]：" FontFamily="Microsoft YaHei UI Light" VerticalAlignment="Center"></Label>
+                                <TextBox  Name="altitudeTxt" Text="5000" Width="200" Margin="3" InputMethod.IsInputMethodEnabled="False"></TextBox>
+                            </StackPanel>
+                        </Border>
+
+                        <Button Grid.Row="4"  Content="定位" Name="LocaltionBt" Height="30" Click="LocaltionBt_Click"/>
                     </Grid>
                 </telerik:RadTabItem>
                 <telerik:RadTabItem Header="属性查询" Cursor="Hand">

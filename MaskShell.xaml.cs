@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -39,30 +40,75 @@ namespace Globe.QcApp
         //Mask窗口的Loaded事件
         private void MaskShell_Loaded(object sender, RoutedEventArgs e)
         {
-            //场景初始化默认位置
-            this.ResetCamera();
-
             //加载飞行路径
             this.LoadRoutes(Environment.CurrentDirectory);
 
             //加载图层
             this.LayerListBox.ItemsSource = SysModelLocator.getInstance().LayerList;
+
+            //控制经纬只能输入数字
+            this.ControlTextBoxContent();
         }
 
         #region Mask窗口相关的函数
         /// <summary>
-        /// 快速重置窗口位置为默认位置
+        /// 控制经纬度输入框只能输入数字
         /// </summary>
-        private void ResetCamera()
+        private void ControlTextBoxContent()
+        {
+            this.latitudeTxt.PreviewTextInput += latitudeTxt_PreviewTextInput;
+            this.longitudeTxt.PreviewTextInput += longitudeTxt_PreviewTextInput;
+            this.altitudeTxt.PreviewTextInput += altitudeTxt_PreviewTextInput;
+        }
+
+        private void altitudeTxt_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex re = new Regex("[^0-9.-]+");
+            e.Handled = re.IsMatch(e.Text);
+        }
+
+        private void longitudeTxt_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex re = new Regex("[^0-9.-]+");
+            e.Handled = re.IsMatch(e.Text);
+        }
+
+        private void latitudeTxt_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex re = new Regex("[^0-9.-]+");
+            e.Handled = re.IsMatch(e.Text);
+        }
+
+        //坐标定位
+        private void LocaltionBt_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.latitudeTxt.Text.ToString().Trim() != "" &&
+                this.longitudeTxt.Text.ToString().Trim() != "" &&
+                this.altitudeTxt.Text.ToString().Trim() != "")
+            {
+                double lat = Convert.ToDouble(this.latitudeTxt.Text.ToString().Trim());
+                double lon = Convert.ToDouble(this.longitudeTxt.Text.ToString().Trim());
+                double height = Convert.ToDouble(this.altitudeTxt.Text.ToString().Trim());
+                if (!Double.IsNaN(lat) && !Double.IsNaN(lon) && !Double.IsNaN(height))
+                {
+                    this.JumpCamera(lat, lon, height);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 快速定位窗口
+        /// </summary>
+        private void JumpCamera(double lat, double lon, double aititude)
         {
             Camera camera = new Camera();
-            camera.Altitude = 285.05341279041;
-            camera.Longitude = 116.391305696988;
-            camera.Latitude = 39.9933447121584;
-            camera.Heading = 2.76012171129487;
-            camera.Tilt = 75.2282529563474;
+            camera.Altitude = aititude;
+            camera.Longitude = lon;
+            camera.Latitude = lat;
+            camera.Heading = 0;
+            camera.Tilt = 45;
 
-            SmObjectLocator.getInstance().GlobeObject.Scene.Fly(camera, 0);
+            SmObjectLocator.getInstance().GlobeObject.Scene.Fly(camera, 10);
         }
 
         /// <summary>
@@ -292,11 +338,11 @@ namespace Globe.QcApp
                 int count = SmObjectLocator.getInstance().GlobeObject.Scene.Layers.Count;
                 if (count > 0)
                 {
-                   Layer3D layer = SmObjectLocator.getInstance().GlobeObject.Scene.Layers[cBox.Content.ToString()];
-                   if (layer != null)
-                   {
-                       layer.IsVisible = (bool)cBox.IsChecked;
-                   }
+                    Layer3D layer = SmObjectLocator.getInstance().GlobeObject.Scene.Layers[cBox.Content.ToString()];
+                    if (layer != null)
+                    {
+                        layer.IsVisible = (bool)cBox.IsChecked;
+                    }
                 }
             }
         }
@@ -344,5 +390,7 @@ namespace Globe.QcApp
             }
         }
         #endregion
+
+
     }
 }

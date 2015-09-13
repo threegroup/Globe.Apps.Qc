@@ -77,7 +77,6 @@ F:\部门项目\蕲春水利局大屏采购及三维系统\code\Globe.Apps.Qc\bi
 F:\部门项目\蕲春水利局大屏采购及三维系统\code\Globe.Apps.Qc\bin\Debug\SuperMap.Mapping.dll
 F:\部门项目\蕲春水利局大屏采购及三维系统\code\Globe.Apps.Qc\bin\Debug\SuperMap.Realspace.dll
 F:\部门项目\蕲春水利局大屏采购及三维系统\code\Globe.Apps.Qc\bin\Debug\SuperMap.UI.Controls.dll
-D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.csprojResolveAssemblyReference.cache
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\MainWindow.baml
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\MaskShell.baml
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\ResourceDictionary\ConfirmDictionary.baml
@@ -108,16 +107,7 @@ D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Telerik.Windows.Data.dll
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Telerik.Windows.PersistenceFramework.dll
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Telerik.Windows.Themes.Windows8.dll
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Telerik.Windows.Themes.Windows8Touch.dll
-D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\SuperMap.Layout.dll
-D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\SuperMap.Data.Conversion.dll
-D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\SuperMap.Chart.dll
-D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\SuperMap.Data.xml
-D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\SuperMap.Mapping.xml
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\SuperMap.Realspace.xml
-D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\SuperMap.UI.Controls.xml
-D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\SuperMap.Layout.xml
-D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\SuperMap.Data.Conversion.xml
-D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\SuperMap.Chart.xml
-D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\zh-CN\SuperMap.Data.resources.dll
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.exe
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.pdb
+D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.csprojResolveAssemblyReference.cache
