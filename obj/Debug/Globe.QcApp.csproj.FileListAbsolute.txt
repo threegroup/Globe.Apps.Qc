@@ -107,7 +107,5 @@ D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Telerik.Windows.Data.dll
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Telerik.Windows.PersistenceFramework.dll
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Telerik.Windows.Themes.Windows8.dll
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Telerik.Windows.Themes.Windows8Touch.dll
-D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\SuperMap.Realspace.xml
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.exe
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.pdb
-D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.csprojResolveAssemblyReference.cache
