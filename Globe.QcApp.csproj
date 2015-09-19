@@ -117,6 +117,7 @@
     </ApplicationDefinition>
     <Compile Include="Common\Core\SysModelLocator.cs" />
     <Compile Include="Common\VO\LayerVO.cs" />
+    <Compile Include="Common\VO\QueryRecordVO.cs" />
     <Compile Include="Common\VO\RouteVO.cs" />
     <Compile Include="SubWindows\ConfirmWindow.xaml.cs">
       <DependentUpon>ConfirmWindow.xaml</DependentUpon>
