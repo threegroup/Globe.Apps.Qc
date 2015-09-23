@@ -82,6 +82,15 @@ namespace Globe.QcApp.Common.VO
             set { isQueryLayer = value; }
         }
 
+        private FieldVO[] fields;
+        /// <summary>
+        /// 字段数组
+        /// </summary>
+        internal FieldVO[] Fields
+        {
+            get { return fields; }
+            set { fields = value; }
+        }
               
     }
 }

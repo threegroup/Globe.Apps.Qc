@@ -34,6 +34,8 @@ namespace Globe.QcApp
 
         private string queryNameField = "queryNameFieldKey";
 
+        private string queryDataSource = "DataSourceName";
+
         public MaskShell()
         {
             InitializeComponent();
@@ -420,7 +422,16 @@ namespace Globe.QcApp
         /// </summary>
         private void InitQueryListOnMap()
         {
-           //TODO:在地图上进行显示pop 
+           //TODO:在地图上进行显示mark
+            ObservableCollection<QueryRecordVO> recordList = SysModelLocator.getInstance().recordList;
+            if (recordList.Count > 0)
+            {
+                //SmObjectLocator.getInstance().GlobeObject.
+                for (int i = 0; i < recordList.Count; i++)
+                {
+                    
+                } 
+            }
         }
 
        /// <summary>
@@ -439,7 +450,8 @@ namespace Globe.QcApp
                 Workspace ws = MainWindow.m_workspace;
                 if (ws != null)
                 {
-                    Datasource dSource = ws.Datasources[0];
+                    string sourceName = ConfigurationManager.AppSettings.Get(queryDataSource);
+                    Datasource dSource = ws.Datasources[sourceName];
                     if (dSource != null)
                     {
                         DatasetVector dSetV = (DatasetVector)dSource.Datasets[layerId];
