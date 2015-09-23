@@ -511,5 +511,21 @@ namespace Globe.QcApp
             }
         }
 
+		/// <summary>
+		/// 切换面板内容时停止飞行浏览功能
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void RadTabControl_SelectionChanged(object sender, RadSelectionChangedEventArgs e)
+		{
+			RadTabItem rtItem = this.SysRadTabControl.SelectedItem as RadTabItem;
+			if (rtItem.Header.ToString() != "飞行漫游")
+			{
+				if (SmObjectLocator.getInstance().FlyManagerObject.Routes.CurrentRoute != null)
+				{
+					SmObjectLocator.getInstance().FlyManagerObject.Stop();
+				}
+			}
+		}
     }
 }

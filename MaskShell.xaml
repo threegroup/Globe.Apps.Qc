@@ -100,7 +100,8 @@
                     </Button.ToolTip>
                 </Button>
             </StackPanel>
-            <telerik:RadTabControl Grid.Row="1"  Grid.Column="1" DisplayMemberPath="Content" ScrollMode="Viewport" BorderThickness="0" Opacity="0.8" TabOrientation="Vertical" TabStripPlacement="Left" Cursor="Hand">
+            <telerik:RadTabControl Name="SysRadTabControl" Grid.Row="1"  Grid.Column="1" DisplayMemberPath="Content" ScrollMode="Viewport" BorderThickness="0" Opacity="0.8" TabOrientation="Vertical" TabStripPlacement="Left" Cursor="Hand"
+                                   SelectionChanged="RadTabControl_SelectionChanged">
                 <telerik:RadTabItem Header="图层管理" Cursor="Hand">
                     <Grid>
                         <telerik:RadListBox Name="LayerListBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderThickness="0" Background="{x:Null}" ItemTemplate="{StaticResource LayerListBoxItemTemplate}"
