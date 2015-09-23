@@ -116,6 +116,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\Core\SysModelLocator.cs" />
+    <Compile Include="Common\VO\FieldVO.cs" />
     <Compile Include="Common\VO\LayerVO.cs" />
     <Compile Include="Common\VO\QueryRecordVO.cs" />
     <Compile Include="Common\VO\RouteVO.cs" />

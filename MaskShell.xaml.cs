@@ -261,7 +261,7 @@ namespace Globe.QcApp
             DoubleAnimation animation0 = new DoubleAnimation();
             animation0.From = 32;
             animation0.To = 480;
-            animation0.Duration = TimeSpan.FromSeconds(0.2);
+            animation0.Duration = TimeSpan.FromSeconds(0.1);
 
             this.PanelRegion.BeginAnimation(Border.WidthProperty, animation0);
         }
@@ -275,7 +275,7 @@ namespace Globe.QcApp
             DoubleAnimation animation0 = new DoubleAnimation();
             animation0.From = 480;
             animation0.To = 32;
-            animation0.Duration = TimeSpan.FromSeconds(0.2);
+            animation0.Duration = TimeSpan.FromSeconds(0.1);
 
             this.PanelRegion.BeginAnimation(Border.WidthProperty, animation0);
         }
