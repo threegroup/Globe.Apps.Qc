@@ -36,6 +36,12 @@ namespace Globe.QcApp
 
         private string queryDataSource = "DataSourceName";
 
+        private string markFileKey = "MarkFileName";
+
+        private double defaultHeight = 400;
+
+        private double defaultScale = 0.5;
+
         public MaskShell()
         {
             InitializeComponent();
@@ -418,20 +424,72 @@ namespace Globe.QcApp
         }
 
         /// <summary>
-        /// 在地图上初始化查询结果列表
+        /// 在地图上初始化显示查询结果列表
         /// </summary>
         private void InitQueryListOnMap()
         {
-           //TODO:在地图上进行显示mark
             ObservableCollection<QueryRecordVO> recordList = SysModelLocator.getInstance().recordList;
             if (recordList.Count > 0)
             {
-                //SmObjectLocator.getInstance().GlobeObject.
+                double centerX = 0.0;
+                double centerY = 0.0;
+                double heightZ = defaultHeight;
+                string markPath = System.IO.Path.Combine(System.Environment.CurrentDirectory, ConfigurationManager.AppSettings.GetValues(markFileKey).ToString()); ;
+                GeoStyle3D sty3D = new GeoStyle3D();
+                sty3D.MarkerFile = markPath;
+                sty3D.MarkerScale = defaultScale;
+                sty3D.AltitudeMode = AltitudeMode.ClampToGround;
                 for (int i = 0; i < recordList.Count; i++)
                 {
-                    
+                    QueryRecordVO vo = vo = recordList[i];
+                    if (Double.TryParse(vo.RecordCenterX, out centerX) == true && Double.TryParse(vo.RecordCenterY, out centerY) == true)
+                    {
+                        GeoPoint3D gpt = new GeoPoint3D(centerX, centerY, heightZ);
+                        gpt.Style3D = sty3D;
+                        SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Add(gpt, vo.RecordIndex);
+                        SmObjectLocator.getInstance().GlobeObject.MouseDown += GlobeObject_MouseDown;
+                    }
                 } 
             }
+        }
+
+        /// <summary>
+        /// mark的鼠标点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void GlobeObject_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            double lat = 0.0;
+            double lon = 0.0;
+            double aititude = defaultHeight;
+            try
+            {
+                int fid = SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.HitTest(e.Location);
+                if (fid >= 0)
+                {
+                    GeoPoint3D p = SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Get(fid) as GeoPoint3D;
+                    if (p != null)
+                    {
+                        lat = p.X;
+                        lon = p.Y;
+                        JumpCamera(lat, lon, aititude);
+                        ShowMarkDetailInfo();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 显示mark的详细信息属性窗
+        /// </summary>
+        private void ShowMarkDetailInfo()
+        {
+            ///TODO:显示
         }
 
        /// <summary>
@@ -504,10 +562,13 @@ namespace Globe.QcApp
             if (sender is RadListBox)
             {
                 QueryRecordVO qVO = this.QueryListBox.SelectedItem as QueryRecordVO;
-                double lat = Double.Parse(qVO.RecordCenterX);
-                double lon = Double.Parse(qVO.RecordCenterY); 
-                double aititude = 3000;
-                JumpCamera(lat, lon, aititude);
+                double lat = 0.0;
+                double lon = 0.0;
+                double aititude = defaultHeight;
+                if (Double.TryParse(qVO.RecordCenterX, out lat) == true && Double.TryParse(qVO.RecordCenterY, out lon)==true)
+                {
+                    JumpCamera(lat, lon, aititude);
+                }
             }
         }
 
