@@ -31,7 +31,7 @@ namespace Globe.QcApp
         /// <summary>
         /// Mask窗口
         /// </summary>
-        private MaskShell maskShell = null;
+		private MaskShell maskShell = null;
 
         //工作空间
         public static Workspace m_workspace;
@@ -62,7 +62,6 @@ namespace Globe.QcApp
 
             //初始化三维球体
             InitGlobe();
-
       
             //加载三维场景
             string dataPath = ConfigurationManager.AppSettings.GetValues(globeDataPathKey)[0];
@@ -139,31 +138,34 @@ namespace Globe.QcApp
             try
             {
                 WorkspaceConnectionInfo conInfo = new WorkspaceConnectionInfo(path);
-                conInfo.Type = WorkspaceType.SMWU;
-                m_workspace.Open(conInfo);
+				conInfo.Type = WorkspaceType.SXWU;
+                bool isOpened = m_workspace.Open(conInfo);
+				if (isOpened)
+				{
+					SmObjectLocator.getInstance().GlobeObject.Scene.Workspace = m_workspace;
 
-                SmObjectLocator.getInstance().GlobeObject.Scene.Workspace = m_workspace;
+					SmObjectLocator.getInstance().GlobeObject.Scene.Open(sceneName);
 
-                SmObjectLocator.getInstance().GlobeObject.Scene.Open(sceneName);
+					for (int i = 0; i < SmObjectLocator.getInstance().GlobeObject.Scene.Layers.Count; i++)
+					{
+						Layer3D layer = SmObjectLocator.getInstance().GlobeObject.Scene.Layers[i];
+						layer.IsSelectable = false;
+						LayerVO layerVo = new LayerVO();
+						layerVo.LayerBounds = layer.Bounds;
+						layerVo.LayerCenter = layer.Bounds.Center;
+						layerVo.LayerName = layer.Name.Substring(0, layer.Name.IndexOf("@"));
+						layerVo.LayerType = layer.Type.ToString();
+						layerVo.LayerId = i.ToString();
+						layerVo.LayerVisible = layer.IsVisible;
+						layerVo.IsQueryLayer = true;
+						layerVo.LayerCaption = layer.Caption;
+						SysModelLocator.getInstance().LayerList.Add(layerVo);
+					}
 
-                for (int i = 0; i < SmObjectLocator.getInstance().GlobeObject.Scene.Layers.Count; i++)
-                {
-                    Layer3D layer = SmObjectLocator.getInstance().GlobeObject.Scene.Layers[i];
-                    layer.IsSelectable = false;
-                    LayerVO layerVo = new LayerVO();
-                    layerVo.LayerBounds = layer.Bounds;
-                    layerVo.LayerCenter = layer.Bounds.Center;
-                    layerVo.LayerName = layer.Name;
-                    layerVo.LayerType = layer.Type.ToString();
-                    layerVo.LayerId = i.ToString();
-                    layerVo.LayerVisible = layer.IsVisible;
-                    layerVo.IsQueryLayer = true;
-                    SysModelLocator.getInstance().LayerList.Add(layerVo);
-                }
-
-                //范围全幅显示
-                //Layer3D olympicGreenLayer = SmObjectLocator.getInstance().GlobeObject.Scene.Layers[0];
-                //SmObjectLocator.getInstance().GlobeObject.Scene.EnsureVisible(olympicGreenLayer.Bounds, 10);
+					//范围全幅显示
+					//Layer3D olympicGreenLayer = SmObjectLocator.getInstance().GlobeObject.Scene.Layers[0];
+					//SmObjectLocator.getInstance().GlobeObject.Scene.EnsureVisible(olympicGreenLayer.Bounds, 10);
+				}
             }
             catch(Exception e)
             {

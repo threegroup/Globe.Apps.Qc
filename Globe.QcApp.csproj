@@ -14,6 +14,7 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>x64</PlatformTarget>
@@ -45,6 +46,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\SuperMap.Data.dll</HintPath>
     </Reference>
+    <Reference Include="SuperMap.Layout, Version=7.0.0.0, Culture=neutral, PublicKeyToken=0635c574ea890381, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\SuperMap.Layout.dll</HintPath>
+    </Reference>
     <Reference Include="SuperMap.Mapping, Version=7.0.0.0, Culture=neutral, PublicKeyToken=0635c574ea890381, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\SuperMap.Mapping.dll</HintPath>
@@ -60,6 +65,7 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Forms" />
@@ -73,35 +79,39 @@
     </Reference>
     <Reference Include="Telerik.Windows.Controls, Version=2015.2.728.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\WPF45\Telerik.Windows.Controls.dll</HintPath>
+      <HintPath>libs\telerik\Telerik.Windows.Controls.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Windows.Controls.Data, Version=2015.2.728.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\WPF45\Telerik.Windows.Controls.Data.dll</HintPath>
+      <HintPath>libs\telerik\Telerik.Windows.Controls.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView, Version=2015.2.728.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>libs\telerik\Telerik.Windows.Controls.GridView.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Windows.Controls.Input, Version=2015.2.728.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\WPF45\Telerik.Windows.Controls.Input.dll</HintPath>
+      <HintPath>libs\telerik\Telerik.Windows.Controls.Input.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Windows.Controls.Navigation, Version=2015.2.728.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\WPF45\Telerik.Windows.Controls.Navigation.dll</HintPath>
+      <HintPath>libs\telerik\Telerik.Windows.Controls.Navigation.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Windows.Data, Version=2015.2.728.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\WPF45\Telerik.Windows.Data.dll</HintPath>
+      <HintPath>libs\telerik\Telerik.Windows.Data.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Windows.PersistenceFramework, Version=2015.2.728.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\WPF45\Telerik.Windows.PersistenceFramework.dll</HintPath>
+      <HintPath>libs\telerik\Telerik.Windows.PersistenceFramework.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Windows.Themes.Windows8, Version=2015.2.728.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\WPF45\Telerik.Windows.Themes.Windows8.dll</HintPath>
+      <HintPath>libs\telerik\Telerik.Windows.Themes.Windows8.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Windows.Themes.Windows8Touch, Version=2015.2.728.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\WPF45\Telerik.Windows.Themes.Windows8Touch.dll</HintPath>
+      <HintPath>libs\telerik\Telerik.Windows.Themes.Windows8Touch.dll</HintPath>
     </Reference>
     <Reference Include="UIAutomationProvider" />
     <Reference Include="UIAutomationTypes" />
@@ -116,10 +126,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\Core\SysModelLocator.cs" />
+    <Compile Include="Common\VO\DetailVO.cs" />
     <Compile Include="Common\VO\FieldVO.cs" />
     <Compile Include="Common\VO\LayerVO.cs" />
     <Compile Include="Common\VO\QueryRecordVO.cs" />
     <Compile Include="Common\VO\RouteVO.cs" />
+    <Compile Include="MaskShell.xaml.cs">
+      <DependentUpon>MaskShell.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SubWindows\ConfirmWindow.xaml.cs">
       <DependentUpon>ConfirmWindow.xaml</DependentUpon>
     </Compile>
@@ -162,9 +176,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MaskShell.xaml.cs">
-      <DependentUpon>MaskShell.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -196,7 +207,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <SplashScreen Include="Images\init.png">
@@ -236,11 +249,22 @@
     <Resource Include="Images\tools\left.png" />
     <Resource Include="Images\tools\right.png" />
     <Resource Include="Images\layer.png" />
+    <Content Include="Images\bluepot.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\point.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="libs\telerik\Telerik.Windows.Controls.Data.dll" />
     <Content Include="libs\telerik\Telerik.Windows.Controls.dll" />
+    <Resource Include="libs\telerik\Telerik.Windows.Controls.GridView.xml" />
     <Content Include="libs\telerik\Telerik.Windows.Controls.Input.dll" />
+    <Resource Include="libs\telerik\Telerik.Windows.Controls.Input.xml" />
     <Content Include="libs\telerik\Telerik.Windows.Controls.Navigation.dll" />
+    <Resource Include="libs\telerik\Telerik.Windows.Controls.Navigation.xml" />
+    <Resource Include="libs\telerik\Telerik.Windows.Controls.xml" />
     <Content Include="libs\telerik\Telerik.Windows.Data.dll" />
+    <Resource Include="libs\telerik\Telerik.Windows.Data.xml" />
     <Content Include="libs\telerik\Telerik.Windows.PersistenceFramework.dll" />
     <Content Include="libs\telerik\Telerik.Windows.Themes.Windows8.dll" />
     <Content Include="libs\telerik\Telerik.Windows.Themes.Windows8Touch.dll" />

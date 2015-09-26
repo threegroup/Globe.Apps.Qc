@@ -45,6 +45,7 @@ namespace Globe.QcApp.Common.Core
         /// 查询结果列表
         /// </summary>
         public ObservableCollection<QueryRecordVO> recordList = new ObservableCollection<QueryRecordVO>();
+
         #endregion
     }
 }

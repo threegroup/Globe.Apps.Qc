@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/bluepot.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/point.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("libs/telerik/telerik.windows.controls.data.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("libs/telerik/telerik.windows.controls.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("libs/telerik/telerik.windows.controls.input.dll")]

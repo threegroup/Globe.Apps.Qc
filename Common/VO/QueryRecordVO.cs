@@ -64,7 +64,5 @@ namespace Globe.QcApp.Common.VO
             get { return recordCenterY; }
             set { recordCenterY = value; }
         }
-
-
     }
 }

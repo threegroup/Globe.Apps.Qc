@@ -91,6 +91,16 @@ namespace Globe.QcApp.Common.VO
             get { return fields; }
             set { fields = value; }
         }
+
+		private string layerCaption;
+		/// <summary>
+		/// 图层标题
+		/// </summary>
+		public string LayerCaption
+		{
+			get { return layerCaption; }
+			set { layerCaption = value; }
+		}
               
     }
 }

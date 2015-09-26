@@ -1,7 +1,7 @@
-﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<Window x:Class="Globe.QcApp.MaskShell"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
-        x:Class="Globe.QcApp.MaskShell"
         Title="MaskWindow"
         ShowInTaskbar="False"
         ResizeMode="NoResize"
@@ -14,7 +14,6 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="ResourceDictionary/SystemDictionary.xaml" />
                 <ResourceDictionary Source="ResourceDictionary/ToolBarDictionary.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
@@ -40,7 +39,7 @@
                     </Border.BorderBrush>
                     <StackPanel Grid.Row="0" Style="{StaticResource ResourceKey=StackPanelStyle}">
                         <Image Source="/Globe.QcApp;component/Images/layer.png" Width="32" Height="32" Stretch="UniformToFill" />
-                        <CheckBox Content="{Binding LayerName}" IsChecked="{Binding LayerVisible}" Style="{StaticResource ResourceKey=LayerListBoxItemStyle}"/>
+                        <CheckBox Content="{Binding LayerCaption}" IsChecked="{Binding LayerVisible}" Style="{StaticResource ResourceKey=LayerListBoxItemStyle}"/>
                     </StackPanel>
                 </Border>
             </DataTemplate>
@@ -57,8 +56,50 @@
             <TextBlock Text="蕲春三维地理信息展示系统" FontSize="36" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontFamily="Microsoft YaHei UI Light"/>
         </StackPanel>
 
+        <!--属性浮动面板-->
+        <Grid Name="DetailPanel" Grid.Row="1" Width="250" Height="400" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0" Background="#7F000000">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" HorizontalAlignment="Stretch" BorderThickness="0,0,0,1">
+                <Border.BorderBrush>
+                    <SolidColorBrush Color="#FFEC6D51"/>
+                </Border.BorderBrush>
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Name="ShowLegendTitle" Grid.Column="0" Text="要素详情" Foreground="White" VerticalAlignment="Center" FontSize="16" FontFamily="Microsoft YaHei UI Light" HorizontalAlignment="Center"/>
+                    <Image Grid.Column="1" Source="Images/close.png" Cursor="Hand" Width="24" Height="24" Stretch="UniformToFill"/>
+                </Grid>
+            </Border>
+            <telerik:RadGridView x:Name="DetailRadGridView" 
+                                 Grid.Row="1"
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Stretch"
+                                 GroupRenderMode="Flat"
+							     IsReadOnly="True"
+							     AutoGenerateColumns="False"
+							     AutoExpandGroups="False"
+							     CanUserFreezeColumns="False"
+							     RowIndicatorVisibility="Collapsed"
+							     CanUserResizeColumns="False"
+                                 EnableColumnVirtualization="False"
+                                 EnableColumnGroupsVirtualization="False">
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn Header="名称"
+											DataMemberBinding="{Binding FeatureField}" />
+                    <telerik:GridViewDataColumn Header="内容"
+											DataMemberBinding="{Binding FeatureValue}" />
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+        </Grid>
+
         <!--浮动窗口-->
-        <Grid Name="PanelRegion" Grid.Row="1" Width="480" Height="500" Margin="0" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+        <Grid Name="PanelRegion" Grid.Row="1" Width="480" Height="500" Margin="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="#7F000000">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
@@ -158,7 +199,7 @@
                         <Border  Grid.Row="0" BorderThickness="0,0,0,1" BorderBrush="#FFEC6D51">
                             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                                 <Label Content="选择要素：" FontFamily="Microsoft YaHei UI Light" VerticalAlignment="Center"></Label>
-                                <telerik:RadComboBox Name="QueryLayerList" Width="210"  Margin="3" DisplayMemberPath="LayerName" SelectedValuePath="LayerId"></telerik:RadComboBox>
+                                <telerik:RadComboBox Name="QueryLayerList" Width="210"  Margin="3" DisplayMemberPath="LayerCaption" SelectedValuePath="LayerName"></telerik:RadComboBox>
                             </StackPanel>
                         </Border>
                         <Border  Grid.Row="1" BorderThickness="0,0,0,1" BorderBrush="#FFEC6D51">
@@ -167,12 +208,8 @@
                                 <Button Content="查询" Name="QueryBt" Height="30" Click="QueryBt_Click"/>
                             </StackPanel>
                         </Border>
-                        <StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Stretch">
-                            <Border Name="QueryContentRegion" BorderThickness="1">
-                                <telerik:RadListBox Name="QueryListBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderThickness="0" Background="{x:Null}"
-                                                    ItemTemplate="{StaticResource QueryListItemTemplate}" SelectionChanged="QueryListBox_SelectionChanged" />
-                            </Border>
-                        </StackPanel>
+                        <telerik:RadListBox Name="QueryListBox" Grid.Row="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderThickness="0"
+                            ItemTemplate="{StaticResource QueryListItemTemplate}" SelectionChanged="QueryListBox_SelectionChanged" />
                     </Grid>
                 </telerik:RadTabItem>
                 <telerik:RadTabItem Header="飞行漫游" Cursor="Hand">
@@ -192,7 +229,6 @@
                         </StackPanel>
                     </Grid>
                 </telerik:RadTabItem>
-
             </telerik:RadTabControl>
         </Grid>
     </Grid>
