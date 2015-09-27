@@ -209,7 +209,7 @@
                         </Border>
                         <Border  Grid.Row="1" BorderThickness="0,0,0,1" BorderBrush="#FFEC6D51">
                             <StackPanel Orientation="Horizontal">
-                                <TextBox Name="QueryNameTxt" Width="230"  Margin="3" HorizontalAlignment="Left"></TextBox>
+                                <TextBox Name="QueryNameTxt" Width="200"  Margin="3" HorizontalAlignment="Left"></TextBox>
                                 <Button Content="查询" Name="QueryBt" Height="30" Click="QueryBt_Click"/>
                                 <Button Content="清除" Name="ClearBt" Height="30" Click="ClearBt_Click"/>
                             </StackPanel>
