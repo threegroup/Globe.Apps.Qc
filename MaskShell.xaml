@@ -57,7 +57,7 @@
         </StackPanel>
 
         <!--属性浮动面板-->
-        <Grid Name="DetailPanel" Grid.Row="1" Width="250" Height="400" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0" Background="#7F000000">
+        <Grid Name="DetailPanel" Grid.Row="1" Width="250" Height="400" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0" Background="#7F000000" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
@@ -72,27 +72,32 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Name="ShowLegendTitle" Grid.Column="0" Text="要素详情" Foreground="White" VerticalAlignment="Center" FontSize="16" FontFamily="Microsoft YaHei UI Light" HorizontalAlignment="Center"/>
-                    <Image Grid.Column="1" Source="Images/close.png" Cursor="Hand" Width="24" Height="24" Stretch="UniformToFill"/>
+                    <TextBlock Name="ShowLegendTitle" Grid.Column="0" Foreground="White" VerticalAlignment="Center" FontSize="16" FontFamily="Microsoft YaHei UI Light" HorizontalAlignment="Center"/>
+                    <Image Grid.Column="1" Source="Images/close.png" Cursor="Hand" Width="24" Height="24" Stretch="UniformToFill" MouseDown="Image_MouseDown"/>
                 </Grid>
             </Border>
             <telerik:RadGridView x:Name="DetailRadGridView" 
-                                 Grid.Row="1"
+                                 FontSize="14"
+                                 FontFamily="Microsoft YaHei UI Light"
+                                 Grid.Row="1" Opacity="0.9"
                                  HorizontalAlignment="Stretch"
                                  VerticalAlignment="Stretch"
                                  GroupRenderMode="Flat"
-							     IsReadOnly="True"
 							     AutoGenerateColumns="False"
 							     AutoExpandGroups="False"
 							     CanUserFreezeColumns="False"
 							     RowIndicatorVisibility="Collapsed"
 							     CanUserResizeColumns="False"
                                  EnableColumnVirtualization="False"
-                                 EnableColumnGroupsVirtualization="False">
+                                 EnableColumnGroupsVirtualization="False"
+                                 telerik:StyleManager.Theme="Windows8Touch" CanUserDeleteRows="False" CanUserInsertRows="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserSortGroups="False" EnableLostFocusSelectedState="False" EnableRowVirtualization="False" IsFilteringAllowed="False" IsPropertyChangedAggregationEnabled="False"                               ShowGroupPanel="False" IsReadOnly="True"
+                                 GridLinesVisibility="Both"
+                     VerticalGridLinesBrush="{StaticResource DataGridLineColor}" HorizontalGridLinesBrush="{StaticResource DataGridLineColor}"
+                                  Background="#7F000000" CanUserSelect="False" EditTriggers="None" DragElementAction="None" ValidatesOnDataErrors="None" ShowColumnHeaders="False">
                 <telerik:RadGridView.Columns>
-                    <telerik:GridViewDataColumn Header="名称"
-											DataMemberBinding="{Binding FeatureField}" />
-                    <telerik:GridViewDataColumn Header="内容"
+                    <telerik:GridViewDataColumn Header="名称" Width="auto" 
+                                                DataMemberBinding="{Binding FeatureField}"/>
+                    <telerik:GridViewDataColumn Header="内容" Width="*"
 											DataMemberBinding="{Binding FeatureValue}" />
                 </telerik:RadGridView.Columns>
             </telerik:RadGridView>
@@ -141,7 +146,7 @@
                     </Button.ToolTip>
                 </Button>
             </StackPanel>
-            <telerik:RadTabControl Name="SysRadTabControl" Grid.Row="1"  Grid.Column="1" DisplayMemberPath="Content" ScrollMode="Viewport" BorderThickness="0" Opacity="0.8" TabOrientation="Vertical" TabStripPlacement="Left" Cursor="Hand"
+            <telerik:RadTabControl Name="SysRadTabControl" Grid.Row="1"  Grid.Column="1" DisplayMemberPath="Content" ScrollMode="Viewport" BorderThickness="0" Opacity="0.9" TabOrientation="Vertical" TabStripPlacement="Left" Cursor="Hand"
                                    SelectionChanged="RadTabControl_SelectionChanged">
                 <telerik:RadTabItem Header="图层管理" Cursor="Hand">
                     <Grid>
@@ -199,13 +204,14 @@
                         <Border  Grid.Row="0" BorderThickness="0,0,0,1" BorderBrush="#FFEC6D51">
                             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                                 <Label Content="选择要素：" FontFamily="Microsoft YaHei UI Light" VerticalAlignment="Center"></Label>
-                                <telerik:RadComboBox Name="QueryLayerList" Width="210"  Margin="3" DisplayMemberPath="LayerCaption" SelectedValuePath="LayerName"></telerik:RadComboBox>
+                                <telerik:RadComboBox Name="QueryLayerList" Width="210"  Margin="3" DisplayMemberPath="LayerCaption" SelectedValuePath="LayerName" SelectionChanged="QueryLayerList_SelectionChanged"></telerik:RadComboBox>
                             </StackPanel>
                         </Border>
                         <Border  Grid.Row="1" BorderThickness="0,0,0,1" BorderBrush="#FFEC6D51">
                             <StackPanel Orientation="Horizontal">
                                 <TextBox Name="QueryNameTxt" Width="230"  Margin="3" HorizontalAlignment="Left"></TextBox>
                                 <Button Content="查询" Name="QueryBt" Height="30" Click="QueryBt_Click"/>
+                                <Button Content="清除" Name="ClearBt" Height="30" Click="ClearBt_Click"/>
                             </StackPanel>
                         </Border>
                         <telerik:RadListBox Name="QueryListBox" Grid.Row="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderThickness="0"

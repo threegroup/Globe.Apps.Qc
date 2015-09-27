@@ -98,8 +98,8 @@ namespace Globe.QcApp
 
 				GeoStyle3D sty3DHigh = new GeoStyle3D();
 				sty3DHigh.MarkerFile = "Images/bluepot.png";
-				sty3DHigh.MarkerScale = defaultScale;
-				sty3DHigh.MarkerSize = 36;
+				sty3DHigh.MarkerScale = defaultScale * 1.5;
+				sty3DHigh.MarkerSize = 32;
 				sty3DHigh.AltitudeMode = AltitudeMode.ClampToGround;
 				highLightStyle = sty3DHigh;
 			}
@@ -446,6 +446,16 @@ namespace Globe.QcApp
 		#endregion
 
 		/// <summary>
+		/// 切换查询图层时清除已有结果
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void QueryLayerList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			this.ClearQueryResult();
+		}
+
+		/// <summary>
 		/// 查询事件
 		/// </summary>
 		/// <param name="sender"></param>
@@ -455,6 +465,35 @@ namespace Globe.QcApp
 			InitGeoPoint3DParams(true);
 			InitQueryListBox();
 			InitQueryListOnMap();
+
+			this.DetailPanel.Visibility = System.Windows.Visibility.Collapsed;
+			this.DetailRadGridView.ItemsSource = null;
+			this.ShowLegendTitle.Text = "";
+		}
+
+		/// <summary>
+		/// 清除查询结果
+		/// </summary>
+		private void ClearQueryResult()
+		{
+			this.DetailPanel.Visibility = System.Windows.Visibility.Collapsed;
+			this.DetailRadGridView.ItemsSource = null;
+			this.ShowLegendTitle.Text = "";
+
+			InitGeoPoint3DParams(true);
+			//清空追踪图层数据
+			SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Clear();
+			this.QueryListBox.ItemsSource = null;
+		}
+
+		/// <summary>
+		/// 清除查询结果
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void ClearBt_Click(object sender, RoutedEventArgs e)
+		{
+			this.ClearQueryResult();
 		}
 
 		/// <summary>
@@ -473,7 +512,10 @@ namespace Globe.QcApp
 				double heightZ = defaultHeight;
 
 				//sty3D.BottomAltitude = defaultHeight;
-
+				double minX = 0;
+				double minY = 0;
+				double maxX = 0;
+				double maxY = 0;
 				for (int i = 0; i < recordList.Count; i++)
 				{
 					QueryRecordVO vo = vo = recordList[i];
@@ -482,8 +524,25 @@ namespace Globe.QcApp
 						GeoPoint3D gpt = new GeoPoint3D(centerX, centerY, heightZ);
 						gpt.Style3D = normalStyle;
 						SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Add(gpt, vo.RecordName);
+
+						if (minX == 0)
+						{
+							minX = centerX;
+							minY = centerY;
+							maxX = centerX;
+							maxY = centerY;
+						}
+						else
+						{
+							minX = Math.Min(minX, centerX);
+							minY = Math.Min(minY, centerY);
+							maxX = Math.Max(maxX, centerX);
+							maxY = Math.Max(maxY, centerY);
+						}
 					}
 				}
+				Rectangle2D rect2D = new Rectangle2D(minX, minY, maxX, maxY);
+				SmObjectLocator.getInstance().GlobeObject.Scene.EnsureVisible(rect2D, 500);
 			}
 		}
 
@@ -501,38 +560,48 @@ namespace Globe.QcApp
 				{
 					GeoPoint3D p = SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Get(fid) as GeoPoint3D;
 
-					if (p != null)
-					{
-						string tag = SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.GetTag(fid);
-						if (this.lastGPot == null)
-						{
-							this.lastGPot = p;
-							this.lastTag = tag;
-							this.lastIndex = fid;
-						}
-						else if (p != this.lastGPot)
-						{
-							this.lastGPot.Style3D = normalStyle;
-							SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Set(this.lastIndex, this.lastGPot);
-							SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.SetTag(this.lastIndex, this.lastTag);
-						}
-
-						p.Style3D = highLightStyle;
-						SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Set(fid, p);
-						SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.SetTag(fid, tag);
-
-						this.lastGPot = p;
-						this.lastTag = tag;
-						this.lastIndex = fid;
-
-						//显示要素详情
-						ShowMarkDetailInfo(tag);
-					}
+					this.HighLightFeature(p, fid);
 				}
 			}
 			catch (Exception ex)
 			{
 				throw ex;
+			}
+		}
+
+		/// <summary>
+		/// 高亮显示要素并显示要素详情
+		/// </summary>
+		/// <param name="p"></param>
+		/// <param name="fid"></param>
+		private void HighLightFeature(GeoPoint3D p, int fid)
+		{
+			if (p != null)
+			{
+				string tag = SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.GetTag(fid);
+				if (this.lastGPot == null)
+				{
+					this.lastGPot = p;
+					this.lastTag = tag;
+					this.lastIndex = fid;
+				}
+				else if (p != this.lastGPot)
+				{
+					this.lastGPot.Style3D = normalStyle;
+					SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Set(this.lastIndex, this.lastGPot);
+					SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.SetTag(this.lastIndex, this.lastTag);
+				}
+
+				p.Style3D = highLightStyle;
+				SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Set(fid, p);
+				SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.SetTag(fid, tag);
+
+				this.lastGPot = p;
+				this.lastTag = tag;
+				this.lastIndex = fid;
+
+				//显示要素详情
+				ShowMarkDetailInfo(tag);
 			}
 		}
 
@@ -598,6 +667,10 @@ namespace Globe.QcApp
 													if (recordset.GetFieldValue(fi.Name) != null)
 													{
 														dv.FeatureValue = recordset.GetFieldValue(fi.Name).ToString();
+														if (fi.Name.ToString().ToUpper() == fieldName)
+														{
+															this.ShowLegendTitle.Text = recordset.GetFieldValue(fieldName).ToString();
+														}
 													}
 													detailList.Add(dv);
 												}
@@ -605,6 +678,7 @@ namespace Globe.QcApp
 										}
 									}
 									this.DetailRadGridView.ItemsSource = detailList;
+									this.DetailPanel.Visibility = System.Windows.Visibility.Visible;
 								}
 
 							}
@@ -725,8 +799,15 @@ namespace Globe.QcApp
 						double height = Convert.ToDouble(defaultHeight.ToString().Trim());
 						if (!Double.IsNaN(lat) && !Double.IsNaN(lon) && !Double.IsNaN(height))
 						{
-							this.JumpCamera(lat, lon, height);
+							//this.JumpCamera(lat, lon, height);
+							Rectangle2D rect2D = new Rectangle2D(new Point2D(lat, lon), new Size2D(0.4,0.4));
+							SmObjectLocator.getInstance().GlobeObject.Scene.EnsureVisible(rect2D, 500);
 						}
+
+						//高亮要素，显示详情
+						int fid = SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.IndexOf(qVO.RecordName);
+						GeoPoint3D p = SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Get(fid) as GeoPoint3D;
+						this.HighLightFeature(p, fid);
 					}
 					catch (Exception ex)
 					{
@@ -751,6 +832,18 @@ namespace Globe.QcApp
 					SmObjectLocator.getInstance().FlyManagerObject.Stop();
 				}
 			}
+		}
+
+		/// <summary>
+		/// 关闭属性详情面板
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+		{
+			this.DetailPanel.Visibility = System.Windows.Visibility.Collapsed;
+			this.DetailRadGridView.ItemsSource = null;
+			this.ShowLegendTitle.Text = "";
 		}
 	}
 }

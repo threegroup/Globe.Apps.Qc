@@ -8,15 +8,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/bluepot.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/point.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("libs/telerik/telerik.windows.controls.data.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("libs/telerik/telerik.windows.controls.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("libs/telerik/telerik.windows.controls.gridview.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("libs/telerik/telerik.windows.controls.input.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("libs/telerik/telerik.windows.controls.navigation.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("libs/telerik/telerik.windows.data.dll")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("libs/telerik/telerik.windows.persistenceframework.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("libs/telerik/telerik.windows.themes.windows8.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("libs/telerik/telerik.windows.themes.windows8touch.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/bluepot.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/point.png")]
 
 

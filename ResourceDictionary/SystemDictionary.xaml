@@ -39,7 +39,8 @@
             <Setter Property="FontFamily" Value="Microsoft YaHei UI Light"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="Margin" Value="10,0,0,0"/><!--左,上,右,下-->
+            <Setter Property="Margin" Value="10,0,0,0"/>
+            <!--左,上,右,下-->
         </Style.Setters>
     </Style>
     <Style x:Key="ListBoxItemTitleStyle" TargetType="TextBlock">
@@ -78,4 +79,5 @@
         </Border>
     </DataTemplate>
 
+    <SolidColorBrush x:Key="DataGridLineColor" Color="#FFEC6D51"></SolidColorBrush>
 </ResourceDictionary>
