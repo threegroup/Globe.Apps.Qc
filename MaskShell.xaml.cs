@@ -392,7 +392,7 @@ namespace Globe.QcApp
 				int count = SmObjectLocator.getInstance().GlobeObject.Scene.Layers.Count;
 				if (count > 0)
 				{
-					Layer3D layer = SmObjectLocator.getInstance().GlobeObject.Scene.Layers[cBox.Content.ToString()];
+					Layer3D layer = SmObjectLocator.getInstance().GlobeObject.Scene.Layers[cBox.Tag.ToString()];
 					if (layer != null)
 					{
 						layer.IsVisible = (bool)cBox.IsChecked;
@@ -413,7 +413,7 @@ namespace Globe.QcApp
 				int count = SmObjectLocator.getInstance().GlobeObject.Scene.Layers.Count;
 				if (count > 0)
 				{
-					Layer3D layer = SmObjectLocator.getInstance().GlobeObject.Scene.Layers[cBox.Content.ToString()];
+					Layer3D layer = SmObjectLocator.getInstance().GlobeObject.Scene.Layers[cBox.Tag.ToString()];
 					if (layer != null)
 					{
 						layer.IsVisible = (bool)cBox.IsChecked;
@@ -435,7 +435,7 @@ namespace Globe.QcApp
 				int count = SmObjectLocator.getInstance().GlobeObject.Scene.Layers.Count;
 				if (count > 0)
 				{
-					Layer3D layer = SmObjectLocator.getInstance().GlobeObject.Scene.Layers[layerItem.LayerName];
+					Layer3D layer = SmObjectLocator.getInstance().GlobeObject.Scene.Layers[layerItem.LayerOrigin];
 					if (layer != null)
 					{
 						SmObjectLocator.getInstance().GlobeObject.Scene.EnsureVisible(layer.Bounds, 10);

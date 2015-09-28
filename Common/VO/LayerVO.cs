@@ -9,6 +9,16 @@ namespace Globe.QcApp.Common.VO
 {
     public class LayerVO
     {
+		private string layerOrigin;
+		/// <summary>
+		/// 图层原始名称，用显示隐藏定位图层等
+		/// </summary>
+		public string LayerOrigin
+		{
+			get { return layerOrigin; }
+			set { layerOrigin = value; }
+		}
+
         private string layerType;
 
         /// <summary>

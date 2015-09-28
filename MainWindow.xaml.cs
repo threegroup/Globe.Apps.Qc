@@ -159,6 +159,7 @@ namespace Globe.QcApp
 						layerVo.LayerVisible = layer.IsVisible;
 						layerVo.IsQueryLayer = true;
 						layerVo.LayerCaption = layer.Caption;
+						layerVo.LayerOrigin = layer.Name;
 						SysModelLocator.getInstance().LayerList.Add(layerVo);
 					}
 
