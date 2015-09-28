@@ -541,7 +541,7 @@ namespace Globe.QcApp
 						}
 					}
 				}
-				Rectangle2D rect2D = new Rectangle2D(minX, minY, maxX, maxY);
+				Rectangle2D rect2D = new Rectangle2D(minX-0.05, minY-0.05, maxX+0.05, maxY+0.05);
 				SmObjectLocator.getInstance().GlobeObject.Scene.EnsureVisible(rect2D, 500);
 			}
 		}
