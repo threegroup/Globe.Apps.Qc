@@ -90,10 +90,28 @@
 							     CanUserResizeColumns="False"
                                  EnableColumnVirtualization="False"
                                  EnableColumnGroupsVirtualization="False"
-                                 telerik:StyleManager.Theme="Windows8Touch" CanUserDeleteRows="False" CanUserInsertRows="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserSortGroups="False" EnableLostFocusSelectedState="False" EnableRowVirtualization="False" IsFilteringAllowed="False" IsPropertyChangedAggregationEnabled="False"                               ShowGroupPanel="False" IsReadOnly="True"
+                                 telerik:StyleManager.Theme="Windows8Touch" 
+                                 CanUserDeleteRows="False" 
+                                 CanUserInsertRows="False"   
+                                 CanUserReorderColumns="False" 
+                                 CanUserSortColumns="False"
+                                 CanUserSortGroups="False"        
+                                 EnableLostFocusSelectedState="False" 
+                                 EnableRowVirtualization="False"
+                                 IsFilteringAllowed="False" 
+                                 IsPropertyChangedAggregationEnabled="False"                              
+                                 ShowGroupPanel="False"
+                                 IsReadOnly="True"
                                  GridLinesVisibility="Both"
-                     VerticalGridLinesBrush="{StaticResource DataGridLineColor}" HorizontalGridLinesBrush="{StaticResource DataGridLineColor}"
-                                  Background="#7F000000" CanUserSelect="False" EditTriggers="None" DragElementAction="None" ValidatesOnDataErrors="None" ShowColumnHeaders="False">
+                                 VerticalGridLinesBrush="{StaticResource DataGridLineColor}"        
+                                 HorizontalGridLinesBrush="{StaticResource DataGridLineColor}"
+                                 Background="#7F000000" 
+                                 CanUserSelect="False" 
+                                 EditTriggers="None"
+                                 DragElementAction="None" 
+                                 ValidatesOnDataErrors="None" 
+                                 ShowColumnHeaders="False"
+                                 Cursor="Hand">
                 <telerik:RadGridView.Columns>
                     <telerik:GridViewDataColumn Header="名称" Width="auto" 
                                                 DataMemberBinding="{Binding FeatureField}"/>
@@ -199,12 +217,13 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Border  Grid.Row="0" BorderThickness="0,0,0,1" BorderBrush="#FFEC6D51">
                             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                                 <Label Content="选择要素：" FontFamily="Microsoft YaHei UI Light" VerticalAlignment="Center"></Label>
-                                <telerik:RadComboBox Name="QueryLayerList" Width="210"  Margin="3" DisplayMemberPath="LayerCaption" SelectedValuePath="LayerName" SelectionChanged="QueryLayerList_SelectionChanged"></telerik:RadComboBox>
+                                <telerik:RadComboBox Name="QueryLayerList" Width="248"  Margin="3" DisplayMemberPath="LayerCaption" SelectedValuePath="LayerName" SelectionChanged="QueryLayerList_SelectionChanged"></telerik:RadComboBox>
                             </StackPanel>
                         </Border>
                         <Border  Grid.Row="1" BorderThickness="0,0,0,1" BorderBrush="#FFEC6D51">
@@ -214,11 +233,17 @@
                                 <Button Content="清除" Name="ClearBt" Height="30" Click="ClearBt_Click"/>
                             </StackPanel>
                         </Border>
-                        <telerik:RadListBox Name="QueryListBox" Grid.Row="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderThickness="0"
+                        <TextBlock Name="QueryInfo" Grid.Row="2"  Text="" TextAlignment="Left" 
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Center" FontFamily="Microsoft YaHei UI" Margin="6,3,0,3"/>
+                        <telerik:RadListBox Name="QueryListBox" Grid.Row="3" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderThickness="0"
                             ItemTemplate="{StaticResource QueryListItemTemplate}" SelectionChanged="QueryListBox_SelectionChanged" />
                     </Grid>
                 </telerik:RadTabItem>
-                <telerik:RadTabItem Header="飞行漫游" Cursor="Hand">
+                <!--<telerik:RadTabItem Header="空间查询" Cursor="Hand">
+                    
+                </telerik:RadTabItem>-->
+                    <telerik:RadTabItem Header="飞行漫游" Cursor="Hand">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>

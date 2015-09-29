@@ -484,6 +484,7 @@ namespace Globe.QcApp
 			//清空追踪图层数据
 			SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Clear();
 			this.QueryListBox.ItemsSource = null;
+			this.QueryInfo.Text = "";
 		}
 
 		/// <summary>
@@ -541,7 +542,7 @@ namespace Globe.QcApp
 						}
 					}
 				}
-				Rectangle2D rect2D = new Rectangle2D(minX-0.05, minY-0.05, maxX+0.05, maxY+0.05);
+				Rectangle2D rect2D = new Rectangle2D(minX - 0.05, minY - 0.05, maxX + 0.05, maxY + 0.05);
 				SmObjectLocator.getInstance().GlobeObject.Scene.EnsureVisible(rect2D, 500);
 			}
 		}
@@ -756,10 +757,12 @@ namespace Globe.QcApp
 										recordList.Add(qVO);
 									}
 									this.QueryListBox.ItemsSource = recordList;
+									this.QueryInfo.Text = "查询结果合计：" + recordList.Count + "条";
 								}
 								else
 								{
 									this.QueryListBox.ItemsSource = null;
+									this.QueryInfo.Text = "";
 								}
 							}
 						}
@@ -800,7 +803,7 @@ namespace Globe.QcApp
 						if (!Double.IsNaN(lat) && !Double.IsNaN(lon) && !Double.IsNaN(height))
 						{
 							//this.JumpCamera(lat, lon, height);
-							Rectangle2D rect2D = new Rectangle2D(new Point2D(lat, lon), new Size2D(0.4,0.4));
+							Rectangle2D rect2D = new Rectangle2D(new Point2D(lat, lon), new Size2D(0.4, 0.4));
 							SmObjectLocator.getInstance().GlobeObject.Scene.EnsureVisible(rect2D, 500);
 						}
 
