@@ -51,7 +51,6 @@ namespace Globe.QcApp
             this.Deactivated += MainWindow_Deactivated;
             this.Activated += MainWindow_Activated;
             this.StateChanged += MainWindow_StateChanged;
-
         }
 
 
@@ -124,6 +123,8 @@ namespace Globe.QcApp
         private void InitGlobe()
         {
             SmObjectLocator.getInstance().GlobeObject.Scene.LatLonGrid.IsVisible = false;
+			SmObjectLocator.getInstance().GlobeObject.Scene.Underground.IsVisible = false;
+			SmObjectLocator.getInstance().GlobeObject.IsAlwaysUpdate = true;
             this.hostSceneControl.Child = SmObjectLocator.getInstance().GlobeObject;
             m_workspace = new Workspace();
         }

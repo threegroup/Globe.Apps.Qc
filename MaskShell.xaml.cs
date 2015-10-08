@@ -36,6 +36,8 @@ namespace Globe.QcApp
 
 		private string queryDataSource = "DataSourceName";
 
+		private string systemTitle = "SystemTitle";
+
 		private double defaultHeight = 400;
 
 		private double defaultScale = 1;
@@ -57,6 +59,9 @@ namespace Globe.QcApp
 		//Mask窗口的Loaded事件
 		private void MaskShell_Loaded(object sender, RoutedEventArgs e)
 		{
+			//系统名称
+			this.SystemTitleId.Text = ConfigurationManager.AppSettings.Get(systemTitle);
+
 			//加载飞行路径
 			this.LoadRoutes(System.Environment.CurrentDirectory);
 

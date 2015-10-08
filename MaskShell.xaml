@@ -53,7 +53,7 @@
         </Grid.RowDefinitions>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal" >
             <Image Source="Images/logo.ico" Stretch="UniformToFill"/>
-            <TextBlock Text="蕲春三维地理信息展示系统" FontSize="36" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontFamily="Microsoft YaHei UI Light"/>
+            <TextBlock Name="SystemTitleId" FontSize="36" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontFamily="Microsoft YaHei UI Light"/>
         </StackPanel>
 
         <!--属性浮动面板-->
