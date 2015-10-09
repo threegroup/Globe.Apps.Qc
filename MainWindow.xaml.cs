@@ -150,18 +150,21 @@ namespace Globe.QcApp
 					for (int i = 0; i < SmObjectLocator.getInstance().GlobeObject.Scene.Layers.Count; i++)
 					{
 						Layer3D layer = SmObjectLocator.getInstance().GlobeObject.Scene.Layers[i];
-						layer.IsSelectable = false;
-						LayerVO layerVo = new LayerVO();
-						layerVo.LayerBounds = layer.Bounds;
-						layerVo.LayerCenter = layer.Bounds.Center;
-						layerVo.LayerName = layer.Name.Substring(0, layer.Name.IndexOf("@"));
-						layerVo.LayerType = layer.Type.ToString();
-						layerVo.LayerId = i.ToString();
-						layerVo.LayerVisible = layer.IsVisible;
-						layerVo.IsQueryLayer = true;
-						layerVo.LayerCaption = layer.Caption;
-						layerVo.LayerOrigin = layer.Name;
-						SysModelLocator.getInstance().LayerList.Add(layerVo);
+						if (layer is Layer3DVectorFile)
+						{
+							layer.IsSelectable = false;
+							LayerVO layerVo = new LayerVO();
+							layerVo.LayerBounds = layer.Bounds;
+							layerVo.LayerCenter = layer.Bounds.Center;
+							layerVo.LayerName = layer.Name.Substring(0, layer.Name.IndexOf("@"));
+							layerVo.LayerType = layer.Type.ToString();
+							layerVo.LayerId = i.ToString();
+							layerVo.LayerVisible = layer.IsVisible;
+							layerVo.IsQueryLayer = true;
+							layerVo.LayerCaption = layer.Caption;
+							layerVo.LayerOrigin = layer.Name;
+							SysModelLocator.getInstance().LayerList.Add(layerVo);
+						}
 					}
 
 					//范围全幅显示

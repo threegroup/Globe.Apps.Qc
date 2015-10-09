@@ -2,7 +2,6 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
-        Title="蕲春三维地理信息展示系统" 
         Height="350" Width="525" 
         WindowStartupLocation="CenterScreen" 
         Icon="Images/logo.ico" 
