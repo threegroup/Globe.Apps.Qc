@@ -22,6 +22,8 @@ using System.Windows.Input;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Telerik.Windows.Controls;
+using System.Drawing;
+using System.Windows.Media;
 
 namespace Globe.QcApp
 {
@@ -152,6 +154,11 @@ namespace Globe.QcApp
 				{
 					this.JumpCamera(lat, lon, height);
 				}
+				this.locatorInfo.Text = "";
+			}
+			else
+			{
+				this.locatorInfo.Text = "坐标为空或输入问题，请重新输入！";
 			}
 		}
 
@@ -298,7 +305,7 @@ namespace Globe.QcApp
 		}
 
 		/// <summary>
-		/// 显示路径面板
+		/// 显示浮动面板
 		/// </summary>
 		private void ShowFloatPanel()
 		{
@@ -309,10 +316,13 @@ namespace Globe.QcApp
 			animation0.Duration = TimeSpan.FromSeconds(0.1);
 
 			this.PanelRegion.BeginAnimation(Border.WidthProperty, animation0);
+
+			//显示面板背景
+			this.PanelRegion.Background = new SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#7F000000"));
 		}
 
 		/// <summary>
-		/// 隐藏路径面板
+		/// 隐藏浮动面板
 		/// </summary>
 		private void HideFloatPanel()
 		{
@@ -323,6 +333,9 @@ namespace Globe.QcApp
 			animation0.Duration = TimeSpan.FromSeconds(0.1);
 
 			this.PanelRegion.BeginAnimation(Border.WidthProperty, animation0);
+
+			//面板背景透明
+			this.PanelRegion.Background = new SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#00000000"));
 		}
 
 		/// <summary>
@@ -517,7 +530,6 @@ namespace Globe.QcApp
 				double centerY = 0.0;
 				double heightZ = defaultHeight;
 
-				//sty3D.BottomAltitude = defaultHeight;
 				double minX = 0;
 				double minY = 0;
 				double maxX = 0;
@@ -608,7 +620,28 @@ namespace Globe.QcApp
 
 				//显示要素详情
 				ShowMarkDetailInfo(tag);
+
+				//显示要素多媒体信息
+				ShowMarkMediaInfo();
 			}
+		}
+
+		private void ShowMarkMediaInfo()
+		{
+			Random r = new Random();
+			int length = r.Next(1, 11);
+			ObservableCollection<MediaVO> mediaList = new ObservableCollection<MediaVO>();
+			for (int i = 1; i <= length; i++)
+			{
+				MediaVO mVo = new MediaVO();
+				mVo.Date = DateTime.Now.ToShortDateString();
+				mVo.ImageUrl = "Images/featureimages/" + i + ".jpg";
+				mVo.VideoUrl = "暂无视频";
+				mVo.Id = i.ToString();
+				mVo.Desc = "要素多媒体信息。";
+				mediaList.Add(mVo);
+			}
+			this.ImageTileViewID.ItemsSource = mediaList;
 		}
 
 		/// <summary>
@@ -851,6 +884,7 @@ namespace Globe.QcApp
 		{
 			this.DetailPanel.Visibility = System.Windows.Visibility.Collapsed;
 			this.DetailRadGridView.ItemsSource = null;
+			this.ImageTileViewID.ItemsSource = null;
 			this.ShowLegendTitle.Text = "";
 		}
 	}

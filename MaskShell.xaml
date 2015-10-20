@@ -43,6 +43,23 @@
                     </StackPanel>
                 </Border>
             </DataTemplate>
+
+            <!--RadTileView相关样式和模板-->
+            <DataTemplate x:Key="headerTemplate">
+                <TextBlock Text="{Binding Date}" />
+            </DataTemplate>
+
+            <DataTemplate x:Key="contentTemplate">
+                <!--<Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{Binding Date}" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Left"/>
+                    <Image Grid.Row="1" Source="{Binding ImageUrl}"/>
+                </Grid>-->
+                <Image Grid.Row="1" Source="{Binding ImageUrl}"/>
+            </DataTemplate>
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
@@ -57,13 +74,12 @@
         </StackPanel>
 
         <!--属性浮动面板-->
-        <Grid Name="DetailPanel" Grid.Row="1" Width="250" Height="400" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0" Background="#7F000000" Visibility="Collapsed">
+        <Grid Name="DetailPanel" Grid.Row="1" Width="500" Height="300" HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="#7F000000" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-
-            <Border Grid.Row="0" HorizontalAlignment="Stretch" BorderThickness="0,0,0,1">
+            <Border HorizontalAlignment="Stretch" BorderThickness="0,0,0,1">
                 <Border.BorderBrush>
                     <SolidColorBrush Color="#FFEC6D51"/>
                 </Border.BorderBrush>
@@ -76,10 +92,20 @@
                     <Image Grid.Column="1" Source="Images/close.png" Cursor="Hand" Width="24" Height="24" Stretch="UniformToFill" MouseDown="Image_MouseDown"/>
                 </Grid>
             </Border>
-            <telerik:RadGridView x:Name="DetailRadGridView" 
+            <telerik:RadTabControl Grid.Row="1" Margin="0" DisplayMemberPath="Content" ScrollMode="Viewport" BorderThickness="0" Opacity="0.9" TabOrientation="Horizontal" TabStripPlacement="Left" Cursor="Hand">
+                <telerik:RadTabItem Header="基本信息" Cursor="Hand" RenderTransformOrigin="0.5,0.5">
+                    <telerik:RadTabItem.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="180"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </telerik:RadTabItem.RenderTransform>
+                    <telerik:RadGridView x:Name="DetailRadGridView" 
                                  FontSize="14"
                                  FontFamily="Microsoft YaHei UI Light"
-                                 Grid.Row="1" Opacity="0.9"
+                                 Opacity="0.9"
                                  HorizontalAlignment="Stretch"
                                  VerticalAlignment="Stretch"
                                  GroupRenderMode="Flat"
@@ -112,14 +138,50 @@
                                  ValidatesOnDataErrors="None" 
                                  ShowColumnHeaders="False"
                                  Cursor="Hand">
-                <telerik:RadGridView.Columns>
-                    <telerik:GridViewDataColumn Header="名称" Width="auto" 
+                        <telerik:RadGridView.Columns>
+                            <telerik:GridViewDataColumn Header="名称" Width="auto" 
                                                 DataMemberBinding="{Binding FeatureField}"/>
-                    <telerik:GridViewDataColumn Header="内容" Width="*"
+                            <telerik:GridViewDataColumn Header="内容" Width="*"
 											DataMemberBinding="{Binding FeatureValue}" />
-                </telerik:RadGridView.Columns>
-            </telerik:RadGridView>
+                        </telerik:RadGridView.Columns>
+                    </telerik:RadGridView>
+
+                </telerik:RadTabItem>
+                <telerik:RadTabItem Header="图片信息" Cursor="Hand" RenderTransformOrigin="0.5,0.5">
+                    <telerik:RadTabItem.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="180"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </telerik:RadTabItem.RenderTransform>
+                    <telerik:RadTileView Name="ImageTileViewID" Margin="0"
+	                     IsAutoScrollingEnabled="True"
+	                     IsDockingEnabled="True"
+	                     IsVirtualizing="True"
+                         ColumnsCount="2"
+	                     ColumnWidth="230"
+                         RowHeight="120"
+                         MinimizedColumnWidth="80"
+	                     MinimizedRowHeight="100"
+	                     PreservePositionWhenMaximized="True"
+                         ItemTemplate="{StaticResource headerTemplate}"
+                         ContentTemplate="{StaticResource contentTemplate}"/>
+                </telerik:RadTabItem>
+                <telerik:RadTabItem Header="视频信息" Cursor="Hand" RenderTransformOrigin="0.5,0.5">
+                    <telerik:RadTabItem.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="180"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </telerik:RadTabItem.RenderTransform>
+                </telerik:RadTabItem>
+            </telerik:RadTabControl>
         </Grid>
+
 
         <!--浮动窗口-->
         <Grid Name="PanelRegion" Grid.Row="1" Width="480" Height="500" Margin="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="#7F000000">
@@ -164,7 +226,7 @@
                     </Button.ToolTip>
                 </Button>
             </StackPanel>
-            <telerik:RadTabControl Name="SysRadTabControl" Grid.Row="1"  Grid.Column="1" DisplayMemberPath="Content" ScrollMode="Viewport" BorderThickness="0" Opacity="0.9" TabOrientation="Vertical" TabStripPlacement="Left" Cursor="Hand"
+            <telerik:RadTabControl Name="SysRadTabControl" Grid.Row="1"  Grid.Column="1" DisplayMemberPath="Content" ScrollMode="Viewport" BorderThickness="0" Opacity="0.9" TabOrientation="Horizontal" TabStripPlacement="Right" Cursor="Hand"
                                    SelectionChanged="RadTabControl_SelectionChanged">
                 <telerik:RadTabItem Header="图层管理" Cursor="Hand">
                     <Grid>
@@ -208,8 +270,11 @@
                                 <TextBox  Name="altitudeTxt" Text="5000" Width="200" Margin="3" InputMethod.IsInputMethodEnabled="False"></TextBox>
                             </StackPanel>
                         </Border>
+                        <StackPanel Grid.Row="4"  Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Button Content="定位" Name="LocaltionBt" Height="30" Click="LocaltionBt_Click"/>
+                            <TextBlock Name="locatorInfo" FontFamily="Microsoft YaHei UI Light" Foreground="Red"/>
+                        </StackPanel>
 
-                        <Button Grid.Row="4"  Content="定位" Name="LocaltionBt" Height="30" Click="LocaltionBt_Click"/>
                     </Grid>
                 </telerik:RadTabItem>
                 <telerik:RadTabItem Header="属性查询" Cursor="Hand">
@@ -243,7 +308,7 @@
                 <!--<telerik:RadTabItem Header="空间查询" Cursor="Hand">
                     
                 </telerik:RadTabItem>-->
-                    <telerik:RadTabItem Header="飞行漫游" Cursor="Hand">
+                <telerik:RadTabItem Header="飞行漫游" Cursor="Hand">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>

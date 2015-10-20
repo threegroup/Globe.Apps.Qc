@@ -57,7 +57,7 @@ namespace Globe.QcApp
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             //默认加载的系统主题
-            ApplicationThemeManager.GetInstance().EnsureResourcesForTheme(ApplicationThemeManager.DefaultThemeNameTouch);
+            ApplicationThemeManager.GetInstance().EnsureResourcesForTheme(ApplicationThemeManager.DefaultThemeName);
 
             //初始化三维球体
             InitGlobe();
@@ -150,6 +150,7 @@ namespace Globe.QcApp
 					for (int i = 0; i < SmObjectLocator.getInstance().GlobeObject.Scene.Layers.Count; i++)
 					{
 						Layer3D layer = SmObjectLocator.getInstance().GlobeObject.Scene.Layers[i];
+						//只对矢量图层管理
 						if (layer is Layer3DVectorFile)
 						{
 							layer.IsSelectable = false;
