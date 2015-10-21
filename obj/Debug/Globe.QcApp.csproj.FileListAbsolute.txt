@@ -80,6 +80,17 @@ F:\部门项目\蕲春水利局大屏采购及三维系统\code\Globe.Apps.Qc\bi
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Images\bluepot.png
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Images\point.png
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Data\Routes\三峡库区场景浏览 -忠县.fpf
+D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Data\Feature\Images\1.jpg
+D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Data\Feature\Images\10.jpg
+D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Data\Feature\Images\2.jpg
+D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Data\Feature\Images\3.jpg
+D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Data\Feature\Images\4.jpg
+D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Data\Feature\Images\5.jpg
+D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Data\Feature\Images\6.jpg
+D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Data\Feature\Images\7.jpg
+D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Data\Feature\Images\8.jpg
+D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Data\Feature\Images\9.jpg
+D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Data\Feature\Videos\测试视频.MOV
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Globe.QcApp.exe.config
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Globe.QcApp.exe
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Globe.QcApp.pdb

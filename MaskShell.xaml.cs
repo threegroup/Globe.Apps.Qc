@@ -236,35 +236,59 @@ namespace Globe.QcApp
 		{
 			//获取系统运行目录
 			string sysDirectory = System.Environment.CurrentDirectory;
-			string routesPath = ConfigurationManager.AppSettings.GetValues(RoutesPath)[0];
-			string temp = System.IO.Path.Combine(sysDirectory, routesPath);
-			//判断目录是否存在
-			if (Directory.Exists(temp))
-			{
-				string[] routes = Directory.GetFiles(temp);
-				if (routes != null && routes.Length > 0)
-				{
-					ObservableCollection<RouteVO> RouteList = new ObservableCollection<RouteVO>();
-					for (int i = 0; i < routes.Length; i++)
-					{
-						RouteVO route = new RouteVO();
-						route.RouteCode = i;
-						route.RoutePath = routes[i];
-						route.RouteName = System.IO.Path.GetFileNameWithoutExtension(routes[i]);
-						RouteList.Add(route);
-					}
+			//图片目录
+			string imagesPath = ConfigurationManager.AppSettings.GetValues(FeatureImageKey)[0];
+			string tempImagePath = System.IO.Path.Combine(sysDirectory, imagesPath);
+			//视频目录
+			string videosPath = ConfigurationManager.AppSettings.GetValues(FeatureVideoKey)[0];
+			string tempVideoPath = System.IO.Path.Combine(sysDirectory, videosPath);
 
-					this.RouteListBox.ItemsSource = RouteList;
-				}
-			}
 			switch (type)
 			{
 				case "IMAGE":
 					{
+						//判断目录是否存在
+						if (Directory.Exists(tempImagePath))
+						{
+							string[] images = Directory.GetFiles(tempImagePath);
+							if (images != null && images.Length > 0)
+							{
+								ObservableCollection<MediaVO> ImageList = new ObservableCollection<MediaVO>();
+								for (int i = 0; i < images.Length; i++)
+								{
+									MediaVO imageVo = new MediaVO();
+									imageVo.Id = i.ToString();
+									imageVo.Name = System.IO.Path.GetFileNameWithoutExtension(images[i]);
+									imageVo.ImageUrl = images[i];
+									ImageList.Add(imageVo);
+								}
+
+								this.ImageTileViewID.ItemsSource = ImageList;
+							}
+						}
 						break;
 					}
 				case "VIDEO":
 					{
+						//判断目录是否存在
+						if (Directory.Exists(tempVideoPath))
+						{
+							string[] videos = Directory.GetFiles(tempVideoPath);
+							if (videos != null && videos.Length > 0)
+							{
+								ObservableCollection<MediaVO> VideoList = new ObservableCollection<MediaVO>();
+								for (int i = 0; i < videos.Length; i++)
+								{
+									MediaVO videoVo = new MediaVO();
+									videoVo.Id = i.ToString();
+									videoVo.Name = System.IO.Path.GetFileNameWithoutExtension(videos[i]);
+									videoVo.VideoUrl = videos[i];
+									VideoList.Add(videoVo);
+								}
+
+								this.VideoTileViewID.ItemsSource = VideoList;
+							}
+						}
 						break;
 					}
 				default:
@@ -688,27 +712,28 @@ namespace Globe.QcApp
 				ShowMarkDetailInfo(tag);
 
 				//显示要素多媒体信息
-				ShowMarkMediaInfo();
+				LoadFeatureMedias(tag, "IMAGE");
+				LoadFeatureMedias(tag, "VIDEO");
 			}
 		}
 
-		private void ShowMarkMediaInfo()
-		{
-			Random r = new Random();
-			int length = r.Next(1, 11);
-			ObservableCollection<MediaVO> mediaList = new ObservableCollection<MediaVO>();
-			for (int i = 1; i <= length; i++)
-			{
-				MediaVO mVo = new MediaVO();
-				mVo.Date = DateTime.Now.ToShortDateString();
-				mVo.ImageUrl = "Images/featureimages/" + i + ".jpg";
-				mVo.VideoUrl = "暂无视频";
-				mVo.Id = i.ToString();
-				mVo.Desc = "要素多媒体信息。";
-				mediaList.Add(mVo);
-			}
-			this.ImageTileViewID.ItemsSource = mediaList;
-		}
+		//private void ShowMarkMediaInfo()
+		//{
+		//	Random r = new Random();
+		//	int length = r.Next(1, 11);
+		//	ObservableCollection<MediaVO> mediaList = new ObservableCollection<MediaVO>();
+		//	for (int i = 1; i <= length; i++)
+		//	{
+		//		MediaVO mVo = new MediaVO();
+		//		mVo.Date = DateTime.Now.ToShortDateString();
+		//		mVo.ImageUrl = "Images/featureimages/" + i + ".jpg";
+		//		mVo.VideoUrl = "暂无视频";
+		//		mVo.Id = i.ToString();
+		//		mVo.Desc = "要素多媒体信息。";
+		//		mediaList.Add(mVo);
+		//	}
+		//	this.ImageTileViewID.ItemsSource = mediaList;
+		//}
 
 		/// <summary>
 		/// 显示mark的详细信息属性窗
@@ -951,6 +976,7 @@ namespace Globe.QcApp
 			this.DetailPanel.Visibility = System.Windows.Visibility.Collapsed;
 			this.DetailRadGridView.ItemsSource = null;
 			this.ImageTileViewID.ItemsSource = null;
+			this.VideoTileViewID.ItemsSource = null;
 			this.ShowLegendTitle.Text = "";
 		}
 	}
