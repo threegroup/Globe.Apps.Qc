@@ -32,16 +32,37 @@ namespace Globe.QcApp
 	/// </summary>
 	public partial class MaskShell : Window
 	{
+		/// <summary>
+		/// 飞行路径路径Key
+		/// </summary>
 		private string RoutesPath = "RoutesPathKey";
-
+		/// <summary>
+		/// 查询字段Key
+		/// </summary>
 		private string queryNameField = "QueryNameFieldKey";
-
+		/// <summary>
+		/// 数据源Key
+		/// </summary>
 		private string queryDataSource = "DataSourceName";
-
+		/// <summary>
+		/// 系统标题Key
+		/// </summary>
 		private string systemTitle = "SystemTitle";
-
-		private double defaultHeight = 400;
-
+		/// <summary>
+		/// 要素图片目录Key
+		/// </summary>
+		private string FeatureImageKey = "FeatureImagesPathKey";
+		/// <summary>
+		/// 要素视频目录Key
+		/// </summary>
+		private string FeatureVideoKey = "FeatureVideosPathKey";
+		/// <summary>
+		/// 三维场景要素默认高度
+		/// </summary>
+		private double defaultHeight = 100;
+		/// <summary>
+		/// 三维场景要素默认比例
+		/// </summary>
 		private double defaultScale = 1;
 
 		private GeoStyle3D normalStyle = null;
@@ -203,6 +224,51 @@ namespace Globe.QcApp
 
 					this.RouteListBox.ItemsSource = RouteList;
 				}
+			}
+		}
+
+		/// <summary>
+		/// 加载要素多媒体信息
+		/// </summary>
+		/// <param name="featureName">要素名称</param>
+		/// <param name="type">多媒体类型</param>
+		private void LoadFeatureMedias(string featureName, string type = "IMAGE")
+		{
+			//获取系统运行目录
+			string sysDirectory = System.Environment.CurrentDirectory;
+			string routesPath = ConfigurationManager.AppSettings.GetValues(RoutesPath)[0];
+			string temp = System.IO.Path.Combine(sysDirectory, routesPath);
+			//判断目录是否存在
+			if (Directory.Exists(temp))
+			{
+				string[] routes = Directory.GetFiles(temp);
+				if (routes != null && routes.Length > 0)
+				{
+					ObservableCollection<RouteVO> RouteList = new ObservableCollection<RouteVO>();
+					for (int i = 0; i < routes.Length; i++)
+					{
+						RouteVO route = new RouteVO();
+						route.RouteCode = i;
+						route.RoutePath = routes[i];
+						route.RouteName = System.IO.Path.GetFileNameWithoutExtension(routes[i]);
+						RouteList.Add(route);
+					}
+
+					this.RouteListBox.ItemsSource = RouteList;
+				}
+			}
+			switch (type)
+			{
+				case "IMAGE":
+					{
+						break;
+					}
+				case "VIDEO":
+					{
+						break;
+					}
+				default:
+					break;
 			}
 		}
 
@@ -697,7 +763,7 @@ namespace Globe.QcApp
 										for (int j = 0; j < fs.Count; j++)
 										{
 											FieldInfo fi = fs[j];
-											if (fi != null)
+											if (fi != null && fi.Name.ToLower().IndexOf("sm") == -1)
 											{
 												DetailVO dv = new DetailVO();
 												if (fi.Name != null)
@@ -865,14 +931,14 @@ namespace Globe.QcApp
 		/// <param name="e"></param>
 		private void RadTabControl_SelectionChanged(object sender, RadSelectionChangedEventArgs e)
 		{
-			RadTabItem rtItem = this.SysRadTabControl.SelectedItem as RadTabItem;
-			if (rtItem.Header.ToString() != "飞行漫游")
-			{
-				if (SmObjectLocator.getInstance().FlyManagerObject.Routes.CurrentRoute != null)
-				{
-					SmObjectLocator.getInstance().FlyManagerObject.Stop();
-				}
-			}
+			//RadTabItem rtItem = this.SysRadTabControl.SelectedItem as RadTabItem;
+			//if (rtItem.Header.ToString() != "飞行漫游")
+			//{
+			//	if (SmObjectLocator.getInstance().FlyManagerObject.Routes.CurrentRoute != null)
+			//	{
+			//		SmObjectLocator.getInstance().FlyManagerObject.Stop();
+			//	}
+			//}
 		}
 
 		/// <summary>

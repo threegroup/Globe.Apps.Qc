@@ -198,16 +198,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Routes\测试飞行路径3.fpf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Routes\测试飞行路径1.fpf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Routes\测试飞行路径4.fpf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Routes\测试飞行路径2.fpf">
+    <None Include="Data\Routes\三峡库区场景浏览 -忠县.fpf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -217,9 +208,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <SplashScreen Include="Images\init.png">
+    <Resource Include="Images\init.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </SplashScreen>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\logo.ico">
@@ -279,7 +270,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Data\Feature\Images\" />
+    <Folder Include="Data\Feature\Videos\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

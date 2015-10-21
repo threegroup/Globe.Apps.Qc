@@ -74,8 +74,6 @@ namespace Globe.QcApp {
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
         public static void Main() {
-            SplashScreen splashScreen = new SplashScreen("images/init.png");
-            splashScreen.Show(true);
             Globe.QcApp.App app = new Globe.QcApp.App();
             app.InitializeComponent();
             app.Run();

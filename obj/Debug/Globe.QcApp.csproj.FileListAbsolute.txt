@@ -79,8 +79,7 @@ F:\部门项目\蕲春水利局大屏采购及三维系统\code\Globe.Apps.Qc\bi
 F:\部门项目\蕲春水利局大屏采购及三维系统\code\Globe.Apps.Qc\bin\Debug\SuperMap.UI.Controls.dll
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Images\bluepot.png
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Images\point.png
-D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Routes\测试飞行路径1.fpf
-D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Routes\测试飞行路径2.fpf
+D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Data\Routes\三峡库区场景浏览 -忠县.fpf
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Globe.QcApp.exe.config
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Globe.QcApp.exe
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Globe.QcApp.pdb
@@ -111,6 +110,3 @@ D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.csproj.Genera
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.exe.licenses
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.exe
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.pdb
-D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Routes\测试飞行路径3.fpf
-D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Routes\测试飞行路径4.fpf
-D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\obj\Debug\Globe.QcApp.csprojResolveAssemblyReference.cache

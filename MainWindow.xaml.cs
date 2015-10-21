@@ -124,7 +124,13 @@ namespace Globe.QcApp
         {
             SmObjectLocator.getInstance().GlobeObject.Scene.LatLonGrid.IsVisible = false;
 			SmObjectLocator.getInstance().GlobeObject.Scene.Underground.IsVisible = false;
+			SmObjectLocator.getInstance().GlobeObject.Scene.Ocean.IsVisible = false;
+			SmObjectLocator.getInstance().GlobeObject.Scene.Underground.IsVisible = false;
 			SmObjectLocator.getInstance().GlobeObject.IsAlwaysUpdate = true;
+			SmObjectLocator.getInstance().GlobeObject.Scene.WalkingMode = WalkingMode.None;
+			SmObjectLocator.getInstance().GlobeObject.IsWaitCursorEnabled = true;
+			SmObjectLocator.getInstance().GlobeObject.IsKeyboardNavigationEnabled = false;
+			SmObjectLocator.getInstance().GlobeObject.Scene.IsOverlapDisplayed = false;
             this.hostSceneControl.Child = SmObjectLocator.getInstance().GlobeObject;
             m_workspace = new Workspace();
         }

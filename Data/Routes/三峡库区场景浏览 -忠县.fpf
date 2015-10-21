@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SceneRoute xmlns="http://www.supermap.com.cn/ugc60">
-<route name="飞行路线_1" speed="2.471571241303" lineType="0" showroutestop="True" showrouteline="True" altitudefree="False" headingfree="False" tiltfree="False" flycircle="False" alongline="False">
+<route name="三峡库区场景浏览忠县" speed="91959.558043628436" lineType="0" showroutestop="True" showrouteline="True" altitudefree="False" headingfree="False" tiltfree="False" flycircle="False" alongline="False">
 <style>
 <geostyle3d>
 <linecolor>RGBA(147,112,219,255)</linecolor>
 <linewidth>2</linewidth>
 </geostyle3d>
 </style>
-<routestop name="Stop1" speed="0" excluded="False" viewType="camera">
+<routestop name="全球" speed="5375315.235298" excluded="False" viewType="camera">
 <camera>
-<longitude>486.91913418519067</longitude>
-<latitude>-390.45711564769869</latitude>
-<altitude>1.917369951870241</altitude>
-<heading>168.84283129068555</heading>
-<tilt>91.480108707150023</tilt>
-<altitudeMode>RelativeToGround</altitudeMode>
+<longitude>99.778740770779777</longitude>
+<latitude>33.403087258840998</latitude>
+<altitude>11212101.785233036</altitude>
+<heading>0.25979091570127816</heading>
+<tilt>1.2519786392300882</tilt>
+<altitudeMode>Absolute</altitudeMode>
 </camera>
 <style>
 <geostyle3d>
@@ -33,14 +33,14 @@
 <angularSpeed>1</angularSpeed>
 </setting>
 </routestop>
-<routestop name="Stop2" speed="0" excluded="False" viewType="camera">
+<routestop name="三峡库区" speed="188029.853432" excluded="False" viewType="camera">
 <camera>
-<longitude>489.59100096030858</longitude>
-<latitude>-403.27405027310448</latitude>
-<altitude>1.9173699518702427</altitude>
-<heading>168.84283129068555</heading>
-<tilt>91.480108707150023</tilt>
-<altitudeMode>RelativeToGround</altitudeMode>
+<longitude>108.7074702436051</longitude>
+<latitude>28.320377883913913</latitude>
+<altitude>510263.80850587972</altitude>
+<heading>359.99954492453753</heading>
+<tilt>17.461039436482089</tilt>
+<altitudeMode>Absolute</altitudeMode>
 </camera>
 <style>
 <geostyle3d>
@@ -59,14 +59,14 @@
 <angularSpeed>1</angularSpeed>
 </setting>
 </routestop>
-<routestop name="Stop3" speed="0" excluded="False" viewType="camera">
+<routestop name="忠县" speed="6562.538627" excluded="False" viewType="camera">
 <camera>
-<longitude>493.36623133388525</longitude>
-<latitude>-407.98664747652674</latitude>
-<altitude>1.8634410413163629</altitude>
-<heading>148.87241708950214</heading>
-<tilt>96.72582299286556</tilt>
-<altitudeMode>RelativeToGround</altitudeMode>
+<longitude>108.28037247015001</longitude>
+<latitude>30.508388919787404</latitude>
+<altitude>40948.011388519779</altitude>
+<heading>226.92381452717626</heading>
+<tilt>25.541602345977058</tilt>
+<altitudeMode>Absolute</altitudeMode>
 </camera>
 <style>
 <geostyle3d>
@@ -85,14 +85,14 @@
 <angularSpeed>1</angularSpeed>
 </setting>
 </routestop>
-<routestop name="Stop4" speed="0" excluded="False" viewType="camera">
+<routestop name="石宝镇1" speed="275.014728" excluded="False" viewType="camera">
 <camera>
-<longitude>501.02507685011238</longitude>
-<latitude>-415.81448979724485</latitude>
-<altitude>8.0700322874160335</altitude>
-<heading>141.41679578772695</heading>
-<tilt>92.200108707152808</tilt>
-<altitudeMode>RelativeToGround</altitudeMode>
+<longitude>108.20714735215593</longitude>
+<latitude>30.429566774447686</latitude>
+<altitude>3211.3249585535377</altitude>
+<heading>226.88669940643078</heading>
+<tilt>25.703624804755098</tilt>
+<altitudeMode>Absolute</altitudeMode>
 </camera>
 <style>
 <geostyle3d>
@@ -111,14 +111,14 @@
 <angularSpeed>1</angularSpeed>
 </setting>
 </routestop>
-<routestop name="Stop5" speed="0" excluded="False" viewType="camera">
+<routestop name="涂井乡" speed="416.666667" excluded="False" viewType="camera">
 <camera>
-<longitude>507.10794525884359</longitude>
-<latitude>-420.67565061681961</latitude>
-<altitude>8.1263725142842276</altitude>
-<heading>75.780701113170721</heading>
-<tilt>90.142965850009858</tilt>
-<altitudeMode>RelativeToGround</altitudeMode>
+<longitude>108.16184176479871</longitude>
+<latitude>30.412821630918287</latitude>
+<altitude>1381.4927802365273</altitude>
+<heading>279.78912428241983</heading>
+<tilt>57.328071389801636</tilt>
+<altitudeMode>Absolute</altitudeMode>
 </camera>
 <style>
 <geostyle3d>
@@ -137,14 +137,14 @@
 <angularSpeed>1</angularSpeed>
 </setting>
 </routestop>
-<routestop name="Stop6" speed="0" excluded="False" viewType="camera">
+<routestop name="柑橘园" speed="416.666667" excluded="False" viewType="camera">
 <camera>
-<longitude>509.74198496968114</longitude>
-<latitude>-418.15755018871812</latitude>
-<altitude>8.2193976534663431</altitude>
-<heading>326.07655910133639</heading>
-<tilt>91.377251564296898</tilt>
-<altitudeMode>RelativeToGround</altitudeMode>
+<longitude>108.13906814492745</longitude>
+<latitude>30.404357660893641</latitude>
+<altitude>1152.4651860212907</altitude>
+<heading>225.23645159799682</heading>
+<tilt>64.348285799142033</tilt>
+<altitudeMode>Absolute</altitudeMode>
 </camera>
 <style>
 <geostyle3d>
@@ -163,14 +163,14 @@
 <angularSpeed>1</angularSpeed>
 </setting>
 </routestop>
-<routestop name="Stop7" speed="0" excluded="False" viewType="camera">
+<routestop name="甘井中学" speed="416.666667" excluded="False" viewType="camera">
 <camera>
-<longitude>494.6680871150275</longitude>
-<latitude>-401.53800762142879</latitude>
-<altitude>8.2193976534663431</altitude>
-<heading>326.07655910133639</heading>
-<tilt>91.377251564296898</tilt>
-<altitudeMode>RelativeToGround</altitudeMode>
+<longitude>108.08842236386802</longitude>
+<latitude>30.350507612181985</latitude>
+<altitude>1152.46518602781</altitude>
+<heading>225.210836075853</heading>
+<tilt>64.348285799150261</tilt>
+<altitudeMode>Absolute</altitudeMode>
 </camera>
 <style>
 <geostyle3d>
@@ -189,14 +189,14 @@
 <angularSpeed>1</angularSpeed>
 </setting>
 </routestop>
-<routestop name="Stop8" speed="0" excluded="False" viewType="camera">
+<routestop name="文化产业园" speed="277.777778" excluded="False" viewType="camera">
 <camera>
-<longitude>491.44076424258895</longitude>
-<latitude>-401.26052157580193</latitude>
-<altitude>8.5185607991173278</altitude>
-<heading>230.74166355374948</heading>
-<tilt>90.04010870715463</tilt>
-<altitudeMode>RelativeToGround</altitudeMode>
+<longitude>108.0710284808239</longitude>
+<latitude>30.323391212119482</latitude>
+<altitude>1152.465186053887</altitude>
+<heading>225.20204781543643</heading>
+<tilt>64.348285799188332</tilt>
+<altitudeMode>Absolute</altitudeMode>
 </camera>
 <style>
 <geostyle3d>
@@ -215,14 +215,14 @@
 <angularSpeed>1</angularSpeed>
 </setting>
 </routestop>
-<routestop name="Stop9" speed="0" excluded="False" viewType="camera">
+<routestop name="忠县县城" speed="277.777778" excluded="False" viewType="camera">
 <camera>
-<longitude>481.31498009309519</longitude>
-<latitude>-409.40597134871024</latitude>
-<altitude>8.6263740672261555</altitude>
-<heading>205.0463972815601</heading>
-<tilt>86.954394421439773</tilt>
-<altitudeMode>RelativeToGround</altitudeMode>
+<longitude>108.05230281515088</longitude>
+<latitude>30.313302507364639</latitude>
+<altitude>686.15769340191036</altitude>
+<heading>225.19259568629124</heading>
+<tilt>64.357008963396211</tilt>
+<altitudeMode>Absolute</altitudeMode>
 </camera>
 <style>
 <geostyle3d>
@@ -241,14 +241,14 @@
 <angularSpeed>1</angularSpeed>
 </setting>
 </routestop>
-<routestop name="Stop10" speed="0" excluded="False" viewType="camera">
+<routestop name="中州广场" speed="277.777778" excluded="False" viewType="camera">
 <camera>
-<longitude>485.10367987069412</longitude>
-<latitude>-413.30586272739907</latitude>
-<altitude>8.5874086218168859</altitude>
-<heading>158.04935586144174</heading>
-<tilt>85.720108707154751</tilt>
-<altitudeMode>RelativeToGround</altitudeMode>
+<longitude>108.04370152859387</longitude>
+<latitude>30.304743475018839</latitude>
+<altitude>686.1576934279874</altitude>
+<heading>225.18825444384726</heading>
+<tilt>64.357008963403956</tilt>
+<altitudeMode>Absolute</altitudeMode>
 </camera>
 <style>
 <geostyle3d>
@@ -267,14 +267,14 @@
 <angularSpeed>1</angularSpeed>
 </setting>
 </routestop>
-<routestop name="Stop11" speed="0" excluded="False" viewType="camera">
+<routestop name="忠州镇" speed="277.777778" excluded="False" viewType="camera">
 <camera>
-<longitude>493.60833320957039</longitude>
-<latitude>-424.77908495441511</latitude>
-<altitude>8.5676210186297208</altitude>
-<heading>131.28900083185596</heading>
-<tilt>85.822965850012025</tilt>
-<altitudeMode>RelativeToGround</altitudeMode>
+<longitude>108.02961972643922</longitude>
+<latitude>30.29105516864686</latitude>
+<altitude>686.15769345313311</altitude>
+<heading>225.18115001035571</heading>
+<tilt>64.357008963419389</tilt>
+<altitudeMode>Absolute</altitudeMode>
 </camera>
 <style>
 <geostyle3d>
@@ -293,14 +293,14 @@
 <angularSpeed>1</angularSpeed>
 </setting>
 </routestop>
-<routestop name="Stop12" speed="0" excluded="False" viewType="camera">
+<routestop name="乌阳镇" speed="277.777778" excluded="False" viewType="camera">
 <camera>
-<longitude>502.68882524461355</longitude>
-<latitude>-424.99944645317748</latitude>
-<altitude>8.0642338718206883</altitude>
-<heading>58.853513568292783</heading>
-<tilt>89.011537278584484</tilt>
-<altitudeMode>RelativeToGround</altitudeMode>
+<longitude>108.00818714901757</longitude>
+<latitude>30.22458363137471</latitude>
+<altitude>1516.6784326462075</altitude>
+<heading>201.95831313294829</heading>
+<tilt>47.151235659052261</tilt>
+<altitudeMode>Absolute</altitudeMode>
 </camera>
 <style>
 <geostyle3d>
@@ -319,14 +319,14 @@
 <angularSpeed>1</angularSpeed>
 </setting>
 </routestop>
-<routestop name="Stop13" speed="0" excluded="False" viewType="camera">
+<routestop name="新生镇" speed="416.666667" excluded="False" viewType="camera">
 <camera>
-<longitude>512.62663503001431</longitude>
-<latitude>-410.50400581696505</latitude>
-<altitude>7.6624657401814291</altitude>
-<heading>85.347596408529469</heading>
-<tilt>93.845822992870069</tilt>
-<altitudeMode>RelativeToGround</altitudeMode>
+<longitude>107.9675776124852</longitude>
+<latitude>30.211451481840783</latitude>
+<altitude>1120.3634792920202</altitude>
+<heading>255.48218271091443</heading>
+<tilt>65.219074501332145</tilt>
+<altitudeMode>Absolute</altitudeMode>
 </camera>
 <style>
 <geostyle3d>
@@ -345,14 +345,14 @@
 <angularSpeed>1</angularSpeed>
 </setting>
 </routestop>
-<routestop name="Stop14" speed="0" excluded="False" viewType="camera">
+<routestop name="洋渡镇" speed="0" excluded="False" viewType="camera">
 <camera>
-<longitude>524.92829921561224</longitude>
-<latitude>-394.63888863735843</latitude>
-<altitude>8.0969030523977423</altitude>
-<heading>129.6819159351567</heading>
-<tilt>93.228680135729675</tilt>
-<altitudeMode>RelativeToGround</altitudeMode>
+<longitude>107.95971440905953</longitude>
+<latitude>30.143466031271931</latitude>
+<altitude>1120.3634793423116</altitude>
+<heading>255.47819914311256</heading>
+<tilt>65.219074501369093</tilt>
+<altitudeMode>Absolute</altitudeMode>
 </camera>
 <style>
 <geostyle3d>

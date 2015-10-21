@@ -46,7 +46,7 @@
 
             <!--RadTileView相关样式和模板-->
             <DataTemplate x:Key="headerTemplate">
-                <TextBlock Text="{Binding Date}" />
+                <TextBlock Text="{Binding Id}" />
             </DataTemplate>
 
             <DataTemplate x:Key="contentTemplate">
