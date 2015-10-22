@@ -90,7 +90,6 @@ D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Data\Feature\Images\6.jpg
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Data\Feature\Images\7.jpg
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Data\Feature\Images\8.jpg
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Data\Feature\Images\9.jpg
-D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Data\Feature\Videos\测试视频.MOV
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Globe.QcApp.exe.config
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Globe.QcApp.exe
 D:\Project\SVN_WPF\Globe.QcApp\Globe.Apps.Qc\bin\Debug\Globe.QcApp.pdb
