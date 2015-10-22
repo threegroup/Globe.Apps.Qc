@@ -205,6 +205,34 @@
                     Click="ControlPanelButton_Click"/>
             <StackPanel Grid.Row="0"  Grid.Column="1" Orientation="Horizontal" 
                         HorizontalAlignment="Center" VerticalAlignment="Center" Button.Click="StackPanel_Click">
+                <Button Name="DistanceMeasure" Style="{StaticResource DistanceButtonStyle}">
+                    <Button.ToolTip>
+                        <ToolTip Style="{StaticResource ToolTipStyle}">
+                            <TextBlock>距离测量</TextBlock>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
+                <Button Name="AreaMeasure" Style="{StaticResource AreaButtonStyle}">
+                    <Button.ToolTip>
+                        <ToolTip Style="{StaticResource ToolTipStyle}">
+                            <TextBlock>面积测量</TextBlock>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
+                <Button Name="HeightMeasure" Style="{StaticResource HeightButtonStyle}">
+                    <Button.ToolTip>
+                        <ToolTip Style="{StaticResource ToolTipStyle}">
+                            <TextBlock>高度测量</TextBlock>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
+                <Button Name="Clear" Style="{StaticResource ClearButtonStyle}">
+                    <Button.ToolTip>
+                        <ToolTip Style="{StaticResource ToolTipStyle}">
+                            <TextBlock>清除</TextBlock>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
                 <Button Name="FullExent" Style="{StaticResource FullExtentButtonStyle}">
                     <Button.ToolTip>
                         <ToolTip Style="{StaticResource ToolTipStyle}">
@@ -212,13 +240,6 @@
                         </ToolTip>
                     </Button.ToolTip>
                 </Button>
-                <!--<Button Name="Stop" Style="{StaticResource StopButtonStyle}">
-                    <Button.ToolTip>
-                        <ToolTip Style="{StaticResource ToolTipStyle}">
-                            <TextBlock>场景停止</TextBlock>
-                        </ToolTip>
-                    </Button.ToolTip>
-                </Button>-->
                 <Button Name="FullScreen" Style="{StaticResource FullButtonStyle}">
                     <Button.ToolTip>
                         <ToolTip Style="{StaticResource ToolTipStyle}">

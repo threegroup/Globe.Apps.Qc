@@ -124,6 +124,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\Core\SysModelLocator.cs" />
+    <Compile Include="Common\Utils\MeasureUtil.cs" />
     <Compile Include="Common\VO\DetailVO.cs" />
     <Compile Include="Common\VO\FieldVO.cs" />
     <Compile Include="Common\VO\LayerVO.cs" />
@@ -274,6 +275,10 @@
     <None Include="Data\Feature\Videos\测试视频.MOV">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Resource Include="Images\tools\area.png" />
+    <Resource Include="Images\tools\distance.png" />
+    <Resource Include="Images\tools\height.png" />
+    <Resource Include="Images\tools\clear.png" />
     <Content Include="libs\telerik\Telerik.Windows.Controls.Data.dll" />
     <Content Include="libs\telerik\Telerik.Windows.Controls.dll" />
     <Content Include="libs\telerik\Telerik.Windows.Controls.GridView.dll" />

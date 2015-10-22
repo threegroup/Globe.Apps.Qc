@@ -24,6 +24,7 @@ using System.Windows.Shapes;
 using Telerik.Windows.Controls;
 using System.Drawing;
 using System.Windows.Media;
+using Globe.QcApp.Common.Utils;
 
 namespace Globe.QcApp
 {
@@ -70,6 +71,11 @@ namespace Globe.QcApp
 		private GeoPoint3D lastGPot = null;
 		private string lastTag = "";
 		private int lastIndex = -1;
+
+		/// <summary>
+		/// 三维量算工具
+		/// </summary>
+		private MeasureUtil measureUtil = new MeasureUtil();
 
 		public MaskShell()
 		{
@@ -303,9 +309,28 @@ namespace Globe.QcApp
 				string name = (e.Source as Button).Name.ToString();
 				switch (name)
 				{
+					case "DistanceMeasure"://距离测量
+						{
+							measureUtil.BeginMeasureDistance();
+							break;
+						}
+					case "AreaMeasure"://面积测量
+						{
+							measureUtil.BeginMeasureArea();
+							break;
+						}
+					case "HeightMeasure"://高度测量
+						{
+							measureUtil.BeginMeasureAltitude();
+							break;
+						}
+					case "Clear"://清除
+						{
+							measureUtil.ClearResult();
+							break;
+						}
 					case "StartRoute"://开始飞行路径
 						{
-
 							if (SmObjectLocator.getInstance().FlyManagerObject.Routes.CurrentRoute != null)
 							{
 								SmObjectLocator.getInstance().FlyManagerObject.Play();
@@ -956,14 +981,14 @@ namespace Globe.QcApp
 		/// <param name="e"></param>
 		private void RadTabControl_SelectionChanged(object sender, RadSelectionChangedEventArgs e)
 		{
-			//RadTabItem rtItem = this.SysRadTabControl.SelectedItem as RadTabItem;
-			//if (rtItem.Header.ToString() != "飞行漫游")
-			//{
-			//	if (SmObjectLocator.getInstance().FlyManagerObject.Routes.CurrentRoute != null)
-			//	{
-			//		SmObjectLocator.getInstance().FlyManagerObject.Stop();
-			//	}
-			//}
+			RadTabItem rtItem = this.SysRadTabControl.SelectedItem as RadTabItem;
+			if (rtItem.Header.ToString() != "飞行漫游")
+			{
+				if (SmObjectLocator.getInstance().FlyManagerObject.Routes.CurrentRoute != null)
+				{
+					SmObjectLocator.getInstance().FlyManagerObject.Stop();
+				}
+			}
 		}
 
 		/// <summary>
