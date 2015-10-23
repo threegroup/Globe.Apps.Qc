@@ -49,16 +49,12 @@
                 <TextBlock Text="{Binding Id}" />
             </DataTemplate>
 
-            <DataTemplate x:Key="contentTemplate">
-                <!--<Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="{Binding Date}" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Left"/>
-                    <Image Grid.Row="1" Source="{Binding ImageUrl}"/>
-                </Grid>-->
-                <Image Grid.Row="1" Source="{Binding ImageUrl}"/>
+            <DataTemplate x:Key="imageContentTemplate">
+                <Image Source="{Binding ImageUrl}"/>
+            </DataTemplate>
+
+            <DataTemplate x:Key="videoContentTemplate">
+                <MediaElement Source="{Binding VideoUrl}"/>
             </DataTemplate>
         </ResourceDictionary>
     </Window.Resources>
@@ -167,7 +163,7 @@
 	                     MinimizedRowHeight="100"
 	                     PreservePositionWhenMaximized="True"
                          ItemTemplate="{StaticResource headerTemplate}"
-                         ContentTemplate="{StaticResource contentTemplate}"/>
+                         ContentTemplate="{StaticResource imageContentTemplate}"/>
                 </telerik:RadTabItem>
                 <telerik:RadTabItem Header="视频信息" Cursor="Hand" RenderTransformOrigin="0.5,0.5">
                     <telerik:RadTabItem.RenderTransform>
@@ -178,6 +174,18 @@
                             <TranslateTransform/>
                         </TransformGroup>
                     </telerik:RadTabItem.RenderTransform>
+                    <telerik:RadTileView Name="VideoTileViewID" Margin="0"
+	                     IsAutoScrollingEnabled="True"
+	                     IsDockingEnabled="True"
+	                     IsVirtualizing="True"
+                         ColumnsCount="2"
+	                     ColumnWidth="230"
+                         RowHeight="120"
+                         MinimizedColumnWidth="80"
+	                     MinimizedRowHeight="100"
+	                     PreservePositionWhenMaximized="True"
+                         ItemTemplate="{StaticResource headerTemplate}"
+                         ContentTemplate="{StaticResource videoContentTemplate}"/>
                 </telerik:RadTabItem>
             </telerik:RadTabControl>
         </Grid>
@@ -197,6 +205,34 @@
                     Click="ControlPanelButton_Click"/>
             <StackPanel Grid.Row="0"  Grid.Column="1" Orientation="Horizontal" 
                         HorizontalAlignment="Center" VerticalAlignment="Center" Button.Click="StackPanel_Click">
+                <Button Name="DistanceMeasure" Style="{StaticResource DistanceButtonStyle}">
+                    <Button.ToolTip>
+                        <ToolTip Style="{StaticResource ToolTipStyle}">
+                            <TextBlock>距离测量</TextBlock>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
+                <Button Name="AreaMeasure" Style="{StaticResource AreaButtonStyle}">
+                    <Button.ToolTip>
+                        <ToolTip Style="{StaticResource ToolTipStyle}">
+                            <TextBlock>面积测量</TextBlock>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
+                <Button Name="HeightMeasure" Style="{StaticResource HeightButtonStyle}">
+                    <Button.ToolTip>
+                        <ToolTip Style="{StaticResource ToolTipStyle}">
+                            <TextBlock>高度测量</TextBlock>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
+                <Button Name="Clear" Style="{StaticResource ClearButtonStyle}">
+                    <Button.ToolTip>
+                        <ToolTip Style="{StaticResource ToolTipStyle}">
+                            <TextBlock>清除</TextBlock>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
                 <Button Name="FullExent" Style="{StaticResource FullExtentButtonStyle}">
                     <Button.ToolTip>
                         <ToolTip Style="{StaticResource ToolTipStyle}">
@@ -204,13 +240,6 @@
                         </ToolTip>
                     </Button.ToolTip>
                 </Button>
-                <!--<Button Name="Stop" Style="{StaticResource StopButtonStyle}">
-                    <Button.ToolTip>
-                        <ToolTip Style="{StaticResource ToolTipStyle}">
-                            <TextBlock>场景停止</TextBlock>
-                        </ToolTip>
-                    </Button.ToolTip>
-                </Button>-->
                 <Button Name="FullScreen" Style="{StaticResource FullButtonStyle}">
                     <Button.ToolTip>
                         <ToolTip Style="{StaticResource ToolTipStyle}">
