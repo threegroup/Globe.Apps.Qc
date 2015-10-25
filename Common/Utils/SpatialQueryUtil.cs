@@ -101,7 +101,8 @@ namespace Globe.QcApp.Common.Utils
             Point3Ds queryPoints = TempPoints3Ds.Clone();
             TempPoints3Ds.Clear();
             removeListener();
-            SpatialQueryByPoint3Ds(queryPoints, SmObjectLocator.getInstance().GlobeObject.Action);
+            MaskShell ms = new MaskShell();
+            ms.SpatialQueryByPoint3Ds(queryPoints, SmObjectLocator.getInstance().GlobeObject.Action);
         }
 
         /// <summary>
@@ -131,29 +132,7 @@ namespace Globe.QcApp.Common.Utils
             }
            
         }
-        /// <summary>
-        /// 进行空间查询
-        /// </summary>
-        /// <param name="TempPoints3Ds"></param>
-        /// <param name="action3D"></param>
-        private void SpatialQueryByPoint3Ds(Point3Ds TempPoints3Ds, Action3D action3D)
-        {
-            string actionStr = action3D.ToString().ToLower();
-            switch (actionStr)
-            {
-                case "createpoint":
-
-                    break;
-                case "createline":
-                    break;
-                case "createpolygon":
-                    break;
-                default:
-                    break;
-            }
-        }
-
-
+       
         private void TrackedHandler(object sender, Tracked3DEventArgs e)
         {
             string actionStr = SmObjectLocator.getInstance().GlobeObject.Action.ToString().ToLower();
