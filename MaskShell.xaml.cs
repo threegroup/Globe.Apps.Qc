@@ -38,9 +38,13 @@ namespace Globe.QcApp
 		/// </summary>
 		private string RoutesPath = "RoutesPathKey";
 		/// <summary>
-		/// 查询字段Key
+		/// 查询字段名称Key
 		/// </summary>
 		private string queryNameField = "QueryNameFieldKey";
+		/// <summary>
+		/// 查询字段编码Key
+		/// </summary>
+		private string queryCodeField = "QueryCodeFieldKey";
 		/// <summary>
 		/// 数据源Key
 		/// </summary>
@@ -476,12 +480,12 @@ namespace Globe.QcApp
 			}
 
 			//重置飞行路径相关信息
-			if (SmObjectLocator.getInstance().FlyManagerObject.Routes.CurrentRoute != null)
-			{
-				SmObjectLocator.getInstance().FlyManagerObject.Stop();
-				SmObjectLocator.getInstance().FlyManagerObject.Routes.Clear();
-			}
-			this.RouteListBox.SelectedIndex = -1;
+			//if (SmObjectLocator.getInstance().FlyManagerObject.Routes.CurrentRoute != null)
+			//{
+			//	SmObjectLocator.getInstance().FlyManagerObject.Stop();
+			//	SmObjectLocator.getInstance().FlyManagerObject.Routes.Clear();
+			//}
+			//this.RouteListBox.SelectedIndex = -1;
 		}
 
 		/// <summary>
@@ -612,6 +616,7 @@ namespace Globe.QcApp
 			this.DetailPanel.Visibility = System.Windows.Visibility.Collapsed;
 			this.DetailRadGridView.ItemsSource = null;
 			this.ShowLegendTitle.Text = "";
+			this.QueryNameTxt.Text = "";
 
 			InitGeoPoint3DParams(true);
 			//清空追踪图层数据
@@ -656,7 +661,7 @@ namespace Globe.QcApp
 					{
 						GeoPoint3D gpt = new GeoPoint3D(centerX, centerY, heightZ);
 						gpt.Style3D = normalStyle;
-						SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Add(gpt, vo.RecordName);
+						SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Add(gpt, string.Format("{0}#{1}", vo.RecordName,vo.RecordIndex));
 
 						if (minX == 0)
 						{
@@ -779,10 +784,12 @@ namespace Globe.QcApp
 						if (dSetV != null)
 						{
 							string fieldName = ConfigurationManager.AppSettings.Get(queryNameField);
+							string fieldCode = ConfigurationManager.AppSettings.Get(queryCodeField);
 							QueryParameter queryParameter = new QueryParameter();
 							queryParameter.CursorType = SuperMap.Data.CursorType.Static;
 							queryParameter.HasGeometry = true;
-							queryParameter.AttributeFilter = fieldName + " = '" + tag + "'";
+							string[] tempArr = tag.Split('#');
+							queryParameter.AttributeFilter = fieldName + " = '" + tempArr[0] + "' and " + fieldCode + " = '" + tempArr[1] + "'";
 
 							Recordset recordset = dSetV.Query(queryParameter);
 							if (recordset != null && recordset.RecordCount > 0)
@@ -806,8 +813,7 @@ namespace Globe.QcApp
 								if (isExist)
 								{
 									ObservableCollection<DetailVO> detailList = new ObservableCollection<DetailVO>();
-									int i = 0;
-									for (recordset.MoveFirst(); recordset.IsEOF == false; recordset.MoveNext(), i++)
+									for (recordset.MoveFirst(); recordset.IsEOF == false; recordset.MoveNext())
 									{
 										FieldInfos fs = recordset.GetFieldInfos();
 										for (int j = 0; j < fs.Count; j++)
@@ -868,6 +874,7 @@ namespace Globe.QcApp
 						if (dSetV != null)
 						{
 							string fieldName = ConfigurationManager.AppSettings.Get(queryNameField);
+							string fieldCode = ConfigurationManager.AppSettings.Get(queryCodeField);
 							QueryParameter queryParameter = new QueryParameter();
 							queryParameter.CursorType = SuperMap.Data.CursorType.Static;
 							queryParameter.HasGeometry = true;
@@ -899,13 +906,12 @@ namespace Globe.QcApp
 
 								if (isExist)
 								{
-									int i = 0;
-									for (recordset.MoveFirst(); recordset.IsEOF == false; recordset.MoveNext(), i++)
+									for (recordset.MoveFirst(); recordset.IsEOF == false; recordset.MoveNext())
 									{
 										QueryRecordVO qVO = new QueryRecordVO();
 										qVO.RecordLayerId = layerName;
 										qVO.RecordName = recordset.GetFieldValue(fieldName).ToString();
-										qVO.RecordIndex = i.ToString();
+										qVO.RecordIndex = recordset.GetFieldValue(fieldCode).ToString();
 										qVO.RecordCenterX = recordset.GetGeometry().InnerPoint.X.ToString();
 										qVO.RecordCenterY = recordset.GetGeometry().InnerPoint.Y.ToString();
 										recordList.Add(qVO);
@@ -918,6 +924,11 @@ namespace Globe.QcApp
 									this.QueryListBox.ItemsSource = null;
 									this.QueryInfo.Text = "";
 								}
+							}
+							else
+							{
+								this.QueryListBox.ItemsSource = null;
+								this.QueryInfo.Text = "查询结果合计：0条";
 							}
 						}
 					}
@@ -962,7 +973,7 @@ namespace Globe.QcApp
 						}
 
 						//高亮要素，显示详情
-						int fid = SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.IndexOf(qVO.RecordName);
+						int fid = SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.IndexOf(string.Format("{0}#{1}", qVO.RecordName, qVO.RecordIndex));
 						GeoPoint3D p = SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Get(fid) as GeoPoint3D;
 						this.HighLightFeature(p, fid);
 					}
