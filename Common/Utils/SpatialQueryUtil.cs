@@ -20,6 +20,8 @@ namespace Globe.QcApp.Common.Utils
 
         private string spatialTempTag = "spatialTemp";
 
+        public static MaskShell ms = null;
+
         /// <summary>
         /// 开始点查询
         /// </summary>
@@ -101,8 +103,10 @@ namespace Globe.QcApp.Common.Utils
             Point3Ds queryPoints = TempPoints3Ds.Clone();
             TempPoints3Ds.Clear();
             removeListener();
-            MaskShell ms = new MaskShell();
-            ms.SpatialQueryByPoint3Ds(queryPoints, SmObjectLocator.getInstance().GlobeObject.Action);
+            if (ms != null)
+            {
+                ms.SpatialQueryByPoint3Ds(queryPoints, actionStr);
+            }
         }
 
         /// <summary>
@@ -232,7 +236,7 @@ namespace Globe.QcApp.Common.Utils
         /// <param name="point3D1"></param>
         /// <param name="point3D2"></param>
         /// <returns></returns>
-        private double GetLengthBy2Point(Point3D point3D1, Point3D point3D2)
+        public double GetLengthBy2Point(Point3D point3D1, Point3D point3D2)
         {
             double tempR = 0.0;
             GeoLine3D tempL = new GeoLine3D();

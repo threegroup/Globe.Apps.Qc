@@ -345,7 +345,7 @@
                         <Border  Grid.Row="0" BorderThickness="0,0,0,1" BorderBrush="#FFEC6D51">
                             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                                 <Label Content="选择要素：" FontFamily="Microsoft YaHei UI Light" VerticalAlignment="Center"></Label>
-                                <telerik:RadComboBox Name="SpatialQueryLayerList" Width="248"  Margin="3" DisplayMemberPath="LayerCaption" SelectedValuePath="LayerName" SelectionChanged="QueryLayerList_SelectionChanged"></telerik:RadComboBox>
+                                <telerik:RadComboBox Name="SpatialQueryLayerList" Width="248"  Margin="3" DisplayMemberPath="LayerCaption" SelectedValuePath="LayerName" ></telerik:RadComboBox>
                             </StackPanel>
                         </Border>
                         <Border  Grid.Row="1" BorderThickness="0,0,0,1" BorderBrush="#FFEC6D51">
