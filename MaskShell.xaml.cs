@@ -957,6 +957,12 @@ namespace Globe.QcApp
 			{
 				this.QueryLayerList.SelectedIndex = 0;
 			}
+
+            this.SpatialQueryLayerList.ItemsSource = SysModelLocator.getInstance().LayerList.Where(p => p.IsQueryLayer == true && p.LayerCaption.IndexOf("@") == -1);
+            if (this.SpatialQueryLayerList.Items.Count > 0)
+            {
+                this.SpatialQueryLayerList.SelectedIndex = 0;
+            }
 		}
 
 		/// <summary>
@@ -1083,5 +1089,31 @@ namespace Globe.QcApp
             spatialQueryUtil.BeginPointQuery();
         }
 
+        /// <summary>
+        /// 进行空间查询
+        /// </summary>
+        /// <param name="TempPoints3Ds"></param>
+        /// <param name="action3D"></param>
+        public void SpatialQueryByPoint3Ds(Point3Ds TempPoints3Ds, Action3D action3D)
+        {
+            string layerName = "";
+            if (this.SpatialQueryLayerList.Items.Count > 0)
+            {
+                layerName = this.SpatialQueryLayerList.SelectedValue.ToString();
+            }
+            string actionStr = action3D.ToString().ToLower();
+            switch (actionStr)
+            {
+                case "createpoint":
+
+                    break;
+                case "createline":
+                    break;
+                case "createpolygon":
+                    break;
+                default:
+                    break;
+            }
+        }
 	}
 }
