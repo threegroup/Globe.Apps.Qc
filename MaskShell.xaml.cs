@@ -84,7 +84,13 @@ namespace Globe.QcApp
 		/// </summary>
 		private MeasureUtil measureUtil = new MeasureUtil();
 
-        private Point3Ds TempPoints3Ds = new Point3Ds();
+
+        /// <summary>
+        /// 空间查询通用
+        /// </summary>
+        private SpatialQueryUtil spatialQueryUtil = new SpatialQueryUtil();
+
+   
 
 		public MaskShell()
 		{
@@ -498,7 +504,7 @@ namespace Globe.QcApp
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void RouteListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		private void RouteListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
 		{
 			RouteVO routeVo = this.RouteListBox.SelectedItem as RouteVO;
 			if (routeVo != null)
@@ -569,7 +575,7 @@ namespace Globe.QcApp
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void LayerListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		private void LayerListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
 		{
 			LayerVO layerItem = this.LayerListBox.SelectedItem as LayerVO;
 			if (layerItem != null)
@@ -958,7 +964,7 @@ namespace Globe.QcApp
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void QueryListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		private void QueryListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
 		{
 			if (sender is RadListBox)
 			{
@@ -1043,15 +1049,7 @@ namespace Globe.QcApp
         /// <param name="e"></param>
         private void SpatialClearBt_Click(object sender, RoutedEventArgs e)
         {
-            this.DetailPanel.Visibility = System.Windows.Visibility.Collapsed;
-            this.DetailRadGridView.ItemsSource = null;
-            this.ShowLegendTitle.Text = "";
-
-            InitGeoPoint3DParams(true);
-            //清空追踪图层数据
-            SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Clear();
-            this.SpatialQueryListBox.ItemsSource = null;
-            this.SpatialQueryInfo.Text = "";
+            measureUtil.ClearAllResult("spatial");
         }
 
 
@@ -1062,30 +1060,7 @@ namespace Globe.QcApp
         /// <param name="e"></param>
         private void PolygonQueryBt_Click(object sender, RoutedEventArgs e)
         {
-            this.SpatialClearBt_Click(null, null);
-            SmObjectLocator.getInstance().GlobeObject.TrackMode = TrackMode3D.Track;
-            SmObjectLocator.getInstance().GlobeObject.Action = Action3D.CreatePolygon;
-            SmObjectLocator.getInstance().GlobeObject.MouseClick += GlobeObject_MouseClick;
-            SmObjectLocator.getInstance().GlobeObject.MouseDoubleClick += GlobeObject_MouseDoubleClick;
-            SmObjectLocator.getInstance().GlobeObject.Tracking += GlobeObject_Tracking;
-            this.TempPoints3Ds.Clear();
-        }
-
-        void GlobeObject_MouseDoubleClick(object sender, System.Windows.Forms.MouseEventArgs e)
-        {
-            if (e.Clicks == 2 && e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                SmObjectLocator.getInstance().GlobeObject.Action = Action3D.Pan2;
-            }
-        }
-
-        void GlobeObject_MouseClick(object sender, System.Windows.Forms.MouseEventArgs e)
-        {
-            if (e.Clicks == 1 && e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                Point3D point3d = SmObjectLocator.getInstance().GlobeObject.Scene.PixelToGlobe(e.Location);
-                TempPoints3Ds.Add(point3d);
-            }
+            spatialQueryUtil.BeginPolygonQuery();
         }
 
         /// <summary>
@@ -1095,7 +1070,7 @@ namespace Globe.QcApp
         /// <param name="e"></param>
         private void CircleQueryBt_Click(object sender, RoutedEventArgs e)
         {
-            this.SpatialClearBt_Click(null, null);
+            spatialQueryUtil.BeginCircleQuery();
         }
 
         /// <summary>
@@ -1105,36 +1080,8 @@ namespace Globe.QcApp
         /// <param name="e"></param>
         private void PointQueryBt_Click(object sender, RoutedEventArgs e)
         {
-            this.SpatialClearBt_Click(null, null);
+            spatialQueryUtil.BeginPointQuery();
         }
 
-        void GlobeObject_Tracking(object sender, Tracking3DEventArgs e)
-        {
-            //Point3D temp3D = new Point3D(e.X, e.Y, e.Z);
-            //TempPoints3Ds.Add(temp3D);
-            if (this.TempPoints3Ds.Count > 2)
-            {
-                GeoRegion3D geoRegion3D = new GeoRegion3D(TempPoints3Ds);
-                geoRegion3D.Style3D = GetGeoStyle3D();
-                SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Add(geoRegion3D, "p");
-            }
-        }
-
-        /// <summary>
-        /// 多边形查询的风格
-        /// </summary>
-        /// <returns></returns>
-        private  GeoStyle3D GetGeoStyle3D()
-        {
-            GeoStyle3D geoStyle = new GeoStyle3D();
-            geoStyle.AltitudeMode = AltitudeMode.ClampToGround;
-            geoStyle.LineColor = System.Drawing.Color.Yellow;
-            geoStyle.LineWidth = 1;
-            geoStyle.FillBackColor = System.Drawing.Color.FromArgb(180, 255, 255, 0);
-            geoStyle.FillForeColor = System.Drawing.Color.FromArgb(180, 255, 255, 0);
-            geoStyle.MarkerColor = System.Drawing.Color.FromArgb(180, 255, 255, 0);
-            geoStyle.FillMode = FillMode3D.Fill;
-            return geoStyle;
-        }
 	}
 }

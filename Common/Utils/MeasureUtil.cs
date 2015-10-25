@@ -761,7 +761,7 @@ namespace Globe.QcApp.Common.Utils
             try
             {
                 //SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Clear();
-                ClearAllResult();
+                ClearAllResult("Measure");
 
                 SmObjectLocator.getInstance().GlobeObject.Action = Action3D.Pan;
                 m_currentGeoText3DMessage = null;
@@ -775,7 +775,7 @@ namespace Globe.QcApp.Common.Utils
         /// <summary>
         /// 清空测量结果
         /// </summary>
-        private void ClearAllResult()
+        public void ClearAllResult(string clearTag)
         {
             m_point3Ds.Clear();
             m_curLength = 0.0;
@@ -785,7 +785,7 @@ namespace Globe.QcApp.Common.Utils
             for (int i = 0; i < count; i++)
             {
                 String tag = SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.GetTag(i);
-                if (tag.IndexOf("Measure") != -1)
+                if (tag.IndexOf(clearTag) != -1)
                 {
                     arr.Add(tag);
                 }
