@@ -339,6 +339,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Border  Grid.Row="0" BorderThickness="0,0,0,1" BorderBrush="#FFEC6D51">
@@ -358,7 +359,7 @@
                         <TextBlock Name="SpatialQueryInfo" Grid.Row="2"  Text="" TextAlignment="Left" 
                                    HorizontalAlignment="Stretch"
                                    VerticalAlignment="Center" FontFamily="Microsoft YaHei UI" Margin="6,3,0,3"/>
-                        <telerik:RadListBox Name="SpatialQueryListBox" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderThickness="0"
+                        <telerik:RadListBox Name="SpatialQueryListBox" Grid.Row="3" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderThickness="0"
                             ItemTemplate="{StaticResource QueryListItemTemplate}" SelectionChanged="SpatialQueryListBox_SelectionChanged" />
                     </Grid>
                 </telerik:RadTabItem>

@@ -1066,6 +1066,7 @@ namespace Globe.QcApp
         /// <param name="e"></param>
         private void PolygonQueryBt_Click(object sender, RoutedEventArgs e)
         {
+            measureUtil.ClearAllResult("spatial");
             spatialQueryUtil.BeginPolygonQuery();
         }
 
@@ -1076,6 +1077,7 @@ namespace Globe.QcApp
         /// <param name="e"></param>
         private void CircleQueryBt_Click(object sender, RoutedEventArgs e)
         {
+            measureUtil.ClearAllResult("spatial");
             spatialQueryUtil.BeginCircleQuery();
         }
 
@@ -1086,6 +1088,7 @@ namespace Globe.QcApp
         /// <param name="e"></param>
         private void PointQueryBt_Click(object sender, RoutedEventArgs e)
         {
+            measureUtil.ClearAllResult("spatial");
             spatialQueryUtil.BeginPointQuery();
         }
 
