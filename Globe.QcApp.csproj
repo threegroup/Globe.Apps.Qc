@@ -124,6 +124,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\Core\SysModelLocator.cs" />
+    <Compile Include="Common\Utils\MeasureUtil.cs" />
+    <Compile Include="Common\Utils\SpatialQueryUtil.cs" />
     <Compile Include="Common\VO\DetailVO.cs" />
     <Compile Include="Common\VO\FieldVO.cs" />
     <Compile Include="Common\VO\LayerVO.cs" />
@@ -241,16 +243,6 @@
     <Resource Include="Images\routes\stoproute.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\featureimages\1.jpg" />
-    <Resource Include="Images\featureimages\10.jpg" />
-    <Resource Include="Images\featureimages\2.jpg" />
-    <Resource Include="Images\featureimages\3.jpg" />
-    <Resource Include="Images\featureimages\4.jpg" />
-    <Resource Include="Images\featureimages\5.jpg" />
-    <Resource Include="Images\featureimages\6.jpg" />
-    <Resource Include="Images\featureimages\7.jpg" />
-    <Resource Include="Images\featureimages\8.jpg" />
-    <Resource Include="Images\featureimages\9.jpg" />
     <Content Include="libs\telerik\Telerik.Windows.Controls.Data.dll" />
     <Content Include="libs\telerik\Telerik.Windows.Controls.dll" />
     <Content Include="libs\telerik\Telerik.Windows.Controls.GridView.dll" />
