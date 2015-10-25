@@ -47,6 +47,68 @@ namespace Globe.QcApp.Common.Utils
             addListener();
         }
 
+        /// <summary>
+        /// 结束空间查询
+        /// </summary>
+        private void EndSpatialQuery()
+        {
+            string actionStr = SmObjectLocator.getInstance().GlobeObject.Action.ToString().ToLower();
+            switch (actionStr)
+            {
+                case "createpoint":
+                    if (this.TempPoints3Ds.Count == 1)
+                    {
+                        GeoPoint3D geoPoint3D = new GeoPoint3D(TempPoints3Ds[0]);
+                        geoPoint3D.Style3D = GetGeoStyle3D();
+                        SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Add(geoPoint3D, spatialTag);
+                    }
+                    break;
+                    //此时划线就是为了画圆
+                case "createline":
+                    int index = SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.IndexOf(spatialTempTag);
+                    if (index >= 0)
+                    {
+                        SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Remove(index);
+                    }
+                    if (this.TempPoints3Ds.Count == 2)
+                    {
+                        Point3D point3D = new Point3D(TempPoints3Ds[0].X, TempPoints3Ds[0].Y, TempPoints3Ds[0].Z);
+                        double radius = GetLengthBy2Point(TempPoints3Ds[0], TempPoints3Ds[1]);
+                        GeoCircle3D geoCircle3D = new GeoCircle3D(point3D, radius);
+                        geoCircle3D.Style3D = GetGeoStyle3D();
+                        SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Add(geoCircle3D, spatialTag);
+                    }
+                    break;
+                case "createpolygon":
+                    if (this.TempPoints3Ds.Count > 2)
+                    {
+                        GeoRegion3D geoRegion3D = new GeoRegion3D(TempPoints3Ds);
+                        geoRegion3D.Style3D = GetGeoStyle3D();
+                        SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Add(geoRegion3D, spatialTag);
+                    }
+                    else
+                    {
+                        int index1 = SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.IndexOf(spatialTempTag);
+                        if (index1 >= 0)
+                        {
+                            SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Remove(index1);
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+            Point3Ds queryPoints = TempPoints3Ds.Clone();
+            TempPoints3Ds.Clear();
+            removeListener();
+            SpatialQueryByPoint3Ds(queryPoints, SmObjectLocator.getInstance().GlobeObject.Action);
+        }
+
+        /// <summary>
+        /// 鼠标点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void GlobeObject_MouseClick(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             if (e.Clicks == 1 && e.Button == System.Windows.Forms.MouseButtons.Right)
@@ -57,23 +119,18 @@ namespace Globe.QcApp.Common.Utils
             {
                 Point3D point3d = SmObjectLocator.getInstance().GlobeObject.Scene.PixelToGlobe(e.Location);
                 TempPoints3Ds.Add(point3d);
+                string actionStr = SmObjectLocator.getInstance().GlobeObject.Action.ToString().ToLower();
+                switch (actionStr)
+                {
+                    case "createpoint":
+                        EndSpatialQuery();
+                        break;
+                    default:
+                        break;
+                }
             }
+           
         }
-
-        private void EndSpatialQuery()
-        {
-            if (this.TempPoints3Ds.Count > 2)
-            {
-                GeoRegion3D geoRegion3D = new GeoRegion3D(TempPoints3Ds);
-                geoRegion3D.Style3D = GetGeoStyle3D();
-                SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Add(geoRegion3D, spatialTag);
-            }
-            Point3Ds queryPoints = TempPoints3Ds.Clone();
-            TempPoints3Ds.Clear();
-            removeListener();
-            SpatialQueryByPoint3Ds(queryPoints, SmObjectLocator.getInstance().GlobeObject.Action);
-        }
-
         /// <summary>
         /// 进行空间查询
         /// </summary>
@@ -99,30 +156,45 @@ namespace Globe.QcApp.Common.Utils
 
         private void TrackedHandler(object sender, Tracked3DEventArgs e)
         {
-            if (this.TempPoints3Ds.Count > 2)
+            string actionStr = SmObjectLocator.getInstance().GlobeObject.Action.ToString().ToLower();
+            switch (actionStr)
             {
-                GeoRegion3D geoRegion3D = e.Geometry.Clone() as GeoRegion3D;
-                geoRegion3D.Style3D = GetGeoStyle3D();
-                SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Add(geoRegion3D, spatialTag);
+                case "createline":
+                    if (TempPoints3Ds.Count == 2)
+                    {
+                        EndSpatialQuery();
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 
         private void TrackingHandler(object sender, Tracking3DEventArgs e)
         {
             string actionStr = SmObjectLocator.getInstance().GlobeObject.Action.ToString().ToLower();
+            if (this.TempPoints3Ds.Count == 1)
+            {
+                m_tempPoint = new Point3D(e.X, e.Y, e.Z);
+                TempPoints3Ds.Add(m_tempPoint);
+            }
             switch (actionStr)
             {
-                case "createpoint":
-
-                    break;
                 case "createline":
+                    if (this.TempPoints3Ds.Count == 2)
+                    {
+                        int index = SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.IndexOf(spatialTempTag);
+                        if (index >= 0)
+                        {
+                            SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Remove(index);
+                        }
+                        GeoLine3D geoLine3D = new GeoLine3D(TempPoints3Ds);
+                        geoLine3D.Style3D = GetGeoStyle3D();
+                        SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Add(geoLine3D, spatialTempTag);
+                        TempPoints3Ds.Remove(1);
+                    }
                     break;
                 case "createpolygon":
-                    if (this.TempPoints3Ds.Count == 1)
-                    {
-                        m_tempPoint = new Point3D(e.X, e.Y, e.Z);
-                        TempPoints3Ds.Add(m_tempPoint);
-                    }
                     if (m_tempPoint != Point3D.Empty)
                     {
                         TempPoints3Ds.Remove(TempPoints3Ds.Count - 1);
@@ -176,7 +248,26 @@ namespace Globe.QcApp.Common.Utils
         }
 
         /// <summary>
-        /// 查询的风格
+        /// 获取两点之间的距离
+        /// </summary>
+        /// <param name="point3D1"></param>
+        /// <param name="point3D2"></param>
+        /// <returns></returns>
+        private double GetLengthBy2Point(Point3D point3D1, Point3D point3D2)
+        {
+            double tempR = 0.0;
+            GeoLine3D tempL = new GeoLine3D();
+            Point3Ds temp3Ds = new Point3Ds();
+            temp3Ds.Add(point3D1);
+            temp3Ds.Add(point3D2);
+            tempL.AddPart(temp3Ds);
+            tempR = Geometrist.ComputeLength(tempL, new PrjCoordSys(PrjCoordSysType.EarthLongitudeLatitude));
+            return tempR == 0.0 ? 10000.0 : tempR;
+        }
+
+
+        /// <summary>
+        ///默认的空间查询图形风格
         /// </summary>
         /// <returns></returns>
         private GeoStyle3D GetGeoStyle3D()
@@ -189,6 +280,7 @@ namespace Globe.QcApp.Common.Utils
             geoStyle.FillForeColor = System.Drawing.Color.FromArgb(180, 255, 255, 0);
             geoStyle.MarkerColor = System.Drawing.Color.FromArgb(180, 255, 255, 0);
             geoStyle.FillMode = FillMode3D.Fill;
+            geoStyle.MarkerSize = 15;
             return geoStyle;
         }
 
