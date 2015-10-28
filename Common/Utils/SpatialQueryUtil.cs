@@ -16,9 +16,9 @@ namespace Globe.QcApp.Common.Utils
 
         private Point3D m_tempPoint;
 
-        private string spatialTag = "spatial";
+        private string spatialTag = "Spatial";
 
-        private string spatialTempTag = "spatialTemp";
+        private string spatialTempTag = "SpatialTemp";
 
         public static MaskShell ms = null;
 
@@ -105,7 +105,7 @@ namespace Globe.QcApp.Common.Utils
             removeListener();
             if (ms != null)
             {
-                ms.SpatialQueryByPoint3Ds(queryPoints, actionStr);
+				ms.ExecuteQuery(spatialTag, queryPoints, actionStr);
             }
         }
 

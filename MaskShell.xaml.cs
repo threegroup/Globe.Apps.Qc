@@ -73,24 +73,37 @@ namespace Globe.QcApp
 		/// </summary>
 		private double defaultScale = 1;
 
+		#region 图标高亮相关变量
 		private GeoStyle3D normalStyle = null;
 		private GeoStyle3D highLightStyle = null;
 		private GeoPoint3D lastGPot = null;
 		private string lastTag = "";
 		private int lastIndex = -1;
+		#endregion
 
 		/// <summary>
 		/// 三维量算工具
 		/// </summary>
 		private MeasureUtil measureUtil = new MeasureUtil();
 
-
-        /// <summary>
+		/// <summary>
         /// 空间查询通用
         /// </summary>
         private SpatialQueryUtil spatialQueryUtil = new SpatialQueryUtil();
+		/// <summary>
+		/// 追踪图层中属性或空间查询图标 tag 后缀
+		/// </summary>
+		private const string QUERY = "Query";
 
-   
+		/// <summary>
+		/// 属性查询
+		/// </summary>
+		private const string ATTRIBUTE_QUERY = "Attribute";
+
+		/// <summary>
+		/// 空间查询
+		/// </summary>
+		private const string SPATIAL_QUERY = "Spatial";
 
 		public MaskShell()
 		{
@@ -114,8 +127,6 @@ namespace Globe.QcApp
 
 			//初始化查询图层
 			InitQueryLayerList();
-            InitSpatialQueryLayerList();
-
 
 			//控制经纬只能输入数字
 			this.ControlTextBoxContent();
@@ -342,7 +353,10 @@ namespace Globe.QcApp
 						}
 					case "Clear"://清除
 						{
-							measureUtil.ClearResult();
+							//清除量算结果
+							this.measureUtil.ClearResult();
+							//清除查询结果
+							this.ClearQueryResult();
 							break;
 						}
 					case "StartRoute"://开始飞行路径
@@ -443,7 +457,7 @@ namespace Globe.QcApp
 			//执行动画
 			DoubleAnimation animation0 = new DoubleAnimation();
 			animation0.From = 32;
-			animation0.To = 480;
+			animation0.To = 400;
 			animation0.Duration = TimeSpan.FromSeconds(0.1);
 
 			this.PanelRegion.BeginAnimation(Border.WidthProperty, animation0);
@@ -459,7 +473,7 @@ namespace Globe.QcApp
 		{
 			//执行动画
 			DoubleAnimation animation0 = new DoubleAnimation();
-			animation0.From = 480;
+			animation0.From = 400;
 			animation0.To = 32;
 			animation0.Duration = TimeSpan.FromSeconds(0.1);
 
@@ -611,10 +625,29 @@ namespace Globe.QcApp
 		/// <param name="e"></param>
 		private void QueryBt_Click(object sender, RoutedEventArgs e)
 		{
+			ExecuteQuery(ATTRIBUTE_QUERY);
+		}
+
+		/// <summary>
+		/// 执行查询
+		/// </summary>
+		/// <param name="type"></param>
+		/// <param name="TempPoints3Ds"></param>
+		/// <param name="actionStr"></param>
+		public void ExecuteQuery(string type = "attribute", Point3Ds TempPoints3Ds = null, string actionStr = null)
+		{
 			InitGeoPoint3DParams(true);
-			InitQueryListBox();
+			ExecuteQueryListBox(type, TempPoints3Ds, actionStr);
 			InitQueryListOnMap();
 
+			this.ResetQueryState();
+		}
+
+		/// <summary>
+		/// 重置查询面板状态
+		/// </summary>
+		private void ResetQueryState()
+		{
 			this.DetailPanel.Visibility = System.Windows.Visibility.Collapsed;
 			this.DetailRadGridView.ItemsSource = null;
 			this.ShowLegendTitle.Text = "";
@@ -631,20 +664,11 @@ namespace Globe.QcApp
 			this.QueryNameTxt.Text = "";
 
 			InitGeoPoint3DParams(true);
+
 			//清空追踪图层数据
 			SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Clear();
 			this.QueryListBox.ItemsSource = null;
 			this.QueryInfo.Text = "";
-		}
-
-		/// <summary>
-		/// 清除查询结果
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void ClearBt_Click(object sender, RoutedEventArgs e)
-		{
-			this.ClearQueryResult();
 		}
 
 		/// <summary>
@@ -653,7 +677,7 @@ namespace Globe.QcApp
 		private void InitQueryListOnMap()
 		{
 			//清空追踪图层数据
-			SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Clear();
+			this.measureUtil.ClearAllResult(QUERY);
 
 			ObservableCollection<QueryRecordVO> recordList = SysModelLocator.getInstance().recordList;
 			if (recordList.Count > 0)
@@ -673,7 +697,7 @@ namespace Globe.QcApp
 					{
 						GeoPoint3D gpt = new GeoPoint3D(centerX, centerY, heightZ);
 						gpt.Style3D = normalStyle;
-						SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Add(gpt, string.Format("{0}#{1}", vo.RecordName,vo.RecordIndex));
+						SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Add(gpt, string.Format("{0}#{1}#{2}", vo.RecordName, vo.RecordIndex, QUERY));
 
 						if (minX == 0)
 						{
@@ -758,24 +782,6 @@ namespace Globe.QcApp
 				LoadFeatureMedias(tag, "VIDEO");
 			}
 		}
-
-		//private void ShowMarkMediaInfo()
-		//{
-		//	Random r = new Random();
-		//	int length = r.Next(1, 11);
-		//	ObservableCollection<MediaVO> mediaList = new ObservableCollection<MediaVO>();
-		//	for (int i = 1; i <= length; i++)
-		//	{
-		//		MediaVO mVo = new MediaVO();
-		//		mVo.Date = DateTime.Now.ToShortDateString();
-		//		mVo.ImageUrl = "Images/featureimages/" + i + ".jpg";
-		//		mVo.VideoUrl = "暂无视频";
-		//		mVo.Id = i.ToString();
-		//		mVo.Desc = "要素多媒体信息。";
-		//		mediaList.Add(mVo);
-		//	}
-		//	this.ImageTileViewID.ItemsSource = mediaList;
-		//}
 
 		/// <summary>
 		/// 显示mark的详细信息属性窗
@@ -864,14 +870,15 @@ namespace Globe.QcApp
 		/// <summary>
 		/// 在查询结果面板上初始化查询结果列表
 		/// </summary>
-		private void InitQueryListBox()
+		/// <param name="type">查询方式，默认为属性查询-Attribute，空间查询-Spatial</param>
+		private void ExecuteQueryListBox(string type, Point3Ds TempPoints3Ds=null, string actionStr=null)
 		{
 			string layerName = "";
 			if (this.QueryLayerList.Items.Count > 0)
 			{
 				layerName = this.QueryLayerList.SelectedValue.ToString();
 			}
-			//if (layerName != "" && this.QueryNameTxt.Text.Trim() != "")
+			
 			if (layerName != "")//关键字为空时查询全部要素
 			{
 				string queryTxt = this.QueryNameTxt.Text.Trim();
@@ -887,15 +894,62 @@ namespace Globe.QcApp
 						{
 							string fieldName = ConfigurationManager.AppSettings.Get(queryNameField);
 							string fieldCode = ConfigurationManager.AppSettings.Get(queryCodeField);
-							QueryParameter queryParameter = new QueryParameter();
-							queryParameter.CursorType = SuperMap.Data.CursorType.Static;
-							queryParameter.HasGeometry = true;
-							if (this.QueryNameTxt.Text.Trim() != "")
-							{
-								queryParameter.AttributeFilter = fieldName + " like '%" + queryTxt + "%'";
-							}
+							Recordset recordset = null;
 
-							Recordset recordset = dSetV.Query(queryParameter);
+							if (type != ATTRIBUTE_QUERY)
+							{
+								double queryBuffer = 0.0;
+								SuperMap.Data.Geometry queryGeometry = null;
+								
+								switch (actionStr)
+								{
+									case "createpoint":
+										if (TempPoints3Ds.Count == 1)
+										{
+											queryBuffer = 0.01;
+											GeoPoint geoPoint = new GeoPoint(TempPoints3Ds[0].X, TempPoints3Ds[0].Y);
+											queryGeometry = geoPoint;
+										}
+										break;
+									case "createline":
+										if (TempPoints3Ds.Count == 2)
+										{
+											Point2D point2D = new Point2D(TempPoints3Ds[0].X, TempPoints3Ds[0].Y);
+											double radius = spatialQueryUtil.GetLengthBy2Point(TempPoints3Ds[0], TempPoints3Ds[1]);
+											GeoCircle geoCircle = new GeoCircle(point2D, radius);
+											queryGeometry = geoCircle;
+										}
+										break;
+									case "createpolygon":
+										if (TempPoints3Ds.Count > 2)
+										{
+											Point2Ds tempPoint2Ds = new Point2Ds();
+											for (int i = 0; i < TempPoints3Ds.Count; i++)
+											{
+												tempPoint2Ds.Add(new Point2D(TempPoints3Ds[i].X, TempPoints3Ds[i].Y));
+											}
+											GeoRegion geoRegion = new GeoRegion(tempPoint2Ds);
+											queryGeometry = geoRegion;
+										}
+										break;
+									default:
+										break;
+								}
+								recordset = dSetV.Query(queryGeometry, queryBuffer, SuperMap.Data.CursorType.Static);
+							}
+							else
+							{
+								QueryParameter queryParameter = new QueryParameter();
+								queryParameter.CursorType = SuperMap.Data.CursorType.Static;
+								queryParameter.HasGeometry = true;
+								if (this.QueryNameTxt.Text.Trim() != "")
+								{
+									queryParameter.AttributeFilter = fieldName + " like '%" + queryTxt + "%'";
+								}
+
+								recordset = dSetV.Query(queryParameter);
+							}
+							
 							if (recordset != null && recordset.RecordCount > 0)
 							{
 								ObservableCollection<QueryRecordVO> recordList = SysModelLocator.getInstance().recordList;
@@ -961,18 +1015,6 @@ namespace Globe.QcApp
 
 		}
 
-        /// <summary>
-        /// 初始化空间查询图层列表
-        /// </summary>
-        private void InitSpatialQueryLayerList()
-        {
-            this.SpatialQueryLayerList.ItemsSource = SysModelLocator.getInstance().LayerList.Where(p => p.IsQueryLayer == true && p.LayerCaption.IndexOf("@") == -1);
-            if (this.SpatialQueryLayerList.Items.Count > 0)
-            {
-                this.SpatialQueryLayerList.SelectedIndex = 0;
-            }
-        }
-
 		/// <summary>
 		/// 选中定位要素
 		/// </summary>
@@ -998,9 +1040,12 @@ namespace Globe.QcApp
 						}
 
 						//高亮要素，显示详情
-						int fid = SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.IndexOf(string.Format("{0}#{1}", qVO.RecordName, qVO.RecordIndex));
-						GeoPoint3D p = SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Get(fid) as GeoPoint3D;
-						this.HighLightFeature(p, fid);
+						int fid = SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.IndexOf(string.Format("{0}#{1}#{2}", qVO.RecordName, qVO.RecordIndex, QUERY));
+						if (fid >= 0)
+						{
+							GeoPoint3D p = SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Get(fid) as GeoPoint3D;
+							this.HighLightFeature(p, fid);
+						}
 					}
 					catch (Exception ex)
 					{
@@ -1042,61 +1087,14 @@ namespace Globe.QcApp
 		}
 
         /// <summary>
-        /// 空间查询列表选择改变事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void SpatialQueryListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-            if (sender is RadListBox)
-            {
-                if (this.SpatialQueryListBox.SelectedItem != null)
-                {
-                    try
-                    {
-                        QueryRecordVO qVO = this.SpatialQueryListBox.SelectedItem as QueryRecordVO;
-                        double lat = Convert.ToDouble(qVO.RecordCenterX.Trim());
-                        double lon = Convert.ToDouble(qVO.RecordCenterY.Trim());
-                        double height = Convert.ToDouble(defaultHeight.ToString().Trim());
-                        if (!Double.IsNaN(lat) && !Double.IsNaN(lon) && !Double.IsNaN(height))
-                        {
-                            //this.JumpCamera(lat, lon, height);
-                            Rectangle2D rect2D = new Rectangle2D(new Point2D(lat, lon), new Size2D(0.4, 0.4));
-                            SmObjectLocator.getInstance().GlobeObject.Scene.EnsureVisible(rect2D, 500);
-                        }
-
-                        //高亮要素，显示详情
-                        int fid = SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.IndexOf(string.Format("{0}#{1}", qVO.RecordName, qVO.RecordIndex));
-                        GeoPoint3D p = SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Get(fid) as GeoPoint3D;
-                        this.HighLightFeature(p, fid);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message + "要素坐标错误！");
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// 空间查询清除
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void SpatialClearBt_Click(object sender, RoutedEventArgs e)
-        {
-            measureUtil.ClearAllResult("spatial");
-        }
-
-
-        /// <summary>
         /// 多边形查询
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void PolygonQueryBt_Click(object sender, RoutedEventArgs e)
         {
-            measureUtil.ClearAllResult("spatial");
+			this.measureUtil.ClearAllResult(QUERY);
+			this.ResetQueryState();
             SpatialQueryUtil.ms = this;
             spatialQueryUtil.BeginPolygonQuery();
         }
@@ -1108,7 +1106,8 @@ namespace Globe.QcApp
         /// <param name="e"></param>
         private void CircleQueryBt_Click(object sender, RoutedEventArgs e)
         {
-            measureUtil.ClearAllResult("spatial");
+			this.measureUtil.ClearAllResult(QUERY);
+			this.ResetQueryState();
             SpatialQueryUtil.ms = this;
             spatialQueryUtil.BeginCircleQuery();
         }
@@ -1120,141 +1119,10 @@ namespace Globe.QcApp
         /// <param name="e"></param>
         private void PointQueryBt_Click(object sender, RoutedEventArgs e)
         {
-            measureUtil.ClearAllResult("spatial");
+			this.measureUtil.ClearAllResult(QUERY);
+			this.ResetQueryState();
             SpatialQueryUtil.ms = this;
             spatialQueryUtil.BeginPointQuery();
-        }
-
-        /// <summary>
-        /// 进行空间查询
-        /// </summary>
-        /// <param name="TempPoints3Ds"></param>
-        /// <param name="action3D"></param>
-        public void SpatialQueryByPoint3Ds(Point3Ds TempPoints3Ds, string actionStr)
-        {
-            string layerName = "";
-            if (this.SpatialQueryLayerList.Items.Count > 0)
-            {
-                layerName = this.SpatialQueryLayerList.SelectedValue.ToString();
-            }
-            if (layerName != "")
-			{
-                DatasetVector dSetV = GetDatasetByName(layerName);
-                if (dSetV != null)
-                {
-                    double queryBuffer = 0.0;
-                    SuperMap.Data.Geometry queryGeometry = null;
-                    string fieldName = ConfigurationManager.AppSettings.Get(queryNameField);
-                    string fieldCode = ConfigurationManager.AppSettings.Get(queryCodeField);
-                    switch (actionStr)
-                    {
-                        case "createpoint":
-                            if (TempPoints3Ds.Count == 1)
-                            {
-                                queryBuffer = 0.01;
-                                GeoPoint geoPoint = new GeoPoint(TempPoints3Ds[0].X, TempPoints3Ds[0].Y);
-                                queryGeometry = geoPoint;
-                            }
-                            break;
-                        case "createline":
-                            if (TempPoints3Ds.Count == 2)
-                            {
-                                Point2D point2D = new Point2D(TempPoints3Ds[0].X, TempPoints3Ds[0].Y);
-                                double radius = spatialQueryUtil.GetLengthBy2Point(TempPoints3Ds[0], TempPoints3Ds[1]);
-                                GeoCircle geoCircle = new GeoCircle(point2D, radius);
-                                queryGeometry = geoCircle;
-                            }
-                            break;
-                        case "createpolygon":
-                            if (TempPoints3Ds.Count > 2)
-                            {
-                                Point2Ds tempPoint2Ds = new Point2Ds();
-                                for (int i = 0; i < TempPoints3Ds.Count; i++)
-                                {
-                                    tempPoint2Ds.Add(new Point2D(TempPoints3Ds[i].X, TempPoints3Ds[i].Y));
-                                }
-                                GeoRegion geoRegion = new GeoRegion(tempPoint2Ds);
-                                queryGeometry = geoRegion;
-                            }
-                            break;
-                        default:
-                            break;
-                    }
-                    Recordset queryRecords = dSetV.Query(queryGeometry, queryBuffer, SuperMap.Data.CursorType.Static);
-                    if (queryRecords != null && queryRecords.RecordCount > 0)
-                    {
-                        ObservableCollection<QueryRecordVO> recordList = SysModelLocator.getInstance().recordList;
-                        recordList.Clear();
-                        bool isExist = false;
-                        FieldInfos fis = queryRecords.GetFieldInfos();
-                        for (int j = 0; j < fis.Count; j++)
-                        {
-                            FieldInfo fi = fis[j];
-                            if (fi != null)
-                            {
-                                if (fi.Name.ToString().ToUpper() == fieldName)
-                                {
-                                    isExist = true;
-                                    break;
-                                }
-                                continue;
-                            }
-                        }
-
-                        if (isExist)
-                        {
-                            for (queryRecords.MoveFirst(); queryRecords.IsEOF == false; queryRecords.MoveNext())
-                            {
-                                QueryRecordVO qVO = new QueryRecordVO();
-                                qVO.RecordLayerId = layerName;
-                                qVO.RecordName = queryRecords.GetFieldValue(fieldName).ToString();
-                                qVO.RecordIndex = queryRecords.GetFieldValue(fieldCode).ToString();
-                                qVO.RecordCenterX = queryRecords.GetGeometry().InnerPoint.X.ToString();
-                                qVO.RecordCenterY = queryRecords.GetGeometry().InnerPoint.Y.ToString();
-                                recordList.Add(qVO);
-                            }
-                            this.SpatialQueryListBox.ItemsSource = recordList;
-                            this.SpatialQueryInfo.Text = "查询结果合计：" + recordList.Count + "条";
-                            InitQueryListOnMap();
-                        }
-                        else
-                        {
-                            this.SpatialQueryListBox.ItemsSource = null;
-                            this.SpatialQueryInfo.Text = "";
-                        }
-                    }
-                    else
-                    {
-                        this.SpatialQueryListBox.ItemsSource = null;
-                        this.SpatialQueryInfo.Text = "查询结果合计：0条";
-                    }
-                }
-            }
-        }
-
-        private DatasetVector GetDatasetByName(string layerName)
-        {
-            DatasetVector tempV = null;
-            Workspace ws = MainWindow.m_workspace;
-            if (ws != null)
-            {
-                string sourceName = ConfigurationManager.AppSettings.Get(queryDataSource);
-                Datasource dSource = ws.Datasources[sourceName];
-                if (dSource != null)
-                {
-                    DatasetVector dSetV = (DatasetVector)dSource.Datasets[layerName];
-                    if (dSetV != null)
-                    {
-                        tempV = dSetV;
-                    }
-                }
-            }
-            return tempV;
-        }
-
-        private void SpatialQueryLayerList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-           
         }
 	}
 }

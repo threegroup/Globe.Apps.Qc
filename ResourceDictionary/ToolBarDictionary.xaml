@@ -5,7 +5,7 @@
     <Thickness x:Key="Margin5">5</Thickness>
     <SolidColorBrush x:Key="ToolBarFocusColor" Color="#99007ACC"></SolidColorBrush>
     <SolidColorBrush x:Key="ToolBarBgColor" Color="Transparent"></SolidColorBrush>
-    <sys:Double x:Key="WidthAndHeight">48</sys:Double>
+    <sys:Double x:Key="WidthAndHeight">32</sys:Double>
     <FontFamily x:Key="FontFamilyValue">Microsoft YaHei UI Light</FontFamily>
     <sys:Double x:Key="RouteWidthAndHeight">32</sys:Double>
     
