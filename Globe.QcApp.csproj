@@ -210,9 +210,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\init.png">
+    <SplashScreen Include="Images\init.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    </SplashScreen>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\logo.ico">
