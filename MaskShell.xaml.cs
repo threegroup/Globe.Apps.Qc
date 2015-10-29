@@ -898,7 +898,7 @@ namespace Globe.QcApp
 
 							if (type != ATTRIBUTE_QUERY)
 							{
-								double queryBuffer = 0.0;
+								double queryBuffer = 0.01;
 								SuperMap.Data.Geometry queryGeometry = null;
 								
 								switch (actionStr)
@@ -906,7 +906,6 @@ namespace Globe.QcApp
 									case "createpoint":
 										if (TempPoints3Ds.Count == 1)
 										{
-											queryBuffer = 0.01;
 											GeoPoint geoPoint = new GeoPoint(TempPoints3Ds[0].X, TempPoints3Ds[0].Y);
 											queryGeometry = geoPoint;
 										}
@@ -993,6 +992,7 @@ namespace Globe.QcApp
 							}
 							else
 							{
+                                SysModelLocator.getInstance().recordList.Clear();
 								this.QueryListBox.ItemsSource = null;
 								this.QueryInfo.Text = "查询结果合计：0条";
 							}
@@ -1093,7 +1093,10 @@ namespace Globe.QcApp
         /// <param name="e"></param>
         private void PolygonQueryBt_Click(object sender, RoutedEventArgs e)
         {
-			this.measureUtil.ClearAllResult(QUERY);
+            //清除量算结果
+            this.measureUtil.ClearResult();
+            //清除查询结果
+            this.ClearQueryResult();
 			this.ResetQueryState();
             SpatialQueryUtil.ms = this;
             spatialQueryUtil.BeginPolygonQuery();
@@ -1106,7 +1109,10 @@ namespace Globe.QcApp
         /// <param name="e"></param>
         private void CircleQueryBt_Click(object sender, RoutedEventArgs e)
         {
-			this.measureUtil.ClearAllResult(QUERY);
+            //清除量算结果
+            this.measureUtil.ClearResult();
+            //清除查询结果
+            this.ClearQueryResult();
 			this.ResetQueryState();
             SpatialQueryUtil.ms = this;
             spatialQueryUtil.BeginCircleQuery();
@@ -1119,7 +1125,10 @@ namespace Globe.QcApp
         /// <param name="e"></param>
         private void PointQueryBt_Click(object sender, RoutedEventArgs e)
         {
-			this.measureUtil.ClearAllResult(QUERY);
+            //清除量算结果
+            this.measureUtil.ClearResult();
+            //清除查询结果
+            this.ClearQueryResult();
 			this.ResetQueryState();
             SpatialQueryUtil.ms = this;
             spatialQueryUtil.BeginPointQuery();
