@@ -48,6 +48,7 @@ namespace Globe.QcApp
 
             this.Loaded += MainWindow_Loaded;
             this.Closed += MainWindow_Closed;
+
             this.Deactivated += MainWindow_Deactivated;
             this.Activated += MainWindow_Activated;
             this.StateChanged += MainWindow_StateChanged;
@@ -114,6 +115,12 @@ namespace Globe.QcApp
 
         private void MainWindow_Closed(object sender, EventArgs e)
         {
+			if (m_workspace != null)
+			{
+				m_workspace.Close();
+				m_workspace.Dispose();
+				m_workspace = null;
+			}
             Application.Current.Shutdown(-1);
         }
 
