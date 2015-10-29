@@ -898,12 +898,13 @@ namespace Globe.QcApp
 
 							if (type != ATTRIBUTE_QUERY)
 							{
-								double queryBuffer = 0.01;
+								double queryBuffer = 0.0;
 								SuperMap.Data.Geometry queryGeometry = null;
 								
 								switch (actionStr)
 								{
 									case "createpoint":
+                                        queryBuffer = 0.01;
 										if (TempPoints3Ds.Count == 1)
 										{
 											GeoPoint geoPoint = new GeoPoint(TempPoints3Ds[0].X, TempPoints3Ds[0].Y);
