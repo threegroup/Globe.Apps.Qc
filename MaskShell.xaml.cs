@@ -915,9 +915,11 @@ namespace Globe.QcApp
 										if (TempPoints3Ds.Count == 2)
 										{
 											Point2D point2D = new Point2D(TempPoints3Ds[0].X, TempPoints3Ds[0].Y);
-											double radius = spatialQueryUtil.GetLengthBy2Point(TempPoints3Ds[0], TempPoints3Ds[1]);
-											GeoCircle geoCircle = new GeoCircle(point2D, radius);
-											queryGeometry = geoCircle;
+                                            Point2D point2D1 = new Point2D(TempPoints3Ds[1].X, TempPoints3Ds[1].Y);
+                                            double radius = Geometrist.Distance(new GeoPoint(point2D), new GeoPoint(point2D1));
+                                            GeoCircle geoCircle = new GeoCircle(point2D, radius);
+                                            GeoRegion geoRegion = geoCircle.ConvertToRegion(72);
+                                            queryGeometry = geoRegion;
 										}
 										break;
 									case "createpolygon":
@@ -935,7 +937,10 @@ namespace Globe.QcApp
 									default:
 										break;
 								}
-								recordset = dSetV.Query(queryGeometry, queryBuffer, SuperMap.Data.CursorType.Static);
+                                if (queryGeometry != null)
+                                {
+                                    recordset = dSetV.Query(queryGeometry, queryBuffer, SuperMap.Data.CursorType.Static);
+                                }
 							}
 							else
 							{
@@ -1094,6 +1099,7 @@ namespace Globe.QcApp
         /// <param name="e"></param>
         private void PolygonQueryBt_Click(object sender, RoutedEventArgs e)
         {
+            SmObjectLocator.getInstance().GlobeObject.Cursor = System.Windows.Forms.Cursors.Cross;
             //清除量算结果
             this.measureUtil.ClearResult();
             //清除查询结果
@@ -1110,6 +1116,8 @@ namespace Globe.QcApp
         /// <param name="e"></param>
         private void CircleQueryBt_Click(object sender, RoutedEventArgs e)
         {
+            this.Cursor = Cursors.Cross;
+            this.Owner.Cursor = Cursors.Cross;
             //清除量算结果
             this.measureUtil.ClearResult();
             //清除查询结果
