@@ -74,20 +74,12 @@ namespace Globe.QcApp.Common.Utils
                     }
                     if (this.TempPoints3Ds.Count == 2)
                     {
-                        //Point3D point3D = new Point3D(TempPoints3Ds[0].X, TempPoints3Ds[0].Y, TempPoints3Ds[0].Z);
-                        //double radius = GetLengthBy2Point(TempPoints3Ds[0], TempPoints3Ds[1]);
-                        //GeoCircle3D geoCircle3D = new GeoCircle3D(point3D, radius);
-                        //geoCircle3D.Style3D = GetGeoStyle3D();
-                        //SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Add(geoCircle3D, spatialTag);
-
-                        Point2D point2D = new Point2D(TempPoints3Ds[0].X, TempPoints3Ds[0].Y);
-                        Point2D point2D1 = new Point2D(TempPoints3Ds[1].X, TempPoints3Ds[1].Y);
-                        double radius2 = Geometrist.Distance(new GeoPoint(point2D), new GeoPoint(point2D1));
-                        GeoCircle geoCircle = new GeoCircle(point2D, radius2);
-                        GeoRegion geoRegion = geoCircle.ConvertToRegion(72);
-                        geoRegion.Style = GetGeoStyle2D();
-                        SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Add(geoRegion, spatialTag);
-                       
+                        Point3D point3D = new Point3D(TempPoints3Ds[0].X, TempPoints3Ds[0].Y, TempPoints3Ds[0].Z);
+                        double radius = GetLengthBy2Point(TempPoints3Ds[0], TempPoints3Ds[1]);
+                        GeoCircle3D geoCircle3D = new GeoCircle3D(point3D, radius);
+                        GeoModel geoModel = geoCircle3D.GetGeoModel(72, 72);
+                        geoModel.Style3D = GetGeoStyle3D();
+                        SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Add(geoModel, spatialTag);
                     }
                     break;
                 case "createpolygon":
@@ -143,7 +135,6 @@ namespace Globe.QcApp.Common.Utils
                         break;
                 }
             }
-           
         }
        
         private void TrackedHandler(object sender, Tracked3DEventArgs e)
@@ -239,6 +230,24 @@ namespace Globe.QcApp.Common.Utils
             SmObjectLocator.getInstance().GlobeObject.Action = Action3D.Pan2;
         }
 
+        /// <summary>
+        /// 获取两点之间的距离
+        /// </summary>
+        /// <param name="point3D1"></param>
+        /// <param name="point3D2"></param>
+        /// <returns></returns>
+        public double GetLengthBy2Point(Point3D point3D1, Point3D point3D2)
+        {
+            double tempR = 0.0;
+            GeoLine3D tempL = new GeoLine3D();
+            Point3Ds temp3Ds = new Point3Ds();
+            temp3Ds.Add(point3D1);
+            temp3Ds.Add(point3D2);
+            tempL.AddPart(temp3Ds);
+            tempR = Geometrist.ComputeLength(tempL, new PrjCoordSys(PrjCoordSysType.EarthLongitudeLatitude));
+            return tempR == 0.0 ? 10000.0 : tempR;
+        }
+
 
         /// <summary>
         ///默认的空间查询图形风格
@@ -248,32 +257,35 @@ namespace Globe.QcApp.Common.Utils
         {
             GeoStyle3D geoStyle = new GeoStyle3D();
             geoStyle.AltitudeMode = AltitudeMode.ClampToGround;
+            geoStyle.BottomAltitude = 20;
+            //geoStyle.ExtendedHeight = 20;
             geoStyle.LineColor = System.Drawing.Color.Yellow;
             geoStyle.LineWidth = 1;
             geoStyle.FillBackColor = System.Drawing.Color.FromArgb(180, 255, 255, 0);
             geoStyle.FillForeColor = System.Drawing.Color.FromArgb(180, 255, 255, 0);
             geoStyle.MarkerColor = System.Drawing.Color.FromArgb(180, 255, 255, 0);
             geoStyle.FillMode = FillMode3D.Fill;
+            geoStyle.FillGradientMode = FillGradientMode.Linear;
             geoStyle.MarkerSize = 15;
             return geoStyle;
         }
 
-        /// <summary>
-        /// 半透明没有实现
-        /// </summary>
-        /// <returns></returns>
-        private GeoStyle GetGeoStyle2D()
-        {
-            GeoStyle geoStyle = new GeoStyle();
-            //geoStyle.LineColor = System.Drawing.Color.Yellow;
-            //geoStyle.LineWidth = 1;
-            geoStyle.FillBackColor = System.Drawing.Color.FromArgb(20, 255, 255, 0);
-            geoStyle.FillForeColor = System.Drawing.Color.FromArgb(20, 255, 255, 0);
-            //geoStyle.FillOpaqueRate = 0;
-            //geoStyle.FillBackOpaque = true;
-            //geoStyle.FillGradientMode = FillGradientMode.Linear;
-            return geoStyle;
-        }
+        ///// <summary>
+        ///// 半透明没有实现
+        ///// </summary>
+        ///// <returns></returns>
+        //private GeoStyle GetGeoStyle2D()
+        //{
+        //    GeoStyle geoStyle = new GeoStyle();
+        //    //geoStyle.LineColor = System.Drawing.Color.Yellow;
+        //    //geoStyle.LineWidth = 1;
+        //    geoStyle.FillBackColor = System.Drawing.Color.FromArgb(20, 255, 255, 0);
+        //    geoStyle.FillForeColor = System.Drawing.Color.FromArgb(20, 255, 255, 0);
+        //    //geoStyle.FillOpaqueRate = 0;
+        //    //geoStyle.FillBackOpaque = true;
+        //    //geoStyle.FillGradientMode = FillGradientMode.Linear;
+        //    return geoStyle;
+        //}
 
     }
 }

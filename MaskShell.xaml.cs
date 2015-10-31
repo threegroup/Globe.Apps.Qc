@@ -333,6 +333,7 @@ namespace Globe.QcApp
 		{
 			if (e.Source is Button)
 			{
+                this.spatialQueryUtil.removeListener();
 				string name = (e.Source as Button).Name.ToString();
 				switch (name)
 				{
