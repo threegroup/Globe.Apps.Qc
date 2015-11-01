@@ -354,6 +354,8 @@ namespace Globe.QcApp
 						}
 					case "Clear"://清除
 						{
+							this.spatialQueryUtil.StopSpatialQuery();
+
 							//清除量算结果
 							this.measureUtil.ClearResult();
 							//清除查询结果
@@ -626,6 +628,10 @@ namespace Globe.QcApp
 		/// <param name="e"></param>
 		private void QueryBt_Click(object sender, RoutedEventArgs e)
 		{
+			this.spatialQueryUtil.StopSpatialQuery();
+			//清空追踪图层数据
+			SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Clear();
+
 			ExecuteQuery(ATTRIBUTE_QUERY);
 		}
 
@@ -669,7 +675,7 @@ namespace Globe.QcApp
 			//清空追踪图层数据
 			SmObjectLocator.getInstance().GlobeObject.Scene.TrackingLayer.Clear();
 			this.QueryListBox.ItemsSource = null;
-			this.QueryInfo.Text = "";
+			this.QueryInfo.Text = "";			
 		}
 
 		/// <summary>
@@ -1100,6 +1106,8 @@ namespace Globe.QcApp
         /// <param name="e"></param>
         private void PolygonQueryBt_Click(object sender, RoutedEventArgs e)
         {
+			//是否开启三维场景光标自定义功能
+			SmObjectLocator.getInstance().GlobeObject.IsCursorCustomized = true;
             SmObjectLocator.getInstance().GlobeObject.Cursor = System.Windows.Forms.Cursors.Cross;
             //清除量算结果
             this.measureUtil.ClearResult();
@@ -1117,8 +1125,9 @@ namespace Globe.QcApp
         /// <param name="e"></param>
         private void CircleQueryBt_Click(object sender, RoutedEventArgs e)
         {
-            this.Cursor = Cursors.Cross;
-            this.Owner.Cursor = Cursors.Cross;
+			//是否开启三维场景光标自定义功能
+			SmObjectLocator.getInstance().GlobeObject.IsCursorCustomized = true;
+			SmObjectLocator.getInstance().GlobeObject.Cursor = System.Windows.Forms.Cursors.Cross;
             //清除量算结果
             this.measureUtil.ClearResult();
             //清除查询结果
@@ -1135,6 +1144,9 @@ namespace Globe.QcApp
         /// <param name="e"></param>
         private void PointQueryBt_Click(object sender, RoutedEventArgs e)
         {
+			//是否开启三维场景光标自定义功能
+			SmObjectLocator.getInstance().GlobeObject.IsCursorCustomized = true;
+			SmObjectLocator.getInstance().GlobeObject.Cursor = System.Windows.Forms.Cursors.Cross;
             //清除量算结果
             this.measureUtil.ClearResult();
             //清除查询结果

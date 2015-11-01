@@ -49,6 +49,20 @@ namespace Globe.QcApp.Common.Utils
             addListener();
         }
 
+		/// <summary>
+		/// 停止空间查询，并恢复光标样式
+		/// </summary>
+		public void StopSpatialQuery()
+		{
+			this.removeListener();
+			if (this.TempPoints3Ds != null && this.TempPoints3Ds.Count > 0)
+			{
+				this.TempPoints3Ds.Clear();
+			}
+			//恢复场景光标形状
+			SmObjectLocator.getInstance().GlobeObject.IsCursorCustomized = false;
+		}
+
         /// <summary>
         /// 结束空间查询
         /// </summary>
@@ -108,6 +122,9 @@ namespace Globe.QcApp.Common.Utils
             {
 				ms.ExecuteQuery(spatialTag, queryPoints, actionStr);
             }
+
+			//恢复场景光标形状
+			SmObjectLocator.getInstance().GlobeObject.IsCursorCustomized = false;
         }
 
         /// <summary>
