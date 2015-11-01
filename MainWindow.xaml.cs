@@ -67,6 +67,7 @@ namespace Globe.QcApp
             string dataPath = ConfigurationManager.AppSettings.GetValues(globeDataPathKey)[0];
             string sceneName = ConfigurationManager.AppSettings.GetValues(sceneNameKey)[0];
             OpenScene(dataPath, sceneName);
+			System.Windows.Forms.Application.DoEvents();
 
             InitMaskShell();
 

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Globe.QcApp.Common.Core;
 
 namespace Globe.QcApp.SubWindows
 {
@@ -33,6 +34,16 @@ namespace Globe.QcApp.SubWindows
                 {
                     case "Ok"://确定退出
                         {
+							if (SmObjectLocator.getInstance().GlobeObject != null)
+							{
+								SmObjectLocator.getInstance().GlobeObject.Dispose();
+							}
+							if (MainWindow.m_workspace != null)
+							{
+								MainWindow.m_workspace.Close();
+								MainWindow.m_workspace.Dispose();
+								MainWindow.m_workspace = null;
+							}
                             Application.Current.Shutdown(-1);
                             break;
                         }
